@@ -1,10 +1,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title></title>
-  <link rel="self" href="http://localhost/blog/atom.xml" />
-  <link href="http://localhost/blog/" />
+  <title>:general</title>
+  <link rel="self" href="http://localhost/blog/tags/general/atom.xml" />
+  <link href="http://localhost/blog/tags/general/" />
   <updated>2012-09-02T17:24:01+00:00</updated>
-  <id>http://localhost/blog/</id>
+  <id>http://localhost/blog/tags/general/</id>
   <author>
     <name>Saravana</name>
   </author>
