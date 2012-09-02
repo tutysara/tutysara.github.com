@@ -1,0 +1,108 @@
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>:html</title>
+  <link rel="self" href="http://localhost/blog/tags/html/atom.xml" />
+  <link href="http://localhost/blog/tags/html/" />
+  <updated>2012-09-02T10:41:40+00:00</updated>
+  <id>http://localhost/blog/tags/html/</id>
+  <author>
+    <name>Saravana</name>
+  </author>
+  <generator uri="https://github.com/algernon/madness">Madness</generator>
+
+  <entry>
+    <title type="html">tst post's title</title>
+    <link href="http://localhost/blog/2011/01/22/tst-post2/" />
+    <updated>2011-01-22T15:04:00+00:00</updated>
+    <id>http://localhost/blog/2011/01/22/tst-post2/</id>
+    <content type="html">
+  &lt;p&gt;
+    As of a few hours ago, the bigger part of
+    my &lt;a href="http://localhost/projects/syslog-ng/mongodb/"&gt;afmongodb&lt;/a&gt; driver has
+    been merged to the
+    official &lt;a href="http://git.balabit.hu/?p=bazsi/syslog-ng-3.3.git;a=summary"&gt;syslog-ng
+    3.3&lt;/a&gt; tree!
+  &lt;/p&gt;
+&lt;section&gt;
+
+  &lt;p&gt;
+    A few things remain to be done, however:
+  &lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;
+      Authentication doesn't work. This is due to the underlying
+      &lt;a href="https://github.com/algernon/libmongo-client"&gt;client
+      library&lt;/a&gt; not supporting it yet. The code is still in the
+      driver, commented out, and
+      once &lt;a href="https://github.com/algernon/libmongo-client"&gt;libmongo-client&lt;/a&gt;
+      gains authentication support, it can be re-enabled.
+    &lt;/li&gt;
+
+    &lt;li&gt;
+      Dynamic variable support. While this is one of the major selling
+      points of the driver, this functionality will be added as a
+      generic framework, which all drivers can use, if they wish
+      to. The plan is to get the framework coded and merged, then the
+      driver updated to support it.
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;
+    Apart from the above two, of which, the second will be a tricky
+    thing to implement, the driver is complete and as far as my tests
+    show, stable.
+  &lt;/p&gt;
+ &lt;section&gt;
+&lt;/section&gt;&lt;/section&gt;&lt;section&gt;
+&lt;/section&gt;</content>
+  </entry><entry>
+    <title type="html">tst post's title</title>
+    <link href="http://localhost/blog/2011/01/22/tst-post/" />
+    <updated>2011-01-22T15:04:00+00:00</updated>
+    <id>http://localhost/blog/2011/01/22/tst-post/</id>
+    <content type="html">
+  &lt;p&gt;
+    As of a few hours ago, the bigger part of
+    my &lt;a href="http://localhost/projects/syslog-ng/mongodb/"&gt;afmongodb&lt;/a&gt; driver has
+    been merged to the
+    official &lt;a href="http://git.balabit.hu/?p=bazsi/syslog-ng-3.3.git;a=summary"&gt;syslog-ng
+    3.3&lt;/a&gt; tree!
+  &lt;/p&gt;
+&lt;section&gt;
+
+  &lt;p&gt;
+    A few things remain to be done, however:
+  &lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;
+      Authentication doesn't work. This is due to the underlying
+      &lt;a href="https://github.com/algernon/libmongo-client"&gt;client
+      library&lt;/a&gt; not supporting it yet. The code is still in the
+      driver, commented out, and
+      once &lt;a href="https://github.com/algernon/libmongo-client"&gt;libmongo-client&lt;/a&gt;
+      gains authentication support, it can be re-enabled.
+    &lt;/li&gt;
+
+    &lt;li&gt;
+      Dynamic variable support. While this is one of the major selling
+      points of the driver, this functionality will be added as a
+      generic framework, which all drivers can use, if they wish
+      to. The plan is to get the framework coded and merged, then the
+      driver updated to support it.
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;
+    Apart from the above two, of which, the second will be a tricky
+    thing to implement, the driver is complete and as far as my tests
+    show, stable.
+  &lt;/p&gt;
+ &lt;section&gt;
+&lt;/section&gt;&lt;/section&gt;&lt;section&gt;
+&lt;/section&gt;</content>
+  </entry>
+
+
+</feed>
