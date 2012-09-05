@@ -1,10 +1,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title>:general</title>
-  <link rel="self" href="http://localhost/blog/tags/general/atom.xml" />
-  <link href="http://localhost/blog/tags/general/" />
-  <updated>2012-09-05T16:27:15+00:00</updated>
-  <id>http://localhost/blog/tags/general/</id>
+  <link rel="self" href="http://tutysara.github.com/blog/tags/general/atom.xml" />
+  <link href="http://tutysara.github.com/blog/tags/general/" />
+  <updated>2012-09-05T16:34:44+00:00</updated>
+  <id>http://tutysara.github.com/blog/tags/general/</id>
   <author>
     <name>Saravana</name>
   </author>
@@ -12,9 +12,9 @@
 
   <entry>
     <title type="html">Started blogging from a new place</title>
-    <link href="http://localhost/blog/2012/09/02/static-blogging-init/" />
+    <link href="http://tutysara.github.com/blog/2012/09/02/static-blogging-init/" />
     <updated>2012-09-02T10:44:00+00:00</updated>
-    <id>http://localhost/blog/2012/09/02/static-blogging-init/</id>
+    <id>http://tutysara.github.com/blog/2012/09/02/static-blogging-init/</id>
     <content type="html">
   &lt;p&gt;
    I have been thinking about having a professional looking blog/space for
