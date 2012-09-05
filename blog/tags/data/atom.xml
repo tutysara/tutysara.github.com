@@ -1,10 +1,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title></title>
-  <link rel="self" href="http://localhost/blog/atom.xml" />
-  <link href="http://localhost/blog/" />
-  <updated>2012-09-05T16:27:15+00:00</updated>
-  <id>http://localhost/blog/</id>
+  <title>:data</title>
+  <link rel="self" href="http://localhost/blog/tags/data/atom.xml" />
+  <link href="http://localhost/blog/tags/data/" />
+  <updated>2012-09-05T16:27:16+00:00</updated>
+  <id>http://localhost/blog/tags/data/</id>
   <author>
     <name>Saravana</name>
   </author>
@@ -114,32 +114,6 @@ Here we are trying to correlate between the INR values of various
     &lt;code&gt;
     &lt;script src="https://gist.github.com/3638556.js?file=blog_data2_complete     code.clj"&gt;&lt;/script&gt;   
     &lt;/code&gt;
-  &lt;/p&gt;
- &lt;section&gt;
-&lt;/section&gt;&lt;/section&gt;&lt;section&gt;
-&lt;/section&gt;</content>
-  </entry><entry>
-    <title type="html">Started blogging from a new place</title>
-    <link href="http://localhost/blog/2012/09/02/static-blogging-init/" />
-    <updated>2012-09-02T10:44:00+00:00</updated>
-    <id>http://localhost/blog/2012/09/02/static-blogging-init/</id>
-    <content type="html">
-  &lt;p&gt;
-   I have been thinking about having a professional looking blog/space for
-   some time. I noticed many people I follow on github maintaining a
-   neat blog, I see that many of them
-   use &lt;a href="https://github.com/mojombo/jekyll"&gt;jekyll&lt;/a&gt;&lt;a&gt;/
-        &lt;/a&gt;&lt;a href="http://octopress.org"&gt;octopress&lt;/a&gt; and use
-  &lt;a href="http://pages.github.com/"&gt; github pages&lt;/a&gt; for hosting. I like the concept of static blogging and
-   wanted to give it a try.
-  &lt;/p&gt;
-&lt;section&gt;
-  &lt;p&gt;
-    I gone through the process and it looks neat and clean, create a
-    github repo with your username and drop html pages into it and &lt;a href="http://www.github.com/"&gt; github&lt;/a&gt; takes care of serving them,
-    damm simple. Can't wait to write my blog and here comes the first
-    posts. I will be tweaking my comments setup with &lt;a href="http://disqus.com/"&gt; disqus&lt;/a&gt; and
-    analytics and also my blog engine using this post.
   &lt;/p&gt;
  &lt;section&gt;
 &lt;/section&gt;&lt;/section&gt;&lt;section&gt;
