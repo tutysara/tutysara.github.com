@@ -39,18 +39,9 @@
           <div class="nav-collapse">    
             <ul class="nav pull-right visible-desktop">
               <li>
-                <form class="form-inline" method="get" action="http://www.google.com/search">   
-                  <div class="control-group">
-                    <div class="controls">
-                      <div class="input-append">                           
-                        <input id="search" name="q" placeholder="Search" class="span3" type="search" />
-                        <span class="add-on">
-                              <i class="icon-search"></i>
-                        </span>
-                        <input type="hidden" name="sitesearch" value="tutysara.github.com" />
-                      </div>
-                    </div>
-                  </div>
+                <form action="http://www.google.com/search" method="get" class="navbar-search pull-left">
+                  <input class="search-query" type="search" placeholder="Search..." name="q" id="search" />
+                  <input value="tutysara.github.com" name="sitesearch" type="hidden" />
                 </form>
               </li>
               <li><a style="font-size: 200%" id="rss-feed" href="/blog/atom.xml"><i class="icon-rss"></i></a></li>

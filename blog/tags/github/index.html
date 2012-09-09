@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/gcp/prettify.css" />
     <link rel="icon" href="/assets/images/favicon.ico" />
-    <link href="/blog/atom.xml" title="tutysara's site" type="application/atom+xml" rel="alternate" />
+    <link href="/blog/tags/github/atom.xml" title="tutysara's site" type="application/atom+xml" rel="alternate" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -39,21 +39,12 @@
           <div class="nav-collapse">    
             <ul class="nav pull-right visible-desktop">
               <li>
-                <form class="form-inline" method="get" action="http://www.google.com/search">   
-                  <div class="control-group">
-                    <div class="controls">
-                      <div class="input-append">                           
-                        <input id="search" name="q" placeholder="Search" class="span3" type="search" />
-                        <span class="add-on">
-                              <i class="icon-search"></i>
-                        </span>
-                        <input type="hidden" name="sitesearch" value="tutysara.github.com" />
-                      </div>
-                    </div>
-                  </div>
+                <form action="http://www.google.com/search" method="get" class="navbar-search pull-left">
+                  <input class="search-query" type="search" placeholder="Search..." name="q" id="search" />
+                  <input value="tutysara.github.com" name="sitesearch" type="hidden" />
                 </form>
               </li>
-              <li><a style="font-size: 200%" id="rss-feed" href="/blog/atom.xml"><i class="icon-rss"></i></a></li>
+              <li><a style="font-size: 200%" id="rss-feed" href="/blog/tags/github/atom.xml"><i class="icon-rss"></i></a></li>
             </ul>
           </div>
         </div>
