@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>tutysara's page</title><link href="http://localhost:8080/" rel="alternate"></link><link href="http://localhost:8080/feeds/articles.rss.xml" rel="self"></link><id>http://localhost:8080/</id><updated>2012-10-05T11:16:00+05:30</updated><entry><title>Correlation between INR values of different currencies</title><link href="http://localhost:8080/posts/2012/10/05/correlation-in-currency-inr-values/" rel="alternate"></link><updated>2012-10-05T11:16:00+05:30</updated><author><name>tutysara</name></author><id>tag:localhost:8080,2012-10-05:posts/2012/10/05/correlation-in-currency-inr-values/</id><summary type="html">&lt;article comments="1"&gt;
+  &lt;title&gt;Correlation between INR values of different currencies&lt;/title&gt;
+  &lt;date&gt;2012-09-05 11:31&lt;/date&gt;
+  &lt;tags&gt;
+    &lt;tag&gt;data&lt;/tag&gt;
+    &lt;tag&gt;clojure&lt;/tag&gt;
+  &lt;/tags&gt;
+&lt;/article&gt;
+
+&lt;p&gt;&lt;summary&gt;
+  &lt;p&gt;
+  This is an interesting take away example from the class
+   which &lt;a href="http://www.s-anand.net/"&gt;Anand&lt;/a&gt; is teaching at
+   NIAS.
+Here we are trying to correlate between the INR values of various
+   currencies like AUD, CNY (Chinese Yen), EUR, GBP (Great Britain
+   Pound), JPY, SGD, USD and find the positive or negative
+   correlations. The focus is on data collection and transformation. 
+  &lt;/p&gt;
+&lt;/summary&gt;&lt;/p&gt;
+&lt;section&gt;
+  &lt;p&gt;
+    The first part is the identification of a proper source to get the
+    data. &lt;a href="http://www.oanda.com"&gt;oanda.com&lt;/a&gt; is one such source
+    from which historic currency exchange rates can be obtained.
+  &lt;/p&gt;
+  &lt;p&gt;
+    The next part is the development of an automated/easy way of obtaining
+    the data from the site, suitable for transformation. With some
+    help from develpment tools in the browser the url of the
+    download link can be found.
+    It looks something like
+    &lt;br/&gt;
+
+    &lt;script src="https://gist.github.com/3638650.js?file=data2_url.sh"&gt;&lt;/script&gt;
+    &lt;br/&gt;
+    Here we can find that SGD is the currency that is being used, with
+    little exprimentation it can be found that we can download data
+    for other currencies by altering this URL (example - replace SGD
+    with JPY for downloading data for Japanese yen)
+  &lt;/P&gt;
+  &lt;p&gt;
+    The next is the transformation part, the downloaded csv files
+    contains data that are not required for further analysis that
+    should be filtered to get the required data. In this case we have
+    to filter the first 5 lines, that is done by using &lt;code&gt;tail -n +6&lt;/code&gt;,
+    which prints starting from the 6th line and we have to also filter
+    the last 4 lines and this is done by using &lt;code&gt; head -n -4&lt;/code&gt;, which
+    prints all lines but the last 4 lines.
+  &lt;/p&gt;
+  &lt;p&gt;
+    We also combine the data and make a single csv file containing data of all currencies
+    for easy consumption, this can be done using
+  &lt;p&gt;
+    &lt;code&gt;
+    paste AUD.csv CNY.csv EUR.csv GBP.csv JPY.csv SGD.csv USD.csv |sed
+    's/\t/,/g'&gt;alldata.csv
+    &lt;/code&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    The complete code for the steps so far
+    &lt;br/&gt;
+    &lt;code&gt;
+      &lt;script src="https://gist.github.com/3638103.js?file=gistfile1.sh"&gt;&lt;/script&gt;
+    &lt;/code&gt;
+  &lt;/P&gt;
+  &lt;p&gt;
+    The next step is the visualization, The choice of tools for
+    visualization is left open, I prefer clojure with incanter.
+    Here is the clojure snippet
+  &lt;/p&gt;
+  &lt;p&gt;
+    load the data  
+    &lt;code&gt;
+     &lt;script src="https://gist.github.com/3638130.js?file=data2_currency_read_data.clj"&gt;&lt;/script&gt;
+    &lt;/code&gt;
+    plot it
+    &lt;code&gt;
+     &lt;script src="https://gist.github.com/3638148.js?file=blog_data2_unnormalized_plot.clj"&gt;&lt;/script&gt;
+    &lt;/code&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    Here is how it looks - 
+    &lt;br/&gt;
+    &lt;a href="http://www.flickr.com/photos/86708945@N08/7937082534/"
+    title="data2_currency_correlation_notnormalized by tutysara, on
+    Flickr"&gt;&lt;img src="http://farm9.staticflickr.com/8299/7937082534_5b636f6671.jpg"
+    width="500" height="400"
+    alt="data2_currency_correlation_notnormalized"&gt;&lt;/a&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    It can be found that it is difficult to compare data on different
+    scales, normalization helps us in this case (data-mean/mean)
+    &lt;br/&gt;
+    Here is a function to normalize data
+  &lt;p&gt;
+    &lt;script src="https://gist.github.com/3638406.js?file=data2_currency_normalize_data.clj"&gt;&lt;/script&gt;
+  &lt;/P&gt;
+  &lt;p&gt;
+    and the plot is updated to show the normalized data
+    &lt;code&gt;
+    &lt;script src="https://gist.github.com/3638436.js?file=data2_currency_normalize_plot.clj"&gt;&lt;/script&gt;
+    &lt;/code&gt;
+  &lt;/P&gt;
+  &lt;p&gt;
+    Here is how it looks
+    &lt;br/&gt;
+    &lt;a href="http://www.flickr.com/photos/86708945@N08/7937082716/"
+    title="data2_currency_correlation_normalized by tutysara, on
+    Flickr"&gt;&lt;img src="http://farm9.staticflickr.com/8446/7937082716_e8134a87d4.jpg"
+    width="500" height="353"
+    alt="data2_currency_correlation_normalized"&gt;&lt;/a&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    the complete code
+    &lt;code&gt;
+&lt;script src="https://gist.github.com/3638556.js?file=blog_data2_complete_code.clj"&gt;&lt;/script&gt;
+    &lt;/code&gt;
+  &lt;/p&gt;
+ &lt;section&gt;</summary><category term="data"></category><category term="clojure"></category></entry><entry><title>Started blogging from a new place</title><link href="http://localhost:8080/posts/2012/09/02/static-blogging-init/" rel="alternate"></link><updated>2012-09-02T16:14:00+05:30</updated><author><name>tutysara</name></author><id>tag:localhost:8080,2012-09-02:posts/2012/09/02/static-blogging-init/</id><summary type="html">&lt;p&gt;&lt;summary&gt;
+  &lt;p&gt;
+   I have been thinking about having a professional looking blog/space for
+   some time. I noticed many people I follow on github maintaining a
+   neat blog, I see that many of them
+   use &lt;a href="https://github.com/mojombo/jekyll"&gt;jekyll&lt;a&gt;/
+        &lt;a href="http://octopress.org"&gt;octopress&lt;/a&gt; and use
+  &lt;a href="http://pages.github.com/"&gt; github pages&lt;/a&gt; for hosting. I like the concept of static blogging and
+   wanted to give it a try.
+  &lt;/p&gt;
+&lt;/summary&gt;&lt;/p&gt;
+&lt;section&gt;
+  &lt;p&gt;
+    I gone through the process and it looks neat and clean, create a
+    github repo with your username and drop html pages into it and &lt;a href="http://www.github.com/"&gt; github&lt;/a&gt; takes care of serving them,
+    damm simple. Can't wait to write my blog and here comes the first
+    posts. I will be tweaking my comments setup with &lt;a href="http://disqus.com/"&gt; disqus&lt;/a&gt; and
+    analytics and also my blog engine using this post.
+  &lt;/p&gt;
+ &lt;section&gt;</summary><category term="general"></category><category term="github"></category></entry></feed>
