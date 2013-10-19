@@ -12,7 +12,7 @@
     <!-- Open Graph tags -->
     
         <!-- Bootstrap -->
-            <link rel="stylesheet" href="http://www.tutysara.net/theme/css/bootstrap.min.css" type="text/css"/>
+            <link rel="stylesheet" href="http://www.tutysara.net/theme/css/bootstrap.journal.min.css" type="text/css"/>
         <link href="http://www.tutysara.net/theme/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://www.tutysara.net/theme/css/pygments.css" rel="stylesheet">
     <link rel="stylesheet" href="http://www.tutysara.net/theme/css/style.css" type="text/css"/>
@@ -78,7 +78,41 @@
         <div class="col-lg-10">
                                                 <article>
                <div class="jumbotron">
-                <h2><a href="http://www.tutysara.net/posts/2012/10/05/correlation-in-currency-inr-values/"><u>Correlation between INR values of different currencies</u></a></h2>
+                <h2><a href="http://www.tutysara.net/posts/2013/10/18/configuring-vps-server/"><u>What I did to configure a new VPS server - Digital Ocean and ChicagoVPS</u></a></h2>
+                <div class="summary"><p>These are the things that were done on my VPS instance on ChicagoVPS</p>
+<h3>Update the machine</h3>
+<div class="highlight"><pre>sudo apt-get update
+sudo apt-get upgrade
+</pre></div>
+
+
+<h3>Set locales</h3>
+<div class="highlight"><pre>sudo locale-gen
+sudo dpkg-reconfigure locales
+</pre></div>
+
+
+<h3>add user</h3>
+<div class="highlight"><pre>sudo adduser tutysra
+<span class="c"># give sudo previliges</span>
+sudo visudo
+tutysra <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> ALL
+</pre></div>
+
+
+<h3>Install Git</h3>
+<div class="highlight"><pre>sudo apt-get install git
+</pre></div>
+
+
+<h3>Install ...</h3>
+                                                            <a class="btn btn btn-lg btn-success" href="http://www.tutysara.net/posts/2013/10/18/configuring-vps-server/">Read on ...</a>
+                </div>
+               </div>
+            </article>
+            <hr/>
+                                              <article>
+                <h2><a href="http://www.tutysara.net/posts/2012/10/05/correlation-in-currency-inr-values/">Correlation between INR values of different currencies</a></h2>
                 <div class="summary"><article comments="1">
   <title>Correlation between INR values of different currencies</title>
   <date>2012-09-05 11:31</date>
@@ -95,9 +129,8 @@
    NIAS.
 Here we are trying to correlate between the INR values of various
    currencies like AUD, CNY (Chinese Yen), EUR, GBP (Great Britain ...</p></summary></p>
-                                                            <a class="btn btn btn-lg btn-success" href="http://www.tutysara.net/posts/2012/10/05/correlation-in-currency-inr-values/">Read on ...</a>
+                                                            <a class="btn btn-default btn-xs" href="http://www.tutysara.net/posts/2012/10/05/correlation-in-currency-inr-values/">more ...</a>
                 </div>
-               </div>
             </article>
             <hr/>
                                               <article>
@@ -156,20 +189,29 @@ Here we are trying to correlate between the INR values of various
                          <!--   <li class="list-group-item tag-4"> -->
            
              
-              <a class="list-group-item" href="http://www.tutysara.net/tag/clojure.html">
-                clojure
+              <a class="list-group-item" href="http://www.tutysara.net/tag/general.html">
+                general
                <span class="badge pull-right">
-                                                                                                      1
-                                                                                                                  </span></a>
+                                                                                                                                                                                                            1
+                                              </span></a>
            
                           <!--   <li class="list-group-item tag-4"> -->
            
              
-              <a class="list-group-item" href="http://www.tutysara.net/tag/general.html">
-                general
+              <a class="list-group-item" href="http://www.tutysara.net/tag/self-notes.html">
+                self-notes
                <span class="badge pull-right">
                                                                                                                                                                           1
-                                              </span></a>
+                                                                                </span></a>
+           
+                          <!--   <li class="list-group-item tag-4"> -->
+           
+             
+              <a class="list-group-item" href="http://www.tutysara.net/tag/clojure.html">
+                clojure
+               <span class="badge pull-right">
+                                                                                                                                        1
+                                                                                                                  </span></a>
            
                           <!--   <li class="list-group-item tag-4"> -->
            
@@ -177,8 +219,8 @@ Here we are trying to correlate between the INR values of various
               <a class="list-group-item" href="http://www.tutysara.net/tag/data.html">
                 data
                <span class="badge pull-right">
-                                                                                                                                        1
-                                                                                </span></a>
+                                                                                                      1
+                                                                                                                                                    </span></a>
            
                           <!--   <li class="list-group-item tag-4"> -->
            
@@ -187,7 +229,7 @@ Here we are trying to correlate between the INR values of various
                 github
                <span class="badge pull-right">
                                                                     1
-                                                                                                                                                    </span></a>
+                                                                                                                                                                                      </span></a>
            
                        
              <a class="list-group-item" href="http://www.tutysara.net/tags.html">All tags</a>
@@ -219,11 +261,11 @@ Here we are trying to correlate between the INR values of various
         }());
     </script>
 <!-- <div class="footer">
-  <p>Company 2013 <a href='http://blog.getpelican.com/'>Powered by Pelican</a> and <a href='https://github.com/tutysara/pelican-bootstrap3-tutysara'>modified Bootstrap 3 theme</a></p>
+  <p>Copyright 2013, tutysara  <a href='http://blog.getpelican.com/'>Powered by Pelican</a> and <a href='https://github.com/tutysara/pelican-bootstrap3-tutysara'>modified Bootstrap 3 theme</a></p>
 </div> -->
 <div id="footer">
       <div class="container">
-        <p class="text-muted credit">Company 2013 <a href='http://blog.getpelican.com/'>Powered by Pelican</a> and <a href='https://github.com/tutysara/pelican-bootstrap3-tutysara'>modified Bootstrap 3 theme</a></p>
+        <p class="text-muted credit">Copyright 2013, tutysara  <a href='http://blog.getpelican.com/'>Powered by Pelican</a> and <a href='https://github.com/tutysara/pelican-bootstrap3-tutysara'>modified Bootstrap 3 theme</a></p>
       </div>
     </div>
 

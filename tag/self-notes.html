@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>tutysara's space - Tags</title>
+    <title>tutysara's space - self-notes</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -76,16 +76,41 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-10">
-                <section id="tags">
-        <h1>Tags for tutysara's space</h1>
-        <ul>                <li><a href="http://www.tutysara.net/tag/clojure.html">clojure</a> (1)</li>
-                            <li><a href="http://www.tutysara.net/tag/data.html">data</a> (1)</li>
-                            <li><a href="http://www.tutysara.net/tag/general.html">general</a> (1)</li>
-                            <li><a href="http://www.tutysara.net/tag/github.html">github</a> (1)</li>
-                            <li><a href="http://www.tutysara.net/tag/self-notes.html">self-notes</a> (1)</li>
-                    </ul>
-    </section>
-        </div>
+                                                  <article>
+                <h2><a href="http://www.tutysara.net/posts/2013/10/18/configuring-vps-server/">What I did to configure a new VPS server - Digital Ocean and ChicagoVPS</a></h2>
+                <div class="summary"><p>These are the things that were done on my VPS instance on ChicagoVPS</p>
+<h3>Update the machine</h3>
+<div class="highlight"><pre>sudo apt-get update
+sudo apt-get upgrade
+</pre></div>
+
+
+<h3>Set locales</h3>
+<div class="highlight"><pre>sudo locale-gen
+sudo dpkg-reconfigure locales
+</pre></div>
+
+
+<h3>add user</h3>
+<div class="highlight"><pre>sudo adduser tutysra
+<span class="c"># give sudo previliges</span>
+sudo visudo
+tutysra <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> ALL
+</pre></div>
+
+
+<h3>Install Git</h3>
+<div class="highlight"><pre>sudo apt-get install git
+</pre></div>
+
+
+<h3>Install ...</h3>
+                                                            <a class="btn btn-default btn-xs" href="http://www.tutysara.net/posts/2013/10/18/configuring-vps-server/">more ...</a>
+                </div>
+            </article>
+            <hr/>
+                        
+            </div>
         <!-- <div class="col-lg-2 well well-sm" id="sidebar"> -->
         <div class="col-lg-2 sidebar-offcanvas" id="sidebar">
         

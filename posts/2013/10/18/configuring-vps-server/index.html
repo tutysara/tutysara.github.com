@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Started blogging from a new place</title>
+    <title>What I did to configure a new VPS server - Digital Ocean and ChicagoVPS</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -80,10 +80,10 @@
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://www.tutysara.net/posts/2012/09/02/static-blogging-init/"
+                    <a href="http://www.tutysara.net/posts/2013/10/18/configuring-vps-server/"
                        rel="bookmark"
-                       title="Permalink to Started blogging from a new place">
-                        Started blogging from a new place
+                       title="Permalink to What I did to configure a new VPS server - Digital Ocean and ChicagoVPS">
+                        What I did to configure a new VPS server - Digital Ocean and ChicagoVPS
                     </a>
                 </h1>
             </header>
@@ -93,37 +93,234 @@
                         <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="icon-calendar"></i>Sun 02 September 2012
+        <i class="icon-calendar"></i>Fri 18 October 2013
     </span>
                     
             
     
     <span class="label label-default">Tags</span>
-	<a href="http://www.tutysara.net/tag/general.html">general</a>
-            /
-    	<a href="http://www.tutysara.net/tag/github.html">github</a>
+	<a href="http://www.tutysara.net/tag/self-notes.html">self-notes</a>
         </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p><summary>
-  <p>
-   I have been thinking about having a professional looking blog/space for
-   some time. I noticed many people I follow on github maintaining a
-   neat blog, I see that many of them
-   use <a href="https://github.com/mojombo/jekyll">jekyll<a>/
-        <a href="http://octopress.org">octopress</a> and use
-  <a href="http://pages.github.com/"> github pages</a> for hosting. I like the concept of static blogging and
-   wanted to give it a try.
-  </p>
-</summary></p>
-<section>
-  <p>
-    I gone through the process and it looks neat and clean, create a
-    github repo with your username and drop html pages into it and <a href="http://www.github.com/"> github</a> takes care of serving them,
-    damm simple. Can't wait to write my blog and here comes the first
-    posts. I will be tweaking my comments setup with <a href="http://disqus.com/"> disqus</a> and
-    analytics and also my blog engine using this post.
-  </p>
- <section>
+                <p>These are the things that were done on my VPS instance on ChicagoVPS</p>
+<h3>Update the machine</h3>
+<div class="highlight"><pre>sudo apt-get update
+sudo apt-get upgrade
+</pre></div>
+
+
+<h3>Set locales</h3>
+<div class="highlight"><pre>sudo locale-gen
+sudo dpkg-reconfigure locales
+</pre></div>
+
+
+<h3>add user</h3>
+<div class="highlight"><pre>sudo adduser tutysra
+<span class="c"># give sudo previliges</span>
+sudo visudo
+tutysra <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> ALL
+</pre></div>
+
+
+<h3>Install Git</h3>
+<div class="highlight"><pre>sudo apt-get install git
+</pre></div>
+
+
+<h3>Install sun java</h3>
+<div class="highlight"><pre>sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+</pre></div>
+
+
+<h3>Install Tor for screen scrapping</h3>
+<div class="highlight"><pre>sudo apt-get install tor
+sudo /etc/init.d/tor start
+</pre></div>
+
+
+<h3>Make default directories</h3>
+<div class="highlight"><pre>mkdir ~/swt
+mkdir ~/bin
+</pre></div>
+
+
+<h3>Install NX ( not necessary for CLI boxes)</h3>
+<div class="highlight"><pre><span class="nb">export </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
+sudo -E apt-get update
+sudo -E apt-get install -y ubuntu-desktop
+sudo apt-get install gnome-session-fallback
+
+wget <span class="s1">&#39;http://64.34.173.142/download/3.5.0/Linux/nxclient_3.5.0-7_amd64.deb&#39;</span>
+wget <span class="s1">&#39;http://64.34.173.142/download/3.5.0/Linux/nxnode_3.5.0-9_amd64.deb&#39;</span>
+wget <span class="s1">&#39;http://64.34.173.142/download/3.5.0/Linux/FE/nxserver_3.5.0-11_amd64.deb&#39;</span>
+
+sudo dpkg -i *.deb
+sudo /usr/NX/bin/nxserver --status
+
+nano /usr/NX/etc/node.cfg
+<span class="c"># Uncomment the “DefaultXSession” line and set it to :</span>
+<span class="nv">DefaultXSession</span><span class="o">=</span>/etc/X11/Xsession
+</pre></div>
+
+
+<h3>Enable/Disable password authentication in ssh</h3>
+<div class="highlight"><pre>sudo vi /etc/ssh/sshd_config
+ PasswordAuthentication to <span class="s2">&quot;yes/no&quot;</span> 
+ PermitRootLogin no
+sudo service ssh restart
+</pre></div>
+
+
+<h3>Install screen &amp; tmux</h3>
+<div class="highlight"><pre>sudo apt-get install screen
+sudo apt-get install tmux
+</pre></div>
+
+
+<h3>Install curl</h3>
+<div class="highlight"><pre>sudo apt-get install curl
+</pre></div>
+
+
+<h3>Install emacs and customize</h3>
+<div class="highlight"><pre>sudo apt-get install software-properties-common <span class="c"># installs some python scripts necessary for these operations</span>
+sudo add-apt-repository ppa:cassou/emacs
+sudo apt-get update
+sudo apt-get install emacs-snapshot-el emacs-snapshot-gtk emacs-snapshot
+<span class="nb">export </span><span class="nv">TERM</span><span class="o">=</span>xterm-256color
+</pre></div>
+
+
+<h3>Install lein</h3>
+<div class="highlight"><pre>mkdir ~/bin <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/bin
+wget <span class="s1">&#39;https://raw.github.com/technomancy/leiningen/stable/bin/lein&#39;</span>
+</pre></div>
+
+
+<h3>Install JDK6 for neo4j</h3>
+<div class="highlight"><pre>wget --no-cookies --header <span class="s2">&quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com&quot;</span> http://download.oracle.com/otn-pub/java/jdk/6u41-b02/jdk-6u41-linux-x64.bin 
+
+<span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/home/neo4j/swt/jdk1.6/
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/home/neo4j/swt/jdk1.6/bin:<span class="nv">$PATH</span>
+</pre></div>
+
+
+<h3>Configure swap</h3>
+<div class="highlight"><pre>swapon -s
+sudo dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/swapfile <span class="nv">bs</span><span class="o">=</span>1024 <span class="nv">count</span><span class="o">=</span>2048k
+sudo mkswap /swapfile
+sudo swapon /swapfile
+swapon -s
+
+sudo nano /etc/fstab
+/swapfile       none    swap    sw      0       0 
+
+sudo chown root:root /swapfile 
+sudo chmod 0600 /swapfile
+
+sudo nano /etc/sysctl.conf 
+vm.swappiness<span class="o">=</span>20  <span class="c"># default is 60% RAM full</span>
+</pre></div>
+
+
+<h3>Configure Timezone from command line</h3>
+<div class="highlight"><pre>sudo dpkg-reconfigure tzdata
+</pre></div>
+
+
+<h3>Install ngnix</h3>
+<div class="highlight"><pre>sudo apt-get install nginx
+sudo service nginx start
+<span class="c">#ifconfig eth0 | grep inet | awk &#39;{ print $2 }&#39;</span>
+update-rc.d nginx defaults
+</pre></div>
+
+
+<h4>configuring ngnix</h4>
+<p>sudo invoke-rc.d nginx reload
+<a href="https://help.ubuntu.com/community/Nginx/ReverseProxy">Follow instructions here</a></p>
+<h3>Install latest tomcat from apache</h3>
+<div class="highlight"><pre>sudo apt-get install tomcat7 - Not fine
+Download from - http://apache.techartifact.com/mirror/tomcat/tomcat-7/v7.0.37/bin/apache-tomcat-7.0.37.tar.gz
+</pre></div>
+
+
+<p>Edit .bashrc</p>
+<div class="highlight"><pre><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-7-oracle
+<span class="nb">export </span><span class="nv">CATALINA_HOME</span><span class="o">=</span>~/swt/tomcat
+<span class="nv">$CATALINA_HOME</span>/bin/startup.sh
+</pre></div>
+
+
+<h3>Install mongodb</h3>
+<div class="highlight"><pre>url - http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+<span class="nb">echo</span> <span class="s1">&#39;deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen&#39;</span> | sudo tee /etc/apt/sources.list.d/10gen.list
+sudo apt-get update
+sudo apt-get install mongodb-10gen
+data - /var/lib/mongodb
+log - /var/log/mongodb
+use - mongodb
+</pre></div>
+
+
+<h1>Server Monitoring</h1>
+<h3>Install htop</h3>
+<div class="highlight"><pre>sudo apt-get install htop
+</pre></div>
+
+
+<h3>Install iftop</h3>
+<div class="highlight"><pre>sudo apt-get install iftop
+</pre></div>
+
+
+<h3>Install munin</h3>
+<div class="highlight"><pre>sudo apt-get install munin munin-node
+sudo /etc/init.d/munin-node restart
+results - /var/cache/munin/www <span class="c">#sync to dropbox</span>
+</pre></div>
+
+
+<h1>Server Checking</h1>
+<div class="highlight"><pre>sudo apt-get install nmap
+port scan - sudo nmap -v -sT localhost
+syn scan - sudo nmap -v -sS localhost
+</pre></div>
+
+
+<h1>Allow automatic system updating</h1>
+<div class="highlight"><pre>sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure unattended-upgrades
+</pre></div>
+
+
+<h1>IPTables configuration</h1>
+<div class="highlight"><pre>sudo iptables -L
+sudo iptables -L -n <span class="c"># no dns lookup for ip to hostname resolution</span>
+
+<span class="c"># flush all existing rules</span>
+sudo iptables -F
+sudo iptables -I INPUT 1 -i lo -j ACCEPT <span class="c"># accept loopback</span>
+sudo iptables -I INPUT 2 -p tcp --dport ssh -j ACCEPT <span class="c"># allow ssh</span>
+sudo iptables -I INPUT 3 -p udp --dport 60000:61000 -j ACCEPT <span class="c"># allow mosh</span>
+sudo iptables -I INPUT 4 -p tcp --dport 80 -j ACCEPT <span class="c"># allow www</span>
+sudo iptables -I INPUT 5 -p udp -m udp --dport 53 -j ACCEPT <span class="c"># allow dns</span>
+sudo iptables -A INPUT -j DROP
+sudo iptables -L -v
+
+<span class="c">#self note - see bitbucket for rules file</span>
+<span class="c"># allow all existing connections</span>
+sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+<span class="c"># persist rules</span>
+sudo apt-get install iptables-persistent
+sudo service iptables-persistent start
+sudo /etc/init.d/iptables-persistent save
+</pre></div>
             </div>
             <!-- /.entry-content -->
                 <hr />
@@ -143,8 +340,8 @@
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'tutysarablog'; // required: replace example with your forum shortname
-            var disqus_identifier = 'static-blogging-init';
-            var disqus_url = 'http://www.tutysara.net/posts/2012/09/02/static-blogging-init/';
+            var disqus_identifier = 'configuring-vps-server';
+            var disqus_url = 'http://www.tutysara.net/posts/2013/10/18/configuring-vps-server/';
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function () {
