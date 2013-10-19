@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>tutysara's space</title><link href="http://www.tutysara.net/" rel="alternate"></link><link href="http://www.tutysara.net/feeds/articles.rss.xml" rel="self"></link><id>http://www.tutysara.net/</id><updated>2013-10-18T11:16:00+05:30</updated><entry><title>What I did to configure a new VPS server - Digital Ocean and ChicagoVPS</title><link href="http://www.tutysara.net/posts/2013/10/18/configuring-vps-server/" rel="alternate"></link><updated>2013-10-18T11:16:00+05:30</updated><author><name>tutysara</name></author><id>tag:www.tutysara.net,2013-10-18:posts/2013/10/18/configuring-vps-server/</id><summary type="html">&lt;p&gt;These are the things that were done on my VPS instance on ChicagoVPS&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>tutysara's space</title><link href="http://localhost:8080/" rel="alternate"></link><link href="http://localhost:8080/feeds/articles.rss.xml" rel="self"></link><id>http://localhost:8080/</id><updated>2013-10-18T11:16:00+05:30</updated><entry><title>What I did to configure a new VPS server - Digital Ocean and ChicagoVPS</title><link href="http://localhost:8080/posts/2013/10/18/configuring-vps-server/" rel="alternate"></link><updated>2013-10-18T11:16:00+05:30</updated><author><name>tutysara</name></author><id>tag:localhost:8080,2013-10-18:posts/2013/10/18/configuring-vps-server/</id><summary type="html">&lt;p&gt;These are the things that were done on my VPS instance on ChicagoVPS&lt;/p&gt;
 &lt;h3&gt;Update the machine&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get update
 sudo apt-get upgrade
@@ -217,7 +217,10 @@ sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 sudo apt-get install iptables-persistent
 sudo service iptables-persistent start
 sudo /etc/init.d/iptables-persistent save
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="self-notes"></category></entry><entry><title>Correlation between INR values of different currencies</title><link href="http://www.tutysara.net/posts/2012/10/05/correlation-in-currency-inr-values/" rel="alternate"></link><updated>2012-10-05T11:16:00+05:30</updated><author><name>tutysara</name></author><id>tag:www.tutysara.net,2012-10-05:posts/2012/10/05/correlation-in-currency-inr-values/</id><summary type="html">&lt;article comments="1"&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you do something more/different, please comment, I will refine my setup and this blog post. Thanks.&lt;/p&gt;</summary><category term="self-notes"></category></entry><entry><title>Correlation between INR values of different currencies</title><link href="http://localhost:8080/posts/2012/10/05/correlation-in-currency-inr-values/" rel="alternate"></link><updated>2012-10-05T11:16:00+05:30</updated><author><name>tutysara</name></author><id>tag:localhost:8080,2012-10-05:posts/2012/10/05/correlation-in-currency-inr-values/</id><summary type="html">&lt;article comments="1"&gt;
   &lt;title&gt;Correlation between INR values of different currencies&lt;/title&gt;
   &lt;date&gt;2012-09-05 11:31&lt;/date&gt;
   &lt;tags&gt;
@@ -336,7 +339,7 @@ Here we are trying to correlate between the INR values of various
 &lt;script src="https://gist.github.com/3638556.js?file=blog_data2_complete_code.clj"&gt;&lt;/script&gt;
     &lt;/code&gt;
   &lt;/p&gt;
- &lt;section&gt;</summary><category term="data"></category><category term="clojure"></category></entry><entry><title>Started blogging from a new place</title><link href="http://www.tutysara.net/posts/2012/09/02/static-blogging-init/" rel="alternate"></link><updated>2012-09-02T16:14:00+05:30</updated><author><name>tutysara</name></author><id>tag:www.tutysara.net,2012-09-02:posts/2012/09/02/static-blogging-init/</id><summary type="html">&lt;p&gt;&lt;summary&gt;
+ &lt;section&gt;</summary><category term="data"></category><category term="clojure"></category></entry><entry><title>Started blogging from a new place</title><link href="http://localhost:8080/posts/2012/09/02/static-blogging-init/" rel="alternate"></link><updated>2012-09-02T16:14:00+05:30</updated><author><name>tutysara</name></author><id>tag:localhost:8080,2012-09-02:posts/2012/09/02/static-blogging-init/</id><summary type="html">&lt;p&gt;&lt;summary&gt;
   &lt;p&gt;
    I have been thinking about having a professional looking blog/space for
    some time. I noticed many people I follow on github maintaining a
