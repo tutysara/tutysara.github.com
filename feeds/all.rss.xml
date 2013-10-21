@@ -1,5 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>tutysara's space</title><link href="http://www.tutysara.net/" rel="alternate"></link><link href="http://www.tutysara.net/feeds/all.rss.xml" rel="self"></link><id>http://www.tutysara.net/</id><updated>2013-10-18T11:16:00+05:30</updated><entry><title>Setting up a new VPS server</title><link href="http://www.tutysara.net/posts/2013/10/18/configuring-vps-server/" rel="alternate"></link><updated>2013-10-18T11:16:00+05:30</updated><author><name>tutysara</name></author><id>tag:www.tutysara.net,2013-10-18:posts/2013/10/18/configuring-vps-server/</id><summary type="html">&lt;p&gt;These are the things I did to setup new VPS instances on Digital Ocean and ChicagoVPS&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>tutysara's space</title><link href="http://www.tutysara.net/" rel="alternate"></link><link href="http://www.tutysara.net/feeds/all.rss.xml" rel="self"></link><id>http://www.tutysara.net/</id><updated>2013-10-21T15:25:00+05:30</updated><entry><title>Running a Hacker news clone</title><link href="http://www.tutysara.net/posts/2013/10/21/running-a-hackernews-clone/" rel="alternate"></link><updated>2013-10-21T15:25:00+05:30</updated><author><name>tutysara</name></author><id>tag:www.tutysara.net,2013-10-21:posts/2013/10/21/running-a-hackernews-clone/</id><summary type="html">&lt;p&gt;I very much like the presentation of &lt;a href="https://news.ycombinator.com/item?id=6576560"&gt;hackernews&lt;/a&gt; when it comes to understanding and making sense of the discussions quickly. It is a lot easier than reading pages of forums to get the main ideas of the discussions since the top comments and active discussions bubble to the top.&lt;/p&gt;
+&lt;p&gt;I wanted to run a site for discussing and sharing information that are useful for people working in techparks and the format that immediately clicked in my mind was the hacknews style. I began writing my own &lt;a href="https://github.com/techparknews/hsnews"&gt;clone&lt;/a&gt; based on the work of people from &lt;a href="http://hackerschool.com/"&gt;hackerschool&lt;/a&gt; but it lacked the polish and look to make the people trust and even sign up, I had send invites to few of my friends to try but the turnaround rate was quite low.&lt;/p&gt;
+&lt;p&gt;Now I wanted to validate whether there is any market for this idea (ie) do many techies have the need/difficulty to get info about the things and happenings around thier work place. I decided to deploy a polished better looking open source product and see how it gets picked up and used. I zeroed in on &lt;a href="https://github.com/SachaG/Telescope"&gt;Telescope&lt;/a&gt; after having evaluated &lt;a href="https://github.com/SachaG/Telescope"&gt;Telescope&lt;/a&gt; and &lt;a href="https://github.com/jcs/lobsters"&gt;lobsters&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Reason for choosing Telescope are&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Looks better and intutive and will be easy for people who have not used hacknews before&lt;/li&gt;
+&lt;li&gt;Supports sharing on social networks out of the box&lt;/li&gt;
+&lt;li&gt;Easy to setup&lt;/li&gt;
+&lt;li&gt;I like the idea of single page apps&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here are the steps that I did to install telescope on my VPS running Ubuntu 12.04&lt;/p&gt;
+&lt;h4&gt;Do all these from a previliged user&lt;/h4&gt;
+&lt;h3&gt;Install nodejs&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;npm is now part of nodejs and installing nodejs installs it&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install nodejs
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Check the node version, as of this writing Chris Lea repo has version 0.10.21&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;node --version
+v0.10.21
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Install meteorite - Installer &amp;amp; smart package manager for Meteor&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo npm install -g meteorite
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Login to the web user with limited previlage and clone the repository&lt;/h4&gt;
+&lt;p&gt;I was testing the application from this user before starting it using upstart&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/SachaG/Telescope.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Configure Telescope to start automatically when system reboots, I have to do this because my VPS provider had restarted the server more than 3-4 times in a month&lt;/p&gt;
+&lt;p&gt;Create a file &lt;code&gt;telescope.conf&lt;/code&gt; in &lt;code&gt;/etc/init&lt;/code&gt; with the following contents&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# meteorjs - meteorjs job file&lt;/span&gt;
+
+description &lt;span class="s2"&gt;&amp;quot;Start Telescope&amp;quot;&lt;/span&gt;
+author &lt;span class="s2"&gt;&amp;quot;tutysara&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# When to start the service&lt;/span&gt;
+start on runlevel &lt;span class="o"&gt;[&lt;/span&gt;2345&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# When to stop the service&lt;/span&gt;
+stop on runlevel &lt;span class="o"&gt;[&lt;/span&gt;016&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# Automatically restart process if crashed&lt;/span&gt;
+respawn
+
+&lt;span class="c"&gt;# Essentially lets upstart know the process will detach itself to the background&lt;/span&gt;
+expect fork
+
+&lt;span class="c"&gt;# Start the process&lt;/span&gt;
+script
+    &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/web/telescopes/Telescope
+    &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;NODE_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/lib/nodejs:/usr/lib/node_modules
+    &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/web
+    &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;MONGO_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;mongodb://localhost:27017/meteor
+    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;---- start ----&amp;quot;&lt;/span&gt;
+    &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/home/web/telescopes/Telescope&amp;quot;&lt;/span&gt;
+    &lt;span class="nb"&gt;exec &lt;/span&gt;meteor run -p 3000 --production
+end script
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally test the scipt by starting, stopping and checking status&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo start telescope
+sudo status telescope
+sudo stop telescope
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If there are errors it can be seen in upstart logs at &lt;code&gt;/var/log/upstart/telescope.log&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The application can be accessed &lt;a href="http://www.techparknews.in"&gt;here&lt;/a&gt;. I use a rproxy to send port 80 to 3000&lt;/p&gt;
+&lt;p&gt;I registered for google analytics account and included it from the settings page after the application is deployed to check how this all goes.&lt;/p&gt;</summary><category term="self-notes"></category><category term="web"></category></entry><entry><title>Setting up a new VPS server</title><link href="http://www.tutysara.net/posts/2013/10/18/configuring-vps-server/" rel="alternate"></link><updated>2013-10-18T11:16:00+05:30</updated><author><name>tutysara</name></author><id>tag:www.tutysara.net,2013-10-18:posts/2013/10/18/configuring-vps-server/</id><summary type="html">&lt;p&gt;These are the things I did to setup new VPS instances on Digital Ocean and ChicagoVPS&lt;/p&gt;
 &lt;h3&gt;Update the machine&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get update
 sudo apt-get upgrade
