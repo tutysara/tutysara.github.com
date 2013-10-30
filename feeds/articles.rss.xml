@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>tutysara's space</title><link href="http://www.tutysara.net/" rel="alternate"></link><link href="http://www.tutysara.net/feeds/articles.rss.xml" rel="self"></link><id>http://www.tutysara.net/</id><updated>2013-10-21T15:25:00+05:30</updated><entry><title>Running a Hacker news clone</title><link href="http://www.tutysara.net/posts/2013/10/21/running-a-hackernews-clone/" rel="alternate"></link><updated>2013-10-21T15:25:00+05:30</updated><author><name>tutysara</name></author><id>tag:www.tutysara.net,2013-10-21:posts/2013/10/21/running-a-hackernews-clone/</id><summary type="html">&lt;p&gt;I very much like the presentation of &lt;a href="https://news.ycombinator.com/item?id=6576560"&gt;hackernews&lt;/a&gt; when it comes to understanding and making sense of the discussions quickly. It is a lot easier than reading pages of forums to get the main ideas of the discussions since the top comments and active discussions bubble to the top.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>tutysara's space</title><link href="http://www.tutysara.net/" rel="alternate"></link><link href="http://www.tutysara.net/feeds/articles.rss.xml" rel="self"></link><id>http://www.tutysara.net/</id><updated>2013-10-30T13:16:00+05:30</updated><entry><title>Django development on OSX using emacs</title><link href="http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/" rel="alternate"></link><updated>2013-10-30T13:16:00+05:30</updated><author><name>tutysara</name></author><id>tag:www.tutysara.net,2013-10-30:posts/2013/10/30/django-development-on-osx-using-emacs/</id><summary type="html">&lt;h2&gt;&lt;/h2&gt;
+&lt;p&gt;I started following the Django tutorials by &lt;a href="http://arunrocks.com/building-a-hacker-news-clone-in-django-part-1/"&gt;arun&lt;/a&gt;. I wanted to know about the related classes and quickly look into docs for the things that I code, I wanted an environment that is nice to newbies, helping with code completion and easy documentation lookup. I searched and found a huge list of &lt;a href="http://www.quora.com/Which-IDEs-are-best-suited-for-Django-development"&gt;options&lt;/a&gt;. Since I was begining with Django I wanted an environment that is much easier to setup, my first choice was &lt;a href="http://www.jetbrains.com/pycharm/"&gt;pycharm&lt;/a&gt;, but unfortunately the community edition of pycharm doesn't support Django &lt;a href="http://www.jetbrains.com/pycharm/features/editions_comparison_matrix.html"&gt;- see this&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I decided to come back to my good old friend emacs and configure it for Django development. Again a search gave a huge list of resources on how to set it up, I found this &lt;a href="https://gist.github.com/panuta/1852087"&gt;gits&lt;/a&gt; more upto date and had what I was looking for, followed the steps there to install python, pip, Virtualenv and django with a simple correction, virtualenvwrapper.sh is located in &lt;code&gt;/usr/local/bin/&lt;/code&gt; instead of &lt;code&gt;/usr/local/share/python/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Important thing is to add these line to .bash_profile&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;WORKON_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.virtualenvs
+&lt;span class="nb"&gt;source&lt;/span&gt; /usr/local/bin/python/virtualenvwrapper.sh
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PIP_VIRTUALENV_BASE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$WORKON_HOME&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I also didn't installed postgres as given in the gist, Instead I prefer &lt;a href="http://postgresapp.com/"&gt;postgresapp&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Setup for autocompletion&lt;/h3&gt;
+&lt;h4&gt;Python side setup&lt;/h4&gt;
+&lt;p&gt;Swtich to the virtual environment&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;workon&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;virtualenv&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;For automatic code completion install jedi&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install jedi
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;For jedi to communicate with emacs&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install epc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Emacs side setup&lt;/h4&gt;
+&lt;h5&gt;Install virtualenvironmentwrapper.el and jedi.el from MELPA.&lt;/h5&gt;
+&lt;p&gt;Add this config to &lt;code&gt;~/.emacs.d/init.el&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;require&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;virtualenvwrapper&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;initialize&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;interactive&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;shells&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;;;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;interactive&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt; &lt;span class="nf"&gt;support&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;initialize&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;eshell&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;;;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;eshell&lt;/span&gt; &lt;span class="n"&gt;support&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setq&lt;/span&gt; &lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Users/tutysara/.virtualenvs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;M-x venv-workon&lt;/code&gt; to activate the virtualenv containing Django and the other libraries to start developing. Detailed instructions on using virtualenvwrapper.el can be found on its &lt;a href="https://github.com/porterjamesj/virtualenvwrapper.el"&gt;github page&lt;/a&gt; and jedi.el also has its own set of well written &lt;a href="http://tkf.github.io/emacs-jedi/"&gt;docs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To test this setup open eshell and type &lt;code&gt;which python&lt;/code&gt; it should show a path which is inside the virtualenvs dir (&lt;code&gt;$HOME/.virtualenvs&lt;/code&gt;) for proper interpreter configuration
+and open a python file and type&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.db&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;
+    &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Te&lt;/span&gt; &lt;span class="c"&gt;# it should autocomple on typing dot&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to test autocompletion for Django.&lt;/p&gt;
+&lt;p&gt;We now have a emacs setup that can be used for Django development.
+There are other modes for working with templates which I will update when I install and use them.&lt;/p&gt;
+&lt;p&gt;Leave your comments on your favourite emacs setup for Django or even if you use something other than emacs too.&lt;/p&gt;</summary><category term="self-notes"></category><category term="python"></category><category term="django"></category></entry><entry><title>Running a Hacker news clone</title><link href="http://www.tutysara.net/posts/2013/10/21/running-a-hackernews-clone/" rel="alternate"></link><updated>2013-10-21T15:25:00+05:30</updated><author><name>tutysara</name></author><id>tag:www.tutysara.net,2013-10-21:posts/2013/10/21/running-a-hackernews-clone/</id><summary type="html">&lt;p&gt;I very much like the presentation of &lt;a href="https://news.ycombinator.com/item?id=6576560"&gt;hackernews&lt;/a&gt; when it comes to understanding and making sense of the discussions quickly. It is a lot easier than reading pages of forums to get the main ideas of the discussions since the top comments and active discussions bubble to the top.&lt;/p&gt;
 &lt;p&gt;I wanted to run a site for discussing and sharing information that are useful for people working in techparks and the format that immediately clicked in my mind was the hacknews style. I began writing my own &lt;a href="https://github.com/techparknews/hsnews"&gt;clone&lt;/a&gt; based on the work of people from &lt;a href="http://hackerschool.com/"&gt;hackerschool&lt;/a&gt; but it lacked the polish and look to make the people trust and even sign up, I had send invites to few of my friends to try but the turnaround rate was quite low.&lt;/p&gt;
 &lt;p&gt;Now I wanted to validate whether there is any market for this idea (ie) do many techies have the need/difficulty to get info about the things and happenings around thier work place. I decided to deploy a polished better looking open source product and see how it gets picked up and used. I zeroed in on &lt;a href="https://github.com/SachaG/Telescope"&gt;Telescope&lt;/a&gt; after having evaluated &lt;a href="https://github.com/SachaG/Telescope"&gt;Telescope&lt;/a&gt; and &lt;a href="https://github.com/jcs/lobsters"&gt;lobsters&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;Reason for choosing Telescope are&lt;/p&gt;
