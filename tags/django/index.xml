@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TUTYSARA&#39;S SPACE</title>
+    <link>http://www.tutysara.net/tags/django/index.xml</link>
+    <description>Recent content on TUTYSARA&#39;S SPACE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-EN</language>
+    <managingEditor>tutysara att google mail.com (tutysara)</managingEditor>
+    <webMaster>tutysara att google mail.com (tutysara)</webMaster>
+    <copyright>(c) 2016 tutysara.</copyright>
+    <atom:link href="http://www.tutysara.net/tags/django/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Django development on OSX using emacs</title>
+      <link>http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/</link>
+      <pubDate>Wed, 30 Oct 2013 13:16:00 +0000</pubDate>
+      <author>tutysara att google mail.com (tutysara)</author>
+      <guid>http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/</guid>
+      <description>
+
+&lt;p&gt;I started following the Django tutorials by &lt;a href=&#34;http://arunrocks.com/building-a-hacker-news-clone-in-django-part-1/&#34;&gt;arun&lt;/a&gt;. I wanted to know about the related classes and quickly look into docs for the things that I code, I wanted an environment that is nice to newbies, helping with code completion and easy documentation lookup. I searched and found a huge list of &lt;a href=&#34;http://www.quora.com/Which-IDEs-are-best-suited-for-Django-development&#34;&gt;options&lt;/a&gt;. Since I was begining with Django I wanted an environment that is much easier to setup, my first choice was &lt;a href=&#34;http://www.jetbrains.com/pycharm/&#34;&gt;pycharm&lt;/a&gt;, but unfortunately the community edition of pycharm doesn&amp;rsquo;t support Django &lt;a href=&#34;http://www.jetbrains.com/pycharm/features/editions_comparison_matrix.html&#34;&gt;- see this&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I decided to come back to my good old friend emacs and configure it for Django development. Again a search gave a huge list of resources on how to set it up, I found this &lt;a href=&#34;https://gist.github.com/panuta/1852087&#34;&gt;gits&lt;/a&gt; more upto date and had what I was looking for, followed the steps there to install python, pip, Virtualenv and django with a simple correction, virtualenvwrapper.sh is located in &lt;code&gt;/usr/local/bin/&lt;/code&gt; instead of &lt;code&gt;/usr/local/share/python/&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Important thing is to add these line to .bash_profile&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/python/virtualenvwrapper.sh
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I also didn&amp;rsquo;t installed postgres as given in the gist, Instead I prefer &lt;a href=&#34;http://postgresapp.com/&#34;&gt;postgresapp&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;###Setup for autocompletion&lt;/p&gt;
+
+&lt;h4 id=&#34;python-side-setup&#34;&gt;Python side setup&lt;/h4&gt;
+
+&lt;p&gt;Swtich to the virtual environment&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;workon &amp;lt;virtualenv&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;for-automatic-code-completion-install-jedi&#34;&gt;For automatic code completion install jedi&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install jedi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;for-jedi-to-communicate-with-emacs&#34;&gt;For jedi to communicate with emacs&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install epc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;emacs-side-setup&#34;&gt;Emacs side setup&lt;/h4&gt;
+
+&lt;p&gt;#####Install virtualenvironmentwrapper.el and jedi.el from MELPA.&lt;/p&gt;
+
+&lt;p&gt;Add this config to &lt;code&gt;~/.emacs.d/init.el&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elisp&#34;&gt;(require &#39;virtualenvwrapper)
+(venv-initialize-interactive-shells) ;; if you want interactive shell support
+(venv-initialize-eshell) ;; if you want eshell support
+(setq venv-location &amp;quot;Users/tutysara/.virtualenvs&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;M-x venv-workon&lt;/code&gt; to activate the virtualenv containing Django and the other libraries to start developing. Detailed instructions on using virtualenvwrapper.el can be found on its &lt;a href=&#34;https://github.com/porterjamesj/virtualenvwrapper.el&#34;&gt;github page&lt;/a&gt; and jedi.el also has its own set of well written &lt;a href=&#34;http://tkf.github.io/emacs-jedi/&#34;&gt;docs&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To test this setup open eshell and type &lt;code&gt;which python&lt;/code&gt; it should show a path which is inside the virtualenvs dir (&lt;code&gt;$HOME/.virtualenvs&lt;/code&gt;) for proper interpreter configuration
+and open a python file and type&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;    from django.db import models
+    models.Te # it should autocomple on typing dot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to test autocompletion for Django.&lt;/p&gt;
+
+&lt;p&gt;We now have a emacs setup that can be used for Django development.
+There are other modes for working with templates which I will update when I install and use them.&lt;/p&gt;
+
+&lt;p&gt;Leave your comments on your favourite emacs setup for Django or even if you use something other than emacs too.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

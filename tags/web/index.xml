@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TUTYSARA&#39;S SPACE</title>
+    <link>http://www.tutysara.net/tags/web/index.xml</link>
+    <description>Recent content on TUTYSARA&#39;S SPACE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-EN</language>
+    <managingEditor>tutysara att google mail.com (tutysara)</managingEditor>
+    <webMaster>tutysara att google mail.com (tutysara)</webMaster>
+    <copyright>(c) 2016 tutysara.</copyright>
+    <atom:link href="http://www.tutysara.net/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Running a Hacker news clone</title>
+      <link>http://www.tutysara.net/posts/2013/10/21/running-a-hacker-news-clone/</link>
+      <pubDate>Mon, 21 Oct 2013 15:25:00 +0000</pubDate>
+      <author>tutysara att google mail.com (tutysara)</author>
+      <guid>http://www.tutysara.net/posts/2013/10/21/running-a-hacker-news-clone/</guid>
+      <description>&lt;p&gt;I very much like the presentation of &lt;a href=&#34;https://news.ycombinator.com/item?id=6576560&#34;&gt;hackernews&lt;/a&gt; when it comes to understanding and making sense of the discussions quickly. It is a lot easier than reading pages of forums to get the main ideas of the discussions since the top comments and active discussions bubble to the top.&lt;/p&gt;
+
+&lt;p&gt;I wanted to run a site for discussing and sharing information that are useful for people working in techparks and the format that immediately clicked in my mind was the hacknews style. I began writing my own &lt;a href=&#34;https://github.com/techparknews/hsnews&#34;&gt;clone&lt;/a&gt; based on the work of people from &lt;a href=&#34;http://hackerschool.com/&#34;&gt;hackerschool&lt;/a&gt; but it lacked the polish and look to make the people trust and even sign up, I had send invites to few of my friends to try but the turnaround rate was quite low.&lt;/p&gt;
+
+&lt;p&gt;Now I wanted to validate whether there is any market for this idea (ie) do many techies have the need/difficulty to get info about the things and happenings around thier work place. I decided to deploy a polished better looking open source product and see how it gets picked up and used. I zeroed in on &lt;a href=&#34;https://github.com/SachaG/Telescope&#34;&gt;Telescope&lt;/a&gt; after having evaluated &lt;a href=&#34;https://github.com/SachaG/Telescope&#34;&gt;Telescope&lt;/a&gt; and &lt;a href=&#34;https://github.com/jcs/lobsters&#34;&gt;lobsters&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Reason for choosing Telescope are&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Looks better and intutive and will be easy for people who have not used hacknews before&lt;/li&gt;
+&lt;li&gt;Supports sharing on social networks out of the box&lt;/li&gt;
+&lt;li&gt;Easy to setup&lt;/li&gt;
+&lt;li&gt;I like the idea of single page apps&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Here are the steps that I did to install telescope on my VPS running Ubuntu 12.04&lt;/p&gt;
+
+&lt;p&gt;####Do all these from a previliged user&lt;/p&gt;
+
+&lt;p&gt;###Install nodejs&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;npm is now part of nodejs and installing nodejs installs it&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get install nodejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check the node version, as of this writing Chris Lea repo has version 0.10.21&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;node --version
+v0.10.21
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Install meteorite - Installer &amp;amp; smart package manager for Meteor&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo npm install -g meteorite
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####Login to the web user with limited previlage and clone the repository
+I was testing the application from this user before starting it using upstart&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone https://github.com/SachaG/Telescope.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Configure Telescope to start automatically when system reboots, I have to do this because my VPS provider had restarted the server more than 3-4 times in a month&lt;/p&gt;
+
+&lt;p&gt;Create a file &lt;code&gt;telescope.conf&lt;/code&gt; in &lt;code&gt;/etc/init&lt;/code&gt; with the following contents&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# meteorjs - meteorjs job file
+
+description &amp;quot;Start Telescope&amp;quot;
+author &amp;quot;tutysara&amp;quot;
+
+# When to start the service
+start on runlevel [2345]
+
+# When to stop the service
+stop on runlevel [016]
+
+# Automatically restart process if crashed
+respawn
+
+# Essentially lets upstart know the process will detach itself to the background
+expect fork
+
+# Start the process
+script
+	export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+	export PWD=/home/web/telescopes/Telescope
+	export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules
+	export HOME=/home/web
+	export MONGO_URL=mongodb://localhost:27017/meteor
+	echo &amp;quot;---- start ----&amp;quot;
+	cd &amp;quot;/home/web/telescopes/Telescope&amp;quot;
+	exec meteor run -p 3000 --production
+end script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally test the scipt by starting, stopping and checking status&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo start telescope
+sudo status telescope
+sudo stop telescope
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If there are errors it can be seen in upstart logs at &lt;code&gt;/var/log/upstart/telescope.log&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The application can be accessed &lt;a href=&#34;http://www.techparknews.in&#34;&gt;here&lt;/a&gt;. I use a rproxy to send port 80 to 3000&lt;/p&gt;
+
+&lt;p&gt;I registered for google analytics account and included it from the settings page after the application is deployed to check how this all goes.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

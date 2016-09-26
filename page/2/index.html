@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Django development on OSX using emacs  &middot; TUTYSARA&#39;S SPACE</title>
+  <title>TUTYSARA&#39;S SPACE </title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,60 +14,24 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="self-notes, python, django, ">
+<meta name="keywords" content="">
 
 <link rel="author" href="http://plus.google.com/+tutysara">
 
 
-<meta property="og:title" content="Django development on OSX using emacs  &middot; TUTYSARA&#39;S SPACE ">
+<meta property="og:title" content="TUTYSARA&#39;S SPACE ">
 <meta property="og:site_name" content="TUTYSARA&#39;S SPACE"/>
-<meta property="og:url" content="http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/" />
+<meta property="og:url" content="http://www.tutysara.net/" />
 <meta property="og:locale" content="en-EN">
 
 
-<meta property="og:type" content="article" />
-<meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2013-10-30T13:16:00Z" />
-<meta property="og:article:modified_time" content="2013-10-30T13:16:00Z" />
-
-  
-    
-<meta property="og:article:tag" content="self-notes">
-    
-<meta property="og:article:tag" content="python">
-    
-<meta property="og:article:tag" content="django">
-    
-  
-
-  
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@tutysara" />
-<meta name="twitter:creator" content="@tutysara" />
-<meta name="twitter:title" content="Django development on OSX using emacs" />
-<meta name="twitter:description" content="" />
-<meta name="twitter:url" content="http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/" />
-<meta name="twitter:domain" content="http://www.tutysara.net/">
-  
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "headline": "Django development on OSX using emacs",
-    "author": {
-      "@type": "Person",
-      "name": "http://profiles.google.com/+tutysara?rel=author"
-    },
-    "datePublished": "2013-10-30",
-    "description": "",
-    "wordCount":  389 
-  }
-</script>
+<meta property="og:type" content="website" />
 
 
 
-<link rel="canonical" href="http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/" />
+<link href="http://www.tutysara.net/index.xml" rel="alternate" type="application/rss+xml" title="TUTYSARA&#39;S SPACE" />
+
+<link rel="canonical" href="http://www.tutysara.net/" />
 
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.tutysara.net/touch-icon-144-precomposed.png">
 <link href="http://www.tutysara.net/favicon.png" rel="icon">
@@ -192,164 +156,187 @@
 </header>
 
 
+
 <div class="container">
-  <div class="row">
-    <div class="col-sm-10">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  <div class="text-center">
+    
+    <div class="row">
+      <div class="col-sm-10">
+        
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="http://www.tutysara.net/posts/2013/10/18/setting-up-a--new-vps-server/">Setting up a  new VPS server</a>
+</h2>
 
-    <h1 style="color: #337ab7;">Django development on OSX using emacs
-</h1>
-
-    <div class="metas">
-<small>
+  <div class="margin-10">
+    <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2013-10-30">30 Oct, 2013</time>
+  <time datetime="2013-10-18">18 Oct, 2013</time>
 </small>
 
-
-  <small>
-  &middot; Read in about 2 min
-  &middot; (389 Words)
-</small>
-
-
-<div class="margin-10">
+    
   <i class="fa fa-tags"></i>
   
   <a href="http://www.tutysara.net/tags/self-notes" class="label label-primary">self-notes</a>
   
-  <a href="http://www.tutysara.net/tags/python" class="label label-primary">python</a>
-  
-  <a href="http://www.tutysara.net/tags/django" class="label label-primary">django</a>
-  
 
-
-</div>
-<br>
-</div>
 
   </div>
 </div>
 
-      <div class="content">
+    <p>
+  
+  
+    These are the things I did to setup new VPS instances on Digital Ocean and ChicagoVPS
+Update the machine sudo apt-get update sudo apt-get upgrade  Set locales sudo locale-gen sudo dpkg-reconfigure locales  add user sudo adduser tutysra # give sudo previliges sudo visudo tutysra ALL=(ALL) ALL  Install Git sudo apt-get install git  Install sun java sudo add-apt-repository ppa:webupd8team/java sudo apt-get update sudo apt-get install oracle-java7-installer  Install Tor for screen scrapping sudo apt-get install tor sudo /etc/init.
   
 
-<p>I started following the Django tutorials by <a href="http://arunrocks.com/building-a-hacker-news-clone-in-django-part-1/">arun</a>. I wanted to know about the related classes and quickly look into docs for the things that I code, I wanted an environment that is nice to newbies, helping with code completion and easy documentation lookup. I searched and found a huge list of <a href="http://www.quora.com/Which-IDEs-are-best-suited-for-Django-development">options</a>. Since I was begining with Django I wanted an environment that is much easier to setup, my first choice was <a href="http://www.jetbrains.com/pycharm/">pycharm</a>, but unfortunately the community edition of pycharm doesn&rsquo;t support Django <a href="http://www.jetbrains.com/pycharm/features/editions_comparison_matrix.html">- see this</a>.</p>
 
-<p>I decided to come back to my good old friend emacs and configure it for Django development. Again a search gave a huge list of resources on how to set it up, I found this <a href="https://gist.github.com/panuta/1852087">gits</a> more upto date and had what I was looking for, followed the steps there to install python, pip, Virtualenv and django with a simple correction, virtualenvwrapper.sh is located in <code>/usr/local/bin/</code> instead of <code>/usr/local/share/python/</code></p>
+</p>
 
-<p>Important thing is to add these line to .bash_profile</p>
 
-<pre><code class="language-bash">export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/python/virtualenvwrapper.sh
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-</code></pre>
+    <p class="lead"><a href="http://www.tutysara.net/posts/2013/10/18/setting-up-a--new-vps-server/" class="btn btn-default">Read more &rarr;</a></p>
 
-<p>I also didn&rsquo;t installed postgres as given in the gist, Instead I prefer <a href="http://postgresapp.com/">postgresapp</a></p>
 
-<p>###Setup for autocompletion</p>
-
-<h4 id="python-side-setup">Python side setup</h4>
-
-<p>Swtich to the virtual environment</p>
-
-<pre><code class="language-python">workon &lt;virtualenv&gt;
-</code></pre>
-
-<h5 id="for-automatic-code-completion-install-jedi">For automatic code completion install jedi</h5>
-
-<pre><code class="language-bash">pip install jedi
-</code></pre>
-
-<h5 id="for-jedi-to-communicate-with-emacs">For jedi to communicate with emacs</h5>
-
-<pre><code class="language-bash">pip install epc
-</code></pre>
-
-<h4 id="emacs-side-setup">Emacs side setup</h4>
-
-<p>#####Install virtualenvironmentwrapper.el and jedi.el from MELPA.</p>
-
-<p>Add this config to <code>~/.emacs.d/init.el</code></p>
-
-<pre><code class="language-elisp">(require 'virtualenvwrapper)
-(venv-initialize-interactive-shells) ;; if you want interactive shell support
-(venv-initialize-eshell) ;; if you want eshell support
-(setq venv-location &quot;Users/tutysara/.virtualenvs&quot;)
-</code></pre>
-
-<p><code>M-x venv-workon</code> to activate the virtualenv containing Django and the other libraries to start developing. Detailed instructions on using virtualenvwrapper.el can be found on its <a href="https://github.com/porterjamesj/virtualenvwrapper.el">github page</a> and jedi.el also has its own set of well written <a href="http://tkf.github.io/emacs-jedi/">docs</a></p>
-
-<p>To test this setup open eshell and type <code>which python</code> it should show a path which is inside the virtualenvs dir (<code>$HOME/.virtualenvs</code>) for proper interpreter configuration
-and open a python file and type</p>
-
-<pre><code class="language-python">    from django.db import models
-    models.Te # it should autocomple on typing dot
-</code></pre>
-
-<p>to test autocompletion for Django.</p>
-
-<p>We now have a emacs setup that can be used for Django development.
-There are other modes for working with templates which I will update when I install and use them.</p>
-
-<p>Leave your comments on your favourite emacs setup for Django or even if you use something other than emacs too.</p>
-
+  </div>
 </div>
 
-
-      <footer>
+        
+          <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="http://www.tutysara.net/posts/2012/10/05/correlation-between-inr-values-of-different-currencies/">Correlation between INR values of different currencies</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2012-10-05">5 Oct, 2012</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://www.tutysara.net/tags/data" class="label label-primary">data</a>
+  
+  <a href="http://www.tutysara.net/tags/clojure" class="label label-primary">clojure</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    Correlation between INR values of different currencies 2012-09-05 11:31  data clojure     This is an interesting take away example from the class which Anand is teaching at NIAS. Here we are trying to correlate between the INR values of various currencies like AUD, CNY (Chinese Yen), EUR, GBP (Great Britain Pound), JPY, SGD, USD and find the positive or negative correlations. The focus is on data collection and transformation.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://www.tutysara.net/posts/2012/10/05/correlation-between-inr-values-of-different-currencies/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="http://www.tutysara.net/posts/2012/09/02/started-blogging-from-a-new-place/">Started blogging from a new place</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2012-09-02">2 Sep, 2012</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://www.tutysara.net/tags/general" class="label label-primary">general</a>
+  
+  <a href="http://www.tutysara.net/tags/github" class="label label-primary">github</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    I have been thinking about having a professional looking blog/space for some time. I noticed many people I follow on github maintaining a neat blog, I see that many of them use jekyll/ octopress and use github pages for hosting. I like the concept of static blogging and wanted to give it a try. 
+  I gone through the process and it looks neat and clean, create a github repo with your username and drop html pages into it and github takes care of serving them, damm simple.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://www.tutysara.net/posts/2012/09/02/started-blogging-from-a-new-place/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+        
+<nav>
+  <ul class="pagination">
+    
+
+
+<li >
+  <a aria-label="First" href="http://www.tutysara.net//">
+    <span aria-hidden="true">&laquo;&laquo;</span>
+  </a>
+</li>
+
+<li >
+  <a aria-label="Previous" href="http://www.tutysara.net//">
+    <span aria-hidden="true">&laquo;</span>
+    </a>
+</li>
+
+<li >
+  <a href="http://www.tutysara.net//">
+    1
+    </a>
+</li>
+
+<li  class="active" >
+  <a href="http://www.tutysara.net//page/2/">
+    2
+    </a>
+</li>
+
+
+<li  class="disabled" >
+  <a aria-label="Next" href="#">
+    <span aria-hidden="true">&raquo;</span>
+    </a>
+</li>
+<li  class="disabled" >
+  <a aria-label="Last" href="http://www.tutysara.net//page/2/">
+    <span aria-hidden="true">&raquo;&raquo;</span>
+  </a>
+</li>
+
+
+  </ul>
+</nav>
+
+
+      </div>
       
-  
-    <nav><ul class="pager">
-    
-        <li class="previous">
-          <a href="http://www.tutysara.net/posts/2013/10/21/running-a-hacker-news-clone/" title="Running a Hacker news clone">
-            <span aria-hidden="true">&larr;</span>Previous
-          </a>
-        </li>
-    
-
-    
-      <li class="next">
-        <a href="http://www.tutysara.net/posts/2016/09/03/good-font-for-spacemacs/" title="Good Font for Spacemacs">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
-    
-    </ul> </nav>
-  
-
-
-</div>
-
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  (function() {
-    
-    
-    if (window.location.hostname == "localhost")
-      return;
-
-    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
-    dsq.src = '//tutysarablog.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-</div>
-
-</footer>
-
-    </div>
-    
-      <div class="col-sm-2">
-        <div>
+        <div class="col-sm-2">
+          <div>
     
 
     <div class="section taxonomies well">
@@ -468,10 +455,12 @@ There are other modes for working with templates which I will update when I inst
 
 </div>
 
-      </div>
-    
+        </div>
+      
+    </div>
+
   </div>
-</div>
+
       
 <footer class="footer hidden-print">
   <div class="container">

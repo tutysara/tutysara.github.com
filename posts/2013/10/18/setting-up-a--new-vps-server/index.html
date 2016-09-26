@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Django development on OSX using emacs  &middot; TUTYSARA&#39;S SPACE</title>
+  <title>Setting up a  new VPS server  &middot; TUTYSARA&#39;S SPACE</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,29 +14,25 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="self-notes, python, django, ">
+<meta name="keywords" content="self-notes, ">
 
 <link rel="author" href="http://plus.google.com/+tutysara">
 
 
-<meta property="og:title" content="Django development on OSX using emacs  &middot; TUTYSARA&#39;S SPACE ">
+<meta property="og:title" content="Setting up a  new VPS server  &middot; TUTYSARA&#39;S SPACE ">
 <meta property="og:site_name" content="TUTYSARA&#39;S SPACE"/>
-<meta property="og:url" content="http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/" />
+<meta property="og:url" content="http://www.tutysara.net/posts/2013/10/18/setting-up-a--new-vps-server/" />
 <meta property="og:locale" content="en-EN">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2013-10-30T13:16:00Z" />
-<meta property="og:article:modified_time" content="2013-10-30T13:16:00Z" />
+<meta property="og:article:published_time" content="2013-10-18T11:16:00Z" />
+<meta property="og:article:modified_time" content="2013-10-18T11:16:00Z" />
 
   
     
 <meta property="og:article:tag" content="self-notes">
-    
-<meta property="og:article:tag" content="python">
-    
-<meta property="og:article:tag" content="django">
     
   
 
@@ -44,9 +40,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@tutysara" />
 <meta name="twitter:creator" content="@tutysara" />
-<meta name="twitter:title" content="Django development on OSX using emacs" />
+<meta name="twitter:title" content="Setting up a  new VPS server" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/" />
+<meta name="twitter:url" content="http://www.tutysara.net/posts/2013/10/18/setting-up-a--new-vps-server/" />
 <meta name="twitter:domain" content="http://www.tutysara.net/">
   
 
@@ -54,20 +50,20 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Django development on OSX using emacs",
+    "headline": "Setting up a  new VPS server",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+tutysara?rel=author"
     },
-    "datePublished": "2013-10-30",
+    "datePublished": "2013-10-18",
     "description": "",
-    "wordCount":  389 
+    "wordCount":  606 
   }
 </script>
 
 
 
-<link rel="canonical" href="http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/" />
+<link rel="canonical" href="http://www.tutysara.net/posts/2013/10/18/setting-up-a--new-vps-server/" />
 
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.tutysara.net/touch-icon-144-precomposed.png">
 <link href="http://www.tutysara.net/favicon.png" rel="icon">
@@ -198,19 +194,19 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="text-center">
 
-    <h1 style="color: #337ab7;">Django development on OSX using emacs
+    <h1 style="color: #337ab7;">Setting up a  new VPS server
 </h1>
 
     <div class="metas">
 <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2013-10-30">30 Oct, 2013</time>
+  <time datetime="2013-10-18">18 Oct, 2013</time>
 </small>
 
 
   <small>
-  &middot; Read in about 2 min
-  &middot; (389 Words)
+  &middot; Read in about 3 min
+  &middot; (606 Words)
 </small>
 
 
@@ -218,10 +214,6 @@
   <i class="fa fa-tags"></i>
   
   <a href="http://www.tutysara.net/tags/self-notes" class="label label-primary">self-notes</a>
-  
-  <a href="http://www.tutysara.net/tags/python" class="label label-primary">python</a>
-  
-  <a href="http://www.tutysara.net/tags/django" class="label label-primary">django</a>
   
 
 
@@ -235,65 +227,235 @@
       <div class="content">
   
 
-<p>I started following the Django tutorials by <a href="http://arunrocks.com/building-a-hacker-news-clone-in-django-part-1/">arun</a>. I wanted to know about the related classes and quickly look into docs for the things that I code, I wanted an environment that is nice to newbies, helping with code completion and easy documentation lookup. I searched and found a huge list of <a href="http://www.quora.com/Which-IDEs-are-best-suited-for-Django-development">options</a>. Since I was begining with Django I wanted an environment that is much easier to setup, my first choice was <a href="http://www.jetbrains.com/pycharm/">pycharm</a>, but unfortunately the community edition of pycharm doesn&rsquo;t support Django <a href="http://www.jetbrains.com/pycharm/features/editions_comparison_matrix.html">- see this</a>.</p>
+<p>These are the things I did to setup new VPS instances on Digital Ocean and ChicagoVPS</p>
 
-<p>I decided to come back to my good old friend emacs and configure it for Django development. Again a search gave a huge list of resources on how to set it up, I found this <a href="https://gist.github.com/panuta/1852087">gits</a> more upto date and had what I was looking for, followed the steps there to install python, pip, Virtualenv and django with a simple correction, virtualenvwrapper.sh is located in <code>/usr/local/bin/</code> instead of <code>/usr/local/share/python/</code></p>
+<h3 id="update-the-machine">Update the machine</h3>
 
-<p>Important thing is to add these line to .bash_profile</p>
-
-<pre><code class="language-bash">export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/python/virtualenvwrapper.sh
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get upgrade
 </code></pre>
 
-<p>I also didn&rsquo;t installed postgres as given in the gist, Instead I prefer <a href="http://postgresapp.com/">postgresapp</a></p>
+<h3 id="set-locales">Set locales</h3>
 
-<p>###Setup for autocompletion</p>
-
-<h4 id="python-side-setup">Python side setup</h4>
-
-<p>Swtich to the virtual environment</p>
-
-<pre><code class="language-python">workon &lt;virtualenv&gt;
+<pre><code class="language-bash">sudo locale-gen
+sudo dpkg-reconfigure locales
 </code></pre>
 
-<h5 id="for-automatic-code-completion-install-jedi">For automatic code completion install jedi</h5>
+<h3 id="add-user">add user</h3>
 
-<pre><code class="language-bash">pip install jedi
+<pre><code class="language-bash">sudo adduser tutysra
+# give sudo previliges
+sudo visudo
+tutysra ALL=(ALL) ALL
 </code></pre>
 
-<h5 id="for-jedi-to-communicate-with-emacs">For jedi to communicate with emacs</h5>
+<h3 id="install-git">Install Git</h3>
 
-<pre><code class="language-bash">pip install epc
+<pre><code class="language-bash">sudo apt-get install git
 </code></pre>
 
-<h4 id="emacs-side-setup">Emacs side setup</h4>
+<h3 id="install-sun-java">Install sun java</h3>
 
-<p>#####Install virtualenvironmentwrapper.el and jedi.el from MELPA.</p>
-
-<p>Add this config to <code>~/.emacs.d/init.el</code></p>
-
-<pre><code class="language-elisp">(require 'virtualenvwrapper)
-(venv-initialize-interactive-shells) ;; if you want interactive shell support
-(venv-initialize-eshell) ;; if you want eshell support
-(setq venv-location &quot;Users/tutysara/.virtualenvs&quot;)
+<pre><code class="language-bash">sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
 </code></pre>
 
-<p><code>M-x venv-workon</code> to activate the virtualenv containing Django and the other libraries to start developing. Detailed instructions on using virtualenvwrapper.el can be found on its <a href="https://github.com/porterjamesj/virtualenvwrapper.el">github page</a> and jedi.el also has its own set of well written <a href="http://tkf.github.io/emacs-jedi/">docs</a></p>
+<h3 id="install-tor-for-screen-scrapping">Install Tor for screen scrapping</h3>
 
-<p>To test this setup open eshell and type <code>which python</code> it should show a path which is inside the virtualenvs dir (<code>$HOME/.virtualenvs</code>) for proper interpreter configuration
-and open a python file and type</p>
-
-<pre><code class="language-python">    from django.db import models
-    models.Te # it should autocomple on typing dot
+<pre><code class="language-bash">sudo apt-get install tor
+sudo /etc/init.d/tor start
 </code></pre>
 
-<p>to test autocompletion for Django.</p>
+<h3 id="make-default-directories">Make default directories</h3>
 
-<p>We now have a emacs setup that can be used for Django development.
-There are other modes for working with templates which I will update when I install and use them.</p>
+<pre><code class="language-bash">mkdir ~/swt
+mkdir ~/bin
+</code></pre>
 
-<p>Leave your comments on your favourite emacs setup for Django or even if you use something other than emacs too.</p>
+<h3 id="install-nx-not-necessary-for-cli-boxes">Install NX ( not necessary for CLI boxes)</h3>
+
+<pre><code class="language-bash">export DEBIAN_FRONTEND=noninteractive
+sudo -E apt-get update
+sudo -E apt-get install -y ubuntu-desktop
+sudo apt-get install gnome-session-fallback
+
+wget 'http://64.34.173.142/download/3.5.0/Linux/nxclient_3.5.0-7_amd64.deb'
+wget 'http://64.34.173.142/download/3.5.0/Linux/nxnode_3.5.0-9_amd64.deb'
+wget 'http://64.34.173.142/download/3.5.0/Linux/FE/nxserver_3.5.0-11_amd64.deb'
+
+sudo dpkg -i *.deb
+sudo /usr/NX/bin/nxserver --status
+
+nano /usr/NX/etc/node.cfg
+# Uncomment the “DefaultXSession” line and set it to :
+DefaultXSession=/etc/X11/Xsession
+</code></pre>
+
+<h3 id="enable-disable-password-authentication-in-ssh">Enable/Disable password authentication in ssh</h3>
+
+<pre><code class="language-bash">sudo vi /etc/ssh/sshd_config
+ PasswordAuthentication to &quot;yes/no&quot; 
+ PermitRootLogin no
+sudo service ssh restart
+</code></pre>
+
+<h3 id="install-screen-tmux">Install screen &amp; tmux</h3>
+
+<pre><code class="language-bash">sudo apt-get install screen
+sudo apt-get install tmux
+</code></pre>
+
+<h3 id="install-curl">Install curl</h3>
+
+<pre><code class="language-bash">sudo apt-get install curl
+</code></pre>
+
+<h3 id="install-emacs-and-customize">Install emacs and customize</h3>
+
+<pre><code class="language-bash">sudo apt-get install software-properties-common # installs some python scripts necessary for these operations
+sudo add-apt-repository ppa:cassou/emacs
+sudo apt-get update
+sudo apt-get install emacs-snapshot-el emacs-snapshot-gtk emacs-snapshot
+export TERM=xterm-256color
+</code></pre>
+
+<h3 id="install-lein">Install lein</h3>
+
+<pre><code class="language-bash">mkdir ~/bin &amp;&amp; cd ~/bin
+wget 'https://raw.github.com/technomancy/leiningen/stable/bin/lein'
+</code></pre>
+
+<h3 id="install-jdk6-for-neo4j">Install JDK6 for neo4j</h3>
+
+<pre><code class="language-bash">wget --no-cookies --header &quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com&quot; http://download.oracle.com/otn-pub/java/jdk/6u41-b02/jdk-6u41-linux-x64.bin 
+
+export JAVA_HOME=/home/neo4j/swt/jdk1.6/
+export PATH=/home/neo4j/swt/jdk1.6/bin:$PATH
+</code></pre>
+
+<h3 id="configure-swap">Configure swap</h3>
+
+<p>My ChicagoVPS runs on OpenVZ and Swap space couldn&rsquo;t be enabled at VM level.</p>
+
+<pre><code class="language-bash">swapon -s
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=2048k
+sudo mkswap /swapfile
+sudo swapon /swapfile
+swapon -s
+
+sudo nano /etc/fstab
+/swapfile       none    swap    sw      0       0 
+
+sudo chown root:root /swapfile 
+sudo chmod 0600 /swapfile
+
+sudo nano /etc/sysctl.conf 
+vm.swappiness=20  # default is 60% RAM full
+</code></pre>
+
+<h3 id="configure-timezone-from-command-line">Configure Timezone from command line</h3>
+
+<pre><code class="language-bash">sudo dpkg-reconfigure tzdata
+</code></pre>
+
+<h3 id="install-ngnix">Install ngnix</h3>
+
+<pre><code class="language-bash">sudo apt-get install nginx
+sudo service nginx start
+#ifconfig eth0 | grep inet | awk '{ print $2 }'
+update-rc.d nginx defaults
+</code></pre>
+
+<h4 id="configuring-ngnix">configuring ngnix</h4>
+
+<p>sudo invoke-rc.d nginx reload
+<a href="https://help.ubuntu.com/community/Nginx/ReverseProxy">Follow instructions here</a></p>
+
+<h3 id="install-latest-tomcat-from-apache">Install latest tomcat from apache</h3>
+
+<pre><code class="language-bash">sudo apt-get install tomcat7 - Not fine
+Download from - http://apache.techartifact.com/mirror/tomcat/tomcat-7/v7.0.37/bin/apache-tomcat-7.0.37.tar.gz
+</code></pre>
+
+<p>Edit .bashrc</p>
+
+<pre><code class="language-bash">export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+export CATALINA_HOME=~/swt/tomcat
+$CATALINA_HOME/bin/startup.sh
+</code></pre>
+
+<h3 id="install-mongodb">Install mongodb</h3>
+
+<pre><code class="language-bash">url - http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/10gen.list
+sudo apt-get update
+sudo apt-get install mongodb-10gen
+data - /var/lib/mongodb
+log - /var/log/mongodb
+use - mongodb
+</code></pre>
+
+<h1 id="server-monitoring">Server Monitoring</h1>
+
+<h3 id="install-htop">Install htop</h3>
+
+<pre><code class="language-bash">sudo apt-get install htop
+</code></pre>
+
+<h3 id="install-iftop">Install iftop</h3>
+
+<pre><code class="language-bash">sudo apt-get install iftop
+</code></pre>
+
+<h3 id="install-munin">Install munin</h3>
+
+<pre><code class="language-bash">sudo apt-get install munin munin-node
+sudo /etc/init.d/munin-node restart
+results - /var/cache/munin/www #sync to dropbox
+</code></pre>
+
+<h1 id="server-checking">Server Checking</h1>
+
+<pre><code class="language-bash">sudo apt-get install nmap
+port scan - sudo nmap -v -sT localhost
+syn scan - sudo nmap -v -sS localhost
+</code></pre>
+
+<h1 id="allow-automatic-system-updating">Allow automatic system updating</h1>
+
+<pre><code class="language-bash">sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure unattended-upgrades
+</code></pre>
+
+<h1 id="iptables-configuration">IPTables configuration</h1>
+
+<pre><code class="language-bash">sudo iptables -L
+sudo iptables -L -n # no dns lookup for ip to hostname resolution
+
+# flush all existing rules
+sudo iptables -F
+sudo iptables -I INPUT 1 -i lo -j ACCEPT # accept loopback
+sudo iptables -I INPUT 2 -p tcp --dport ssh -j ACCEPT # allow ssh
+sudo iptables -I INPUT 3 -p udp --dport 60000:61000 -j ACCEPT # allow mosh
+sudo iptables -I INPUT 4 -p tcp --dport 80 -j ACCEPT # allow www
+sudo iptables -I INPUT 5 -p udp -m udp --dport 53 -j ACCEPT # allow dns
+sudo iptables -A INPUT -j DROP
+sudo iptables -L -v
+
+#self note - see bitbucket for rules file
+# allow all existing connections
+sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# persist rules
+sudo apt-get install iptables-persistent
+sudo service iptables-persistent start
+sudo /etc/init.d/iptables-persistent save
+
+</code></pre>
+
+<p>If you do something more/different, please comment, I will refine my setup and this blog post. Thanks.</p>
 
 </div>
 
@@ -305,7 +467,7 @@ There are other modes for working with templates which I will update when I inst
     <nav><ul class="pager">
     
         <li class="previous">
-          <a href="http://www.tutysara.net/posts/2013/10/21/running-a-hacker-news-clone/" title="Running a Hacker news clone">
+          <a href="http://www.tutysara.net/posts/2012/10/05/correlation-between-inr-values-of-different-currencies/" title="Correlation between INR values of different currencies">
             <span aria-hidden="true">&larr;</span>Previous
           </a>
         </li>
@@ -313,7 +475,7 @@ There are other modes for working with templates which I will update when I inst
 
     
       <li class="next">
-        <a href="http://www.tutysara.net/posts/2016/09/03/good-font-for-spacemacs/" title="Good Font for Spacemacs">
+        <a href="http://www.tutysara.net/posts/2013/10/21/running-a-hacker-news-clone/" title="Running a Hacker news clone">
             Next <span aria-hidden="true">&rarr;</span>
         </a>
       </li>
