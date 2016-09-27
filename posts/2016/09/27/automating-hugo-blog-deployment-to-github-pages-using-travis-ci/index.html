@@ -5,33 +5,73 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>TUTYSARA&#39;S SPACE </title>
+  <title>Automating hugo blog deployment to github pages using travis-ci  &middot; TUTYSARA&#39;S SPACE</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="description" content="" />
+<meta name="description" content="Automating hugo blog using travis-ci" />
 
-<meta name="keywords" content="">
+<meta name="keywords" content="hugo, blog, automation, travis-ci, github, ">
 
 <link rel="author" href="http://plus.google.com/+tutysara">
 
 
-<meta property="og:title" content="TUTYSARA&#39;S SPACE ">
+<meta property="og:title" content="Automating hugo blog deployment to github pages using travis-ci  &middot; TUTYSARA&#39;S SPACE ">
 <meta property="og:site_name" content="TUTYSARA&#39;S SPACE"/>
-<meta property="og:url" content="http://www.tutysara.net/" />
+<meta property="og:url" content="http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/" />
 <meta property="og:locale" content="en-EN">
 
 
-<meta property="og:type" content="website" />
+<meta property="og:type" content="article" />
+<meta property="og:description" content="Automating hugo blog using travis-ci"/>
+<meta property="og:article:published_time" content="2016-09-27T03:35:35&#43;05:30" />
+<meta property="og:article:modified_time" content="2016-09-27T03:35:35&#43;05:30" />
+
+  
+    
+<meta property="og:article:tag" content="hugo">
+    
+<meta property="og:article:tag" content="blog">
+    
+<meta property="og:article:tag" content="automation">
+    
+<meta property="og:article:tag" content="travis-ci">
+    
+<meta property="og:article:tag" content="github">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@tutysara" />
+<meta name="twitter:creator" content="@tutysara" />
+<meta name="twitter:title" content="Automating hugo blog deployment to github pages using travis-ci" />
+<meta name="twitter:description" content="Automating hugo blog using travis-ci" />
+<meta name="twitter:url" content="http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/" />
+<meta name="twitter:domain" content="http://www.tutysara.net/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Automating hugo blog deployment to github pages using travis-ci",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+tutysara?rel=author"
+    },
+    "datePublished": "2016-09-27",
+    "description": "Automating hugo blog using travis-ci",
+    "wordCount":  283 
+  }
+</script>
 
 
 
-<link href="http://www.tutysara.net/index.xml" rel="alternate" type="application/rss+xml" title="TUTYSARA&#39;S SPACE" />
-
-<link rel="canonical" href="http://www.tutysara.net/" />
+<link rel="canonical" href="http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/" />
 
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.tutysara.net/touch-icon-144-precomposed.png">
 <link href="http://www.tutysara.net/favicon.png" rel="icon">
@@ -156,26 +196,31 @@
 </header>
 
 
-
 <div class="container">
-    
-    <div class="row">
-      <div class="col-sm-10">
-        
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/">Automating hugo blog deployment to github pages using travis-ci</a>
-</h2>
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
 
-  <div class="margin-10">
-    <small>
+    <h1 style="color: #337ab7;">Automating hugo blog deployment to github pages using travis-ci
+</h1>
+
+    <div class="metas">
+<small>
   <i class="fa fa-calendar"></i>
   <time datetime="2016-09-27">27 Sep, 2016</time>
 </small>
 
-    
+
+  <small>
+    &middot; by tutysara
+  
+  &middot; Read in about 2 min
+  &middot; (283 Words)
+</small>
+
+
+<div class="margin-10">
   <i class="fa fa-tags"></i>
   
   <a href="http://www.tutysara.net/tags/self-notes" class="label label-primary">self-notes</a>
@@ -184,167 +229,134 @@
   
 
 
-  </div>
 </div>
-
-    <p>
-  
-  
-    Automating hugo blog using travis-ci
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/" class="btn btn-default">Read more &rarr;</a></p>
-
+<br>
+</div>
 
   </div>
 </div>
 
-        
-          <div class="row">
+      <div class="content">
+  <p>Here are the steps I took to build and deploy my blog automatically using hugo and travis-ci to github pages</p>
+
+<p>I assume a hugo blog is already created and exist</p>
+
+<ul>
+<li><p>Create <code>.travis.yml</code> file in the project directory with the following contents</p>
+
+<pre><code class="language-yaml">    language: go
+    sudo: required
+    git:
+        submodules: true
+    install:
+    - go get -v github.com/spf13/hugo
+    script: bash ./deploy.sh
+    notifications:
+        email:
+            on_failure: always
+</code></pre></li>
+
+<li><p>Generate and encrypt github token</p>
+
+<ul>
+<li>create a access token in github as <a href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/">given here</a> , this is for pushing the changes to the master branch of the user site</li>
+
+<li><p>install travis gem</p>
+
+<pre><code class="language-sh">    gem install travis
+</code></pre></li>
+
+<li><p>enrypt github token and incude in .travis.yml</p>
+
+<pre><code class="language-sh">travis encrypt GH_TOKEN=&lt;token generated above&gt; --add
+</code></pre></li>
+</ul>
+
+<p>this will also take care of including the token in .travis.yml under <code>secure</code> section</p></li>
+
+<li><p>Use this deploy script, modify and save this in a file called deploy.sh in the root dir of the project</p>
+
+<pre><code class="language-sh">    #!/bin/bash
+    echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
+    # setup constants
+    REPO=&quot;&lt;username&gt;.github.io&quot;
+    GH_REPO=&quot;github.com/&lt;username&gt;/${REPO}.git&quot;
+    MSG=$(git log -1 --oneline)
+    git config --global user.email &quot;&lt;example@gmail.com&gt;&quot;
+    git config --global user.name &quot;&lt;name&gt;&quot;
+
+    # Build the project.
+    hugo -t &lt;theme_name&gt; # if using a theme, replace by 'hugo -t &lt;yourtheme&gt;'
+
+    git clone &quot;https://$GH_REPO&quot;
+    # clean up repo
+    cd  ${REPO}
+    rm -rf *
+    cd ..
+    # copy files to commit
+    cp -R public/* ${REPO}
+    cd ${REPO}
+    git remote
+    git add -A :/
+    git commit -a -m &quot;via travis -- for $MSG&quot;
+    git push &quot;https://${GH_TOKEN}@${GH_REPO}&quot; master &gt; /dev/null 2&gt;&amp;1
+</code></pre></li>
+
+<li><p>push both <code>.travis.yml</code> and <code>deploy.sh</code> to github</p></li>
+</ul>
+
+<p>Now whenever a new blog is written and comitted to github, travis-ci is notified of the change.
+It  builds the site automatically and pushes it to the master branch of the user site and we get the new contents in our site ;).</p>
+
+</div>
+
+
+      <footer>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://www.tutysara.net/posts/2016/09/03/good-font-for-spacemacs/">Good Font for Spacemacs</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2016-09-03">3 Sep, 2016</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://www.tutysara.net/tags/self-notes" class="label label-primary">self notes</a>
-  
-  <a href="http://www.tutysara.net/tags/emacs" class="label label-primary">emacs</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Spacemacs recommends using source code pro as the default font, infact this is the font set in .spacemacs file. If the font is not availale it is substituted for some other alternative. To find the font in use do C-u C-x = on my mac it was using Menlo font. DejavuSansMono looks better than Source code Pro on ubuntu and I switched to it in my ubuntu system. A list of top programming fonts can be found at Top programming fonts
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://www.tutysara.net/posts/2016/09/03/good-font-for-spacemacs/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/">Django development on OSX using emacs</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2013-10-30">30 Oct, 2013</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://www.tutysara.net/tags/self-notes" class="label label-primary">self-notes</a>
-  
-  <a href="http://www.tutysara.net/tags/python" class="label label-primary">python</a>
-  
-  <a href="http://www.tutysara.net/tags/django" class="label label-primary">django</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    I started following the Django tutorials by arun. I wanted to know about the related classes and quickly look into docs for the things that I code, I wanted an environment that is nice to newbies, helping with code completion and easy documentation lookup. I searched and found a huge list of options. Since I was begining with Django I wanted an environment that is much easier to setup, my first choice was pycharm, but unfortunately the community edition of pycharm doesn&rsquo;t support Django - see this.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-        
-<nav>
-  <ul class="pagination">
-    
-
-
-<li  class="disabled" >
-  <a aria-label="First" href="http://www.tutysara.net//">
-    <span aria-hidden="true">&laquo;&laquo;</span>
-  </a>
-</li>
-
-<li  class="disabled" >
-  <a aria-label="Previous" href="#">
-    <span aria-hidden="true">&laquo;</span>
-    </a>
-</li>
-
-<li  class="active" >
-  <a href="http://www.tutysara.net//">
-    1
-    </a>
-</li>
-
-<li >
-  <a href="http://www.tutysara.net//page/2/">
-    2
-    </a>
-</li>
-
-<li >
-  <a href="http://www.tutysara.net//page/3/">
-    3
-    </a>
-</li>
-
-
-<li >
-  <a aria-label="Next" href="http://www.tutysara.net//page/2/">
-    <span aria-hidden="true">&raquo;</span>
-    </a>
-</li>
-<li >
-  <a aria-label="Last" href="http://www.tutysara.net//page/3/">
-    <span aria-hidden="true">&raquo;&raquo;</span>
-  </a>
-</li>
-
-
-  </ul>
-</nav>
-
-
-      </div>
       
-        <div class="col-sm-2">
-          <div>
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="http://www.tutysara.net/posts/2016/09/03/good-font-for-spacemacs/" title="Good Font for Spacemacs">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//tutysarablog.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-sm-2">
+        <div>
     
 
     <div class="section taxonomies well">
@@ -486,12 +498,10 @@
 
 </div>
 
-        </div>
-      
-    </div>
-
+      </div>
+    
   </div>
-
+</div>
       
 <footer class="footer hidden-print">
   <div class="container">

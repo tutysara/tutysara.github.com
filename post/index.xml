@@ -8,9 +8,88 @@
     <language>en-EN</language>
     <managingEditor>tutysara att google mail.com (tutysara)</managingEditor>
     <webMaster>tutysara att google mail.com (tutysara)</webMaster>
-    <copyright>(c) 2016 tutysara.</copyright>
-    <lastBuildDate>Sat, 03 Sep 2016 14:25:00 +0000</lastBuildDate>
+    <copyright>(c) 2016 tutysara</copyright>
+    <lastBuildDate>Tue, 27 Sep 2016 03:35:35 +0530</lastBuildDate>
     <atom:link href="http://www.tutysara.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Automating hugo blog deployment to github pages using travis-ci</title>
+      <link>http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/</link>
+      <pubDate>Tue, 27 Sep 2016 03:35:35 +0530</pubDate>
+      <author>tutysara att google mail.com (tutysara)</author>
+      <guid>http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/</guid>
+      <description>&lt;p&gt;Here are the steps I took to build and deploy my blog automatically using hugo and travis-ci to github pages&lt;/p&gt;
+
+&lt;p&gt;I assume a hugo blog is already created and exist&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Create &lt;code&gt;.travis.yml&lt;/code&gt; file in the project directory with the following contents&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;    language: go
+    sudo: required
+    git:
+        submodules: true
+    install:
+    - go get -v github.com/spf13/hugo
+    script: bash ./deploy.sh
+    notifications:
+        email:
+            on_failure: always
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Generate and encrypt github token&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;create a access token in github as &lt;a href=&#34;https://help.github.com/articles/creating-an-access-token-for-command-line-use/&#34;&gt;given here&lt;/a&gt; , this is for pushing the changes to the master branch of the user site&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;install travis gem&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;    gem install travis
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;enrypt github token and incude in .travis.yml&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;travis encrypt GH_TOKEN=&amp;lt;token generated above&amp;gt; --add
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;this will also take care of including the token in .travis.yml under &lt;code&gt;secure&lt;/code&gt; section&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use this deploy script, modify and save this in a file called deploy.sh in the root dir of the project&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;    #!/bin/bash
+    echo -e &amp;quot;\033[0;32mDeploying updates to GitHub...\033[0m&amp;quot;
+    # setup constants
+    REPO=&amp;quot;&amp;lt;username&amp;gt;.github.io&amp;quot;
+    GH_REPO=&amp;quot;github.com/&amp;lt;username&amp;gt;/${REPO}.git&amp;quot;
+    MSG=$(git log -1 --oneline)
+    git config --global user.email &amp;quot;&amp;lt;example@gmail.com&amp;gt;&amp;quot;
+    git config --global user.name &amp;quot;&amp;lt;name&amp;gt;&amp;quot;
+
+    # Build the project.
+    hugo -t &amp;lt;theme_name&amp;gt; # if using a theme, replace by &#39;hugo -t &amp;lt;yourtheme&amp;gt;&#39;
+
+    git clone &amp;quot;https://$GH_REPO&amp;quot;
+    # clean up repo
+    cd  ${REPO}
+    rm -rf *
+    cd ..
+    # copy files to commit
+    cp -R public/* ${REPO}
+    cd ${REPO}
+    git remote
+    git add -A :/
+    git commit -a -m &amp;quot;via travis -- for $MSG&amp;quot;
+    git push &amp;quot;https://${GH_TOKEN}@${GH_REPO}&amp;quot; master &amp;gt; /dev/null 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;push both &lt;code&gt;.travis.yml&lt;/code&gt; and &lt;code&gt;deploy.sh&lt;/code&gt; to github&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now whenever a new blog is written and comitted to github, travis-ci is notified of the change.
+It  builds the site automatically and pushes it to the master branch of the user site and we get the new contents in our site ;).&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Good Font for Spacemacs</title>

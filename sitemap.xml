@@ -3,7 +3,12 @@
   
   <url>
     <loc>http://www.tutysara.net/</loc>
-    <lastmod>2016-09-03T14:25:00+00:00</lastmod>
+    <lastmod>2016-09-27T03:35:35+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/</loc>
+    <lastmod>2016-09-27T03:35:35+05:30</lastmod>
   </url>
   
   <url>
