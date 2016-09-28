@@ -9,8 +9,33 @@
     <managingEditor>tutysara att google mail.com (tutysara)</managingEditor>
     <webMaster>tutysara att google mail.com (tutysara)</webMaster>
     <copyright>(c) 2016 tutysara</copyright>
-    <lastBuildDate>Tue, 27 Sep 2016 03:35:35 +0530</lastBuildDate>
+    <lastBuildDate>Thu, 29 Sep 2016 04:30:51 +0530</lastBuildDate>
     <atom:link href="http://www.tutysara.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to create custom profile ID in googleplus</title>
+      <link>http://www.tutysara.net/posts/2016/09/29/how-to-create-custom-profile-id-in-googleplus/</link>
+      <pubDate>Thu, 29 Sep 2016 04:30:51 +0530</pubDate>
+      <author>tutysara att google mail.com (tutysara)</author>
+      <guid>http://www.tutysara.net/posts/2016/09/29/how-to-create-custom-profile-id-in-googleplus/</guid>
+      <description>&lt;p&gt;I was writing my blog and added a link to google plus in the sidebar. I wanted to make a human readable/rememberable Id to use for my google plus page.&lt;/p&gt;
+
+&lt;p&gt;I guess, planning to {use|add link} to google plus is a bad idea.
+I googled to find the steps to create a custom profile Id and landed in the documentation page &amp;ndash; &lt;a href=&#34;https://support.google.com/plus/answer/2676340?hl=en&#34;&gt;Get a custom URL for your Google+ profile&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I tried following the steps and surprisingly it didn&amp;rsquo;t worked, I trusted google so much that I thought I may have did some mistake and repeated the steps one more time but still it didn&amp;rsquo;t worked.&lt;/p&gt;
+
+&lt;p&gt;I was left in dark, I followed the exact steps given in the support page and still couldn&amp;rsquo;t get it working and was wondering what am I doing wrong.&lt;/p&gt;
+
+&lt;p&gt;After some hair pulling moments, decided to search to find if anyone has the same issue and bang got this  &amp;ndash; &lt;a href=&#34;http://webapps.stackexchange.com/questions/89131/how-can-i-get-a-custom-google-plus-profile-url-using-the-new-google-plus&#34;&gt;stackexchange q&amp;amp;A&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The documenation is out of date with the product, the product is updated to a new interface but the support documenation still has the steps using the old layout.&lt;/p&gt;
+
+&lt;p&gt;Looks like there is no way to get custom profile id from settings page using the new google+, we have to switch back to Classic Google+, follow the steps in the &lt;a href=&#34;https://support.google.com/plus/answer/2676340?hl=en&#34;&gt;documentation&lt;/a&gt; to create a custom profile id and then switch back to use the new Google+&lt;/p&gt;
+
+&lt;p&gt;I couldn&amp;rsquo;t believe google couldn&amp;rsquo;t even get such a basic thing corrected. Considering the push they had with google plus initially I didn&amp;rsquo;t expected they deliver a product with such quality. As a consumer I don&amp;rsquo;t expect a product to have n number of features, I like something which is simple, does a few things and does it really well. I was able to create a custom profile id by switching back to the classic layout but found about the quality of google products and how well they support it the hard way.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Automating hugo blog deployment to github pages using travis-ci</title>
