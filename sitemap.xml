@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.tutysara.net/posts/2017/03/24/spacemacs-ctrl&#43;i-fix/</loc>
+    <lastmod>2017-03-24T09:07:41+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.tutysara.net/posts/2016/09/29/how-to-create-custom-profile-id-in-googleplus/</loc>
     <lastmod>2016-09-29T04:30:51+05:30</lastmod>
   </url>
@@ -93,7 +98,7 @@
   
   <url>
     <loc>http://www.tutysara.net/post/</loc>
-    <lastmod>2016-09-29T04:30:51+05:30</lastmod>
+    <lastmod>2017-03-24T09:07:41+05:30</lastmod>
     <priority>0</priority>
   </url>
   
@@ -105,13 +110,19 @@
   
   <url>
     <loc>http://www.tutysara.net/tags/self-notes/</loc>
-    <lastmod>2016-09-29T04:30:51+05:30</lastmod>
+    <lastmod>2017-03-24T09:07:41+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.tutysara.net/tags/spacemacs/</loc>
+    <lastmod>2017-03-24T09:07:41+05:30</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.tutysara.net/</loc>
-    <lastmod>2016-09-29T04:30:51+05:30</lastmod>
+    <lastmod>2017-03-24T09:07:41+05:30</lastmod>
     <priority>0</priority>
   </url>
   
