@@ -17,13 +17,7 @@
       <pubDate>Sat, 03 Sep 2016 14:25:00 +0000</pubDate>
       <author>tutysara att google mail.com (tutysara)</author>
       <guid>http://www.tutysara.net/posts/2016/09/03/good-font-for-spacemacs/</guid>
-      <description>&lt;p&gt;Spacemacs recommends using source code pro as the default font, infact this is the font set in &lt;code&gt;.spacemacs&lt;/code&gt; file. If the font is not availale it is substituted for some other alternative.
-To find the font in use do &lt;code&gt;C-u C-x =&lt;/code&gt; on my mac it was using Menlo font. DejavuSansMono looks better than Source code Pro on ubuntu and I switched to it in my ubuntu system.
-A list of top programming fonts can be found at &lt;a href=&#34;https://github.com/hbin/top-programming-fonts&#34; title=&#34;Top programming fonts&#34;&gt;Top programming fonts&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Installation on a ubuntu system is easy, copy all the &lt;code&gt;&amp;lt;fontnames&amp;gt;.ttf&lt;/code&gt; to &lt;code&gt;~/.fonts&lt;/code&gt; folder and then update cache using &lt;code&gt;fc-cahce -f&lt;/code&gt;.
-To get the list of installed fonts use &lt;code&gt;fc-list&lt;/code&gt;&lt;/p&gt;
-</description>
+      <description>Spacemacs recommends using source code pro as the default font, infact this is the font set in .spacemacs file. If the font is not availale it is substituted for some other alternative. To find the font in use do C-u C-x = on my mac it was using Menlo font. DejavuSansMono looks better than Source code Pro on ubuntu and I switched to it in my ubuntu system. A list of top programming fonts can be found at Top programming fonts</description>
     </item>
     
   </channel>
