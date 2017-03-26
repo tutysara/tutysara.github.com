@@ -166,95 +166,13 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="http://www.tutysara.net/posts/2017/03/24/spacemacs-ctrl-i-fix/">Spacemacs Ctrl-i fix </a>
+  <h2><a href="http://www.tutysara.net/posts/2013/10/18/setting-up-a--new-vps-server/">Setting up a  new VPS server</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2017-03-24">24 Mar, 2017</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://www.tutysara.net/tags/self-notes" class="label label-primary">self notes</a>
-  
-  <a href="http://www.tutysara.net/tags/spacemacs" class="label label-primary">spacemacs</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Spacemacs uses Ctlr+o to move backward to the last edited location and Ctrl+i to move foward after going back using Ctrl+o similar to Vim. I found that Ctrl+o works but Ctrl+i doesn&rsquo;t moves forward through the edit locations. I had the same issue in OSX/emacs 25.1 and in ubuntu/emacs25.1. Searched the net and found this helpful issue page &ndash; https://github.com/syl20bnr/spacemacs/issues/5050
-We have the troubleshooting steps there
-(lookup-key evil-motion-state-map [C-i]) ;; should be evil-jump-forward (display-graphic-p) ;; should be t dotspacemacs-distinguish-gui-tab ;; should be t (lookup-key key-translation-map [?
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://www.tutysara.net/posts/2017/03/24/spacemacs-ctrl-i-fix/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://www.tutysara.net/posts/2016/09/29/how-to-create-custom-profile-id-in-googleplus/">How to create custom profile ID in googleplus</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2016-09-29">29 Sep, 2016</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://www.tutysara.net/tags/self-notes" class="label label-primary">self notes</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    description
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://www.tutysara.net/posts/2016/09/29/how-to-create-custom-profile-id-in-googleplus/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/">Automating hugo blog deployment to github pages using travis-ci</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2016-09-27">27 Sep, 2016</time>
+  <time datetime="2013-10-18">18 Oct, 2013</time>
 </small>
 
     
@@ -262,7 +180,47 @@ We have the troubleshooting steps there
   
   <a href="http://www.tutysara.net/tags/self-notes" class="label label-primary">self-notes</a>
   
-  <a href="http://www.tutysara.net/tags/hugo" class="label label-primary">hugo</a>
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    These are the things I did to setup new VPS instances on Digital Ocean and ChicagoVPS
+Update the machine sudo apt-get update sudo apt-get upgrade  Set locales sudo locale-gen sudo dpkg-reconfigure locales  add user sudo adduser tutysra # give sudo previliges sudo visudo tutysra ALL=(ALL) ALL  Install Git sudo apt-get install git  Install sun java sudo add-apt-repository ppa:webupd8team/java sudo apt-get update sudo apt-get install oracle-java7-installer  Install Tor for screen scrapping sudo apt-get install tor sudo /etc/init.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://www.tutysara.net/posts/2013/10/18/setting-up-a--new-vps-server/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="http://www.tutysara.net/posts/2012/10/05/correlation-between-inr-values-of-different-currencies/">Correlation between INR values of different currencies</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2012-10-05">5 Oct, 2012</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://www.tutysara.net/tags/data" class="label label-primary">data</a>
+  
+  <a href="http://www.tutysara.net/tags/clojure" class="label label-primary">clojure</a>
   
 
 
@@ -272,14 +230,56 @@ We have the troubleshooting steps there
     <p>
   
   
-    Automating hugo blog using travis-ci
+    Correlation between INR values of different currencies 2012-09-05 11:31  data clojure     This is an interesting take away example from the class which Anand is teaching at NIAS. Here we are trying to correlate between the INR values of various currencies like AUD, CNY (Chinese Yen), EUR, GBP (Great Britain Pound), JPY, SGD, USD and find the positive or negative correlations. The focus is on data collection and transformation.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="http://www.tutysara.net/posts/2012/10/05/correlation-between-inr-values-of-different-currencies/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="http://www.tutysara.net/posts/2012/09/02/started-blogging-from-a-new-place/">Started blogging from a new place</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2012-09-02">2 Sep, 2012</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://www.tutysara.net/tags/general" class="label label-primary">general</a>
+  
+  <a href="http://www.tutysara.net/tags/github" class="label label-primary">github</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    I have been thinking about having a professional looking blog/space for some time. I noticed many people I follow on github maintaining a neat blog, I see that many of them use jekyll/ octopress and use github pages for hosting. I like the concept of static blogging and wanted to give it a try. 
+  I gone through the process and it looks neat and clean, create a github repo with your username and drop html pages into it and github takes care of serving them, damm simple.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://www.tutysara.net/posts/2012/09/02/started-blogging-from-a-new-place/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -292,19 +292,19 @@ We have the troubleshooting steps there
     
 
 
-<li  class="disabled" >
+<li >
   <a aria-label="First" href="http://www.tutysara.net//">
     <span aria-hidden="true">&laquo;&laquo;</span>
   </a>
 </li>
 
-<li  class="disabled" >
-  <a aria-label="Previous" href="#">
+<li >
+  <a aria-label="Previous" href="http://www.tutysara.net//page/2/">
     <span aria-hidden="true">&laquo;</span>
     </a>
 </li>
 
-<li  class="active" >
+<li >
   <a href="http://www.tutysara.net//">
     1
     </a>
@@ -316,19 +316,19 @@ We have the troubleshooting steps there
     </a>
 </li>
 
-<li >
+<li  class="active" >
   <a href="http://www.tutysara.net//page/3/">
     3
     </a>
 </li>
 
 
-<li >
-  <a aria-label="Next" href="http://www.tutysara.net//page/2/">
+<li  class="disabled" >
+  <a aria-label="Next" href="#">
     <span aria-hidden="true">&raquo;</span>
     </a>
 </li>
-<li >
+<li  class="disabled" >
   <a aria-label="Last" href="http://www.tutysara.net//page/3/">
     <span aria-hidden="true">&raquo;&raquo;</span>
   </a>
