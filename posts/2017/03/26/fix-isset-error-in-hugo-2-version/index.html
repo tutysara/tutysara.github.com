@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Spacemacs Ctrl-i fix   &middot; TUTYSARA&#39;S SPACE</title>
+  <title>Fix isset error in Hugo 2 version  &middot; TUTYSARA&#39;S SPACE</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,27 +14,27 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="self notes, spacemacs, ">
+<meta name="keywords" content="hugo, breaking change, ">
 
 <link rel="author" href="http://plus.google.com/+&#43;SaravananBaskaran7">
 
 
-<meta property="og:title" content="Spacemacs Ctrl-i fix   &middot; TUTYSARA&#39;S SPACE ">
+<meta property="og:title" content="Fix isset error in Hugo 2 version  &middot; TUTYSARA&#39;S SPACE ">
 <meta property="og:site_name" content="TUTYSARA&#39;S SPACE"/>
-<meta property="og:url" content="http://www.tutysara.net/posts/2017/03/24/spacemacs-ctrl-i-fix/" />
+<meta property="og:url" content="http://www.tutysara.net/posts/2017/03/26/fix-isset-error-in-hugo-2-version/" />
 <meta property="og:locale" content="en-EN">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2017-03-24T09:07:41&#43;05:30" />
-<meta property="og:article:modified_time" content="2017-03-24T09:07:41&#43;05:30" />
+<meta property="og:article:published_time" content="2017-03-26T19:17:21&#43;05:30" />
+<meta property="og:article:modified_time" content="2017-03-26T19:17:21&#43;05:30" />
 
   
     
-<meta property="og:article:tag" content="self notes">
+<meta property="og:article:tag" content="hugo">
     
-<meta property="og:article:tag" content="spacemacs">
+<meta property="og:article:tag" content="breaking change">
     
   
 
@@ -42,9 +42,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@tutysara" />
 <meta name="twitter:creator" content="@tutysara" />
-<meta name="twitter:title" content="Spacemacs Ctrl-i fix " />
+<meta name="twitter:title" content="Fix isset error in Hugo 2 version" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="http://www.tutysara.net/posts/2017/03/24/spacemacs-ctrl-i-fix/" />
+<meta name="twitter:url" content="http://www.tutysara.net/posts/2017/03/26/fix-isset-error-in-hugo-2-version/" />
 <meta name="twitter:domain" content="http://www.tutysara.net/">
   
 
@@ -52,20 +52,20 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Spacemacs Ctrl-i fix ",
+    "headline": "Fix isset error in Hugo 2 version",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+\x2bSaravananBaskaran7?rel=author"
     },
-    "datePublished": "2017-03-24",
+    "datePublished": "2017-03-26",
     "description": "",
-    "wordCount":  123 
+    "wordCount":  178 
   }
 </script>
 
 
 
-<link rel="canonical" href="http://www.tutysara.net/posts/2017/03/24/spacemacs-ctrl-i-fix/" />
+<link rel="canonical" href="http://www.tutysara.net/posts/2017/03/26/fix-isset-error-in-hugo-2-version/" />
 
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.tutysara.net/touch-icon-144-precomposed.png">
 <link href="http://www.tutysara.net/favicon.png" rel="icon">
@@ -196,28 +196,28 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="text-center">
 
-    <h1 style="color: #337ab7;">Spacemacs Ctrl-i fix 
+    <h1 style="color: #337ab7;">Fix isset error in Hugo 2 version
 </h1>
 
     <div class="metas">
 <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2017-03-24">24 Mar, 2017</time>
+  <time datetime="2017-03-26">26 Mar, 2017</time>
 </small>
 
 
   <small>
+    &middot; by tutysara
+  
   &middot; Read in about 1 min
-  &middot; (123 Words)
+  &middot; (178 Words)
 </small>
 
 
 <div class="margin-10">
   <i class="fa fa-tags"></i>
   
-  <a href="http://www.tutysara.net/tags/self-notes" class="label label-primary">self notes</a>
-  
-  <a href="http://www.tutysara.net/tags/spacemacs" class="label label-primary">spacemacs</a>
+  <a href="http://www.tutysara.net/tags/hugo" class="label label-primary">hugo</a>
   
 
 
@@ -229,20 +229,40 @@
 </div>
 
       <div class="content">
-  <p>Spacemacs uses Ctlr+o to move backward to the last edited location and Ctrl+i to move foward after going back using Ctrl+o similar to Vim.
-I found that Ctrl+o works but Ctrl+i doesn&rsquo;t moves forward through the edit locations. I had the same issue in OSX/emacs 25.1 and in ubuntu/emacs25.1.
-Searched the net and found this helpful issue page &ndash; <a href="https://github.com/syl20bnr/spacemacs/issues/5050">https://github.com/syl20bnr/spacemacs/issues/5050</a></p>
+  <p>I have setup automatic compiling and deploying of my blog using Travis.CI</p>
 
-<p>We have the troubleshooting steps there</p>
+<p>Recently I encountered a strange issue, the blog compiles and runs fine in my system but the site doesn&rsquo;t come up after a Travis build.</p>
 
-<pre><code>(lookup-key evil-motion-state-map [C-i]) ;; should be evil-jump-forward
-(display-graphic-p) ;; should be t
-dotspacemacs-distinguish-gui-tab ;; should be t
-(lookup-key key-translation-map [?\C-i]) ;; should be spacemacs/translate-C-i
+<p>On investigation found this in the logs from Travis CI.</p>
+
+<pre><code>Deploying updates to GitHub...
+Started building sites ...
+ERROR 2017/03/25 02:31:30 .Page's Use RSSlink is deprecated and will be removed in Hugo 0.21. RSSLink.
+ERROR 2017/03/25 02:31:30 partials/homepage.html template: partials/homepage.html:3:10: executing &quot;partials/homepage.html&quot; at &lt;isset .Site.Params.s...&gt;: error calling isset: unsupported type &quot;invalid&quot;
 </code></pre>
 
-<p>In my system dotspacemacs-distinguish-gui-tab is set as nil.
-So, this is the issue. I set this variable in .spacemacs file and refreshed and I could use Ctrl+i to move forward through the links</p>
+<p>My local hugo from homebrew was v0.19 and the installation in Travis uses the latest hugo build</p>
+
+<p>Turns out that there is a breaking change in hugo which affects the syntax of isset.
+<a href="https://discuss.gohugo.io/t/v0-20-error-error-calling-isset-unsupported-type-invalid/5668">https://discuss.gohugo.io/t/v0-20-error-error-calling-isset-unsupported-type-invalid/5668</a></p>
+
+<p>If we have a line of code where isset is use like this</p>
+
+<pre><code>{{ if isset .Site.Params.showBlogHeader true }}
+</code></pre>
+
+<p>It should be changed to</p>
+
+<pre><code>{{ if isset .Site.Params &quot;showBlogHeader&quot; }}
+</code></pre>
+
+<p>After making the change, to test, use the latest hugo</p>
+
+<pre><code>brew uninstall hugo
+brew install hugo --HEAD
+</code></pre>
+
+<p>With these changes and testing the issue is fixed.</p>
 
 </div>
 
@@ -254,18 +274,12 @@ So, this is the issue. I set this variable in .spacemacs file and refreshed and 
     <nav><ul class="pager">
     
         <li class="previous">
-          <a href="http://www.tutysara.net/posts/2016/09/29/how-to-create-custom-profile-id-in-googleplus/" title="How to create custom profile ID in googleplus">
+          <a href="http://www.tutysara.net/posts/2017/03/24/spacemacs-ctrl-i-fix/" title="Spacemacs Ctrl-i fix ">
             <span aria-hidden="true">&larr;</span>Previous
           </a>
         </li>
     
 
-    
-      <li class="next">
-        <a href="http://www.tutysara.net/posts/2017/03/26/fix-isset-error-in-hugo-2-version/" title="Fix isset error in Hugo 2 version">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
     
     </ul> </nav>
   
