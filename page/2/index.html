@@ -19,7 +19,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="TUTYSARA&#39;S SPACE" />
 
-  <meta name="generator" content="Hugo 0.33-DEV" />
+  <meta name="generator" content="Hugo 0.37-DEV" />
   <link rel="canonical" href="http://www.tutysara.net/" />
   <link rel="alternate" href="http://www.tutysara.net/index.xml" type="application/rss+xml" title="TUTYSARA&#39;S SPACE">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -212,6 +212,48 @@ ga('send', 'pageview');
           
           
             <article class="post-preview">
+              <a href="http://www.tutysara.net/posts/2017/03/24/spacemacs-ctrl-i-fix/">
+                <h2 class="post-title">Spacemacs Ctrl-i fix </h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 24, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (123 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  Spacemacs uses Ctlr+o to move backward to the last edited location and Ctrl+i to move foward after going back using Ctrl+o similar to Vim.
+I found that Ctrl+o works but Ctrl+i doesn&rsquo;t moves forward through the edit locations. I had the same issue in OSX/emacs 25.1 and in ubuntu/emacs25.1.
+Searched the net and found this helpful issue page &ndash; https://github.com/syl20bnr/spacemacs/issues/5050
+We have the troubleshooting steps there
+(lookup-key evil-motion-state-map [C-i]) ;; should be evil-jump-forward (display-graphic-p) ;; should be t dotspacemacs-distinguish-gui-tab ;; should be t (lookup-key key-translation-map [?
+                  <a href="http://www.tutysara.net/posts/2017/03/24/spacemacs-ctrl-i-fix/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                
+                  #<a href="http://www.tutysara.net//tags/self-notes/">self notes</a>&nbsp;
+                
+                  #<a href="http://www.tutysara.net//tags/spacemacs/">spacemacs</a>&nbsp;
+                
+                </span>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="http://www.tutysara.net/posts/2016/09/29/how-to-create-custom-profile-id-in-googleplus/">
                 <h2 class="post-title">How to create custom profile ID in googleplus</h2>
                 
@@ -242,7 +284,7 @@ I guess, planning to {use|add link} to google plus is a bad idea. I googled to f
               
                 <span class="post-meta">
                 
-                  #<a href="http://www.tutysara.net/tags/self-notes/">self notes</a>&nbsp;
+                  #<a href="http://www.tutysara.net//tags/self-notes/">self notes</a>&nbsp;
                 
                 </span>
               
@@ -282,47 +324,9 @@ language: go sudo: required git: submodules: true install: - go get -v github.co
               
                 <span class="post-meta">
                 
-                  #<a href="http://www.tutysara.net/tags/self-notes/">self-notes</a>&nbsp;
+                  #<a href="http://www.tutysara.net//tags/self-notes/">self-notes</a>&nbsp;
                 
-                  #<a href="http://www.tutysara.net/tags/hugo/">hugo</a>&nbsp;
-                
-                </span>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="http://www.tutysara.net/posts/2016/09/03/good-font-for-spacemacs/">
-                <h2 class="post-title">Good Font for Spacemacs</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 3, 2016
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (111 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  Spacemacs recommends using source code pro as the default font, infact this is the font set in .spacemacs file. If the font is not availale it is substituted for some other alternative. To find the font in use do C-u C-x = on my mac it was using Menlo font. DejavuSansMono looks better than Source code Pro on ubuntu and I switched to it in my ubuntu system. A list of top programming fonts can be found at Top programming fonts
-                  <a href="http://www.tutysara.net/posts/2016/09/03/good-font-for-spacemacs/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <span class="post-meta">
-                
-                  #<a href="http://www.tutysara.net/tags/self-notes/">self notes</a>&nbsp;
-                
-                  #<a href="http://www.tutysara.net/tags/emacs/">emacs</a>&nbsp;
+                  #<a href="http://www.tutysara.net//tags/hugo/">hugo</a>&nbsp;
                 
                 </span>
               
@@ -416,7 +420,7 @@ language: go sudo: required git: submodules: true install: - go get -v github.co
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.33-DEV</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.37-DEV</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           &nbsp;&bull;&nbsp;[<a href="true"></a>]
         </p>
       </div>
