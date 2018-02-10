@@ -5,19 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Fix isset error in Hugo 2 version</title>
-  <meta property="og:title" content="Fix isset error in Hugo 2 version" />
-  <meta name="twitter:title" content="Fix isset error in Hugo 2 version" />
-  <meta name="description" content="I have setup automatic compiling and deploying of my blog using Travis.CI
-Recently I encountered a strange issue, the blog compiles and runs fine in my system but the site doesn&rsquo;t come up after a Travis build.
-On investigation found this in the logs from Travis CI.
-Deploying updates to GitHub... Started building sites ... ERROR 2017/03/25 02:31:30 .Page&#39;s Use RSSlink is deprecated and will be removed in Hugo 0.21. RSSLink.">
-  <meta property="og:description" content="I have setup automatic compiling and deploying of my blog using Travis.CI
-Recently I encountered a strange issue, the blog compiles and runs fine in my system but the site doesn&rsquo;t come up after a Travis build.
-On investigation found this in the logs from Travis CI.
-Deploying updates to GitHub... Started building sites ... ERROR 2017/03/25 02:31:30 .Page&#39;s Use RSSlink is deprecated and will be removed in Hugo 0.21. RSSLink.">
-  <meta name="twitter:description" content="I have setup automatic compiling and deploying of my blog using Travis.CI
-Recently I encountered a strange issue, the blog compiles and runs fine in my system but the site doesn&rsquo;t come up after …">
+  <title>Machine Learning Flashcards from Twitter -- Part1 Data Collection and Preprocessing</title>
+  <meta property="og:title" content="Machine Learning Flashcards from Twitter -- Part1 Data Collection and Preprocessing" />
+  <meta name="twitter:title" content="Machine Learning Flashcards from Twitter -- Part1 Data Collection and …" />
+  <meta name="description" content="I was searching the net for mlflashcards, I found this incredible machine learning flashcard tweet series from Chris Albon. It looks pretty and covers a lot of ground, Got a thought &ndash; why not download them for later use? I thought it would be a fun exercise to start the weekend and jumped into action.
+Step 1 &ndash; Collect/Scrape data from twitter I evaluated using twitter api using tweetpy, but it has its own limitation aka we can search only a week worth of data which is not good for our use case.">
+  <meta property="og:description" content="I was searching the net for mlflashcards, I found this incredible machine learning flashcard tweet series from Chris Albon. It looks pretty and covers a lot of ground, Got a thought &ndash; why not download them for later use? I thought it would be a fun exercise to start the weekend and jumped into action.
+Step 1 &ndash; Collect/Scrape data from twitter I evaluated using twitter api using tweetpy, but it has its own limitation aka we can search only a week worth of data which is not good for our use case.">
+  <meta name="twitter:description" content="I was searching the net for mlflashcards, I found this incredible machine learning flashcard tweet series from Chris Albon. It looks pretty and covers a lot of ground, Got a thought &ndash; why not …">
   <meta name="author" content="tutysara"/>
   <link href='http://www.tutysara.net/img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="http://www.tutysara.net/img/avatar-icon.png" />
@@ -25,12 +20,12 @@ Recently I encountered a strange issue, the blog compiles and runs fine in my sy
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@tutysara" />
   <meta name="twitter:creator" content="@tutysara" />
-  <meta property="og:url" content="http://www.tutysara.net/posts/2017/03/26/fix-isset-error-in-hugo-2-version/" />
+  <meta property="og:url" content="http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter----part1-data-collection-and-preprocessing/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="TUTYSARA&#39;S SPACE" />
 
   <meta name="generator" content="Hugo 0.37-DEV" />
-  <link rel="canonical" href="http://www.tutysara.net/posts/2017/03/26/fix-isset-error-in-hugo-2-version/" />
+  <link rel="canonical" href="http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter----part1-data-collection-and-preprocessing/" />
   <link rel="alternate" href="http://www.tutysara.net/index.xml" type="application/rss+xml" title="TUTYSARA&#39;S SPACE">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -194,17 +189,17 @@ ga('send', 'pageview');
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
-              <h1>Fix isset error in Hugo 2 version</h1>
+              <h1>Machine Learning Flashcards from Twitter -- Part1 Data Collection and Preprocessing</h1>
                 
                 
                   <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 26, 2017
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 9, 2018
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (178 words)
+  <i class="fa fa-clock-o"></i> 3 minutes (566 words)
   
   
 </span>
@@ -224,40 +219,150 @@ ga('send', 'pageview');
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>I have setup automatic compiling and deploying of my blog using Travis.CI</p>
+        
 
-<p>Recently I encountered a strange issue, the blog compiles and runs fine in my system but the site doesn&rsquo;t come up after a Travis build.</p>
+<p>I was searching the net for mlflashcards, I found this incredible machine learning flashcard <a href="https://twitter.com/search?q=machinelearningflashcards.com%20and%20chrisalbon%20&amp;src=typd">tweet series</a> from <a href="https://twitter.com/chrisalbon">Chris Albon</a>.
+It looks pretty and covers a lot of ground, Got a thought &ndash; why not download them for later use?
+I thought it would be a fun exercise to start the weekend and jumped into action.</p>
 
-<p>On investigation found this in the logs from Travis CI.</p>
+<h2 id="step-1-collect-scrape-data-from-twitter">Step 1 &ndash; Collect/Scrape data from twitter</h2>
 
-<pre><code>Deploying updates to GitHub...
-Started building sites ...
-ERROR 2017/03/25 02:31:30 .Page's Use RSSlink is deprecated and will be removed in Hugo 0.21. RSSLink.
-ERROR 2017/03/25 02:31:30 partials/homepage.html template: partials/homepage.html:3:10: executing &quot;partials/homepage.html&quot; at &lt;isset .Site.Params.s...&gt;: error calling isset: unsupported type &quot;invalid&quot;
+<p>I evaluated using twitter api using <a href="https://github.com/tweepy/tweepy">tweetpy</a>, but it has its own limitation aka we can search only a week worth of data which is not good for our use case.
+We shoud be able to get data spread across months since the tweets we are interested are spread across a wide time range.</p>
+
+<p>So, the next step is to try scraping. We got <a href="https://github.com/taspinar/twitterscraper">twitterscraper</a> to our rescue here.
+Scraping was an one step painless process with this tool.</p>
+
+<p>Install it using</p>
+
+<pre><code>pip install twitterscraper
 </code></pre>
 
-<p>My local hugo from homebrew was v0.19 and the installation in Travis uses the latest hugo build</p>
+<p>Scrape the data matching a query using</p>
 
-<p>Turns out that there is a breaking change in hugo which affects the syntax of isset.
-<a href="https://discuss.gohugo.io/t/v0-20-error-error-calling-isset-unsupported-type-invalid/5668">https://discuss.gohugo.io/t/v0-20-error-error-calling-isset-unsupported-type-invalid/5668</a></p>
-
-<p>If we have a line of code where isset is use like this</p>
-
-<pre><code>{{ if isset .Site.Params.showBlogHeader true }}
+<pre><code>twitterscraper &quot;machinelearningflashcards.com  from:chrisalbon&quot; -o mlflashcards_tweets_large.json
 </code></pre>
 
-<p>It should be changed to</p>
+<p>The data is scraped and stored in a json file. The next step is preprocessing.</p>
 
-<pre><code>{{ if isset .Site.Params &quot;showBlogHeader&quot; }}
+<h2 id="step-2-preprcessing">Step 2 &ndash; Preprcessing</h2>
+
+<p>Here we want to preprocess the data to learn about it and to process further. We will convert the data from json and read it into a dataframe.</p>
+
+<h3 id="2-1-read-the-data">2.1 Read the data</h3>
+
+<pre><code>import codecs, json
+with codecs.open('mlflashcards_tweets_large.json', 'r', 'utf-8') as f:
+    tweets = json.load(f, encoding='utf-8')
 </code></pre>
 
-<p>After making the change, to test, use the latest hugo</p>
+<p>Look at a sample data</p>
 
-<pre><code>brew uninstall hugo
-brew install hugo --HEAD
+<pre><code>t = tweets[5]
+t
 </code></pre>
 
-<p>With these changes and testing the issue is fixed.</p>
+<p>output</p>
+
+<pre><code>{'fullname': 'Chris Albon',
+ 'id': '960977759915851776',
+ 'likes': '6',
+ 'replies': '2',
+ 'retweets': '1',
+ 'text': 'Alpha In Ridge Regression https://machinelearningflashcards.com\xa0pic.twitter.com/DFdSKO7DiH',
+ 'timestamp': '2018-02-06T20:45:26',
+ 'url': '/chrisalbon/status/960977759915851776',
+ 'user': 'chrisalbon'}
+</code></pre>
+
+<h3 id="2-2-write-and-test-few-utility-methods-to-extract-data">2.2 Write and test few utility methods to extract data</h3>
+
+<pre><code>## get full tweet url
+def get_tweet_url(tweet):
+    return 'https://twitter.com' + tweet['url']
+
+#test
+tweet_url = get_tweet_url(t)
+print(tweet_url)
+
+# output: https://twitter.com/chrisalbon/status/960977759915851776
+
+## get tweet text (text without url)
+def get_tweet_text(tweet):
+    text = tweet['text']
+    res = re.search('(.*) https.*', text)
+    if res:
+        text = res.group(1)
+    else:
+        text = None
+    return text
+
+#test
+get_tweet_text(t)
+# output: 'Alpha In Ridge Regression'
+</code></pre>
+
+<h3 id="2-3-convert-to-dataframe">2.3 Convert to dataframe</h3>
+
+<pre><code>rows = []
+for tweet in tweets[:]:
+    row = {&quot;id&quot;: tweet['id'],
+            &quot;likes&quot;: tweet['likes'],
+            &quot;replies&quot;: tweet['replies'],
+            &quot;retweets&quot;: tweet['retweets'],
+            &quot;timestamp&quot;: tweet['timestamp'],
+            &quot;url&quot;: get_tweet_url(tweet),
+            &quot;text&quot;: get_tweet_text(tweet)}
+rows.append(row)
+df = pd.DataFrame.from_dict(rows)
+df
+</code></pre>
+
+<p>looks something like this</p>
+
+<pre><code>    id  likes   replies     retweets    text    timestamp   url
+0   892802102702911488  1   0   1   None    2017-08-02T17:39:43     https://twitter.com/chrisalbon/status/89280210...
+1   961698946698567680  5   0   0   Threshold Activation    2018-02-08T20:31:11     https://twitter.com/chrisalbon/status/96169894...
+2   961666291189743616  23  0   5   Chi-Squared     2018-02-08T18:21:25     https://twitter.com/chrisalbon/status/96166629...
+</code></pre>
+
+<h3 id="2-4-extract-image-url-from-tweet-url">2.4 Extract image url from tweet url</h3>
+
+<pre><code>def get_img_url(tweet_url):
+    page_data = requests.get(tweet_url).text
+    res = re.search('data-image-url=&quot;(.*)&quot;', page_data)
+    if res:
+        img_url = res.group(1)
+    else:
+        img_url = None
+    return img_url
+
+#test
+get_img_url(tweet_url)
+# output: 'https://pbs.twimg.com/media/DViGZR3VoAAAoNf.png'
+
+df['img_url'] = [get_img_url(tweet_url)  for tweet_url in df.url]
+df.tail()
+</code></pre>
+
+<p>looks something like this</p>
+
+<pre><code>    id  likes   replies     retweets    text    timestamp   url     img_url
+236     946078250698018816  19  1   0   Bayes Error     2017-12-27T18:00:06     https://twitter.com/chrisalbon/status/94607825...   https://pbs.twimg.com/media/DSElJ54VQAEtuvF.png
+237     945751084974333952  47  3   13  Occams Razor    2017-12-26T20:20:04     https://twitter.com/chrisalbon/status/94575108...   https://pbs.twimg.com/media/DR_7mSwV4AAw6ZW.png
+238     945717937234591744  8   0   1   K-Fold Cross-Validation     2017-12-26T18:08:21     https://twitter.com/chrisalbon/status/94571793...   https://pbs.twimg.com/mediDR_dc5RVAAAMkcK.png
+</code></pre>
+
+<h2 id="step-3-write-to-csv">Step 3 &ndash; Write to csv</h2>
+
+<pre><code>Its time to save it to csv for further processing
+
+    df.to_csv(&quot;chrisalbon_mlflashcards.csv&quot;)
+</code></pre>
+
+<p>By this time I got other ideas to test. Instead of just downloading the images, I wanted to anaylze the tweets to know more about it using the data we have.</p>
+
+<p>The result is we are going to split this post into two parts where the next post will contain details on the analyis and code to download images. It will be published when the analysis is complete, let me go work on it. See you till then.</p>
 
       </article>
 
@@ -265,13 +370,9 @@ brew install hugo --HEAD
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="http://www.tutysara.net/posts/2017/03/24/spacemacs-ctrl-i-fix/" data-toggle="tooltip" data-placement="top" title="Spacemacs Ctrl-i fix ">&larr; Previous Post</a>
+              <a href="http://www.tutysara.net/posts/2018/02/07/themes-and-extensions-for-jupyter-notebook/" data-toggle="tooltip" data-placement="top" title="Themes and Extensions for Jupyter notebook">&larr; Previous Post</a>
             </li>
           
-          
-            <li class="next">
-              <a href="http://www.tutysara.net/posts/2018/01/07/use-skipgrams-with-sklearn-countvectorizer-and-tfidfvectorizer/" data-toggle="tooltip" data-placement="top" title="Use Skipgrams with sklearn CountVectorizer and TfidfVectorizer">Next Post &rarr;</a>
-            </li>
           
         </ul>
       
