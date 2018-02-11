@@ -30,6 +30,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="http://www.tutysara.net/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="http://www.tutysara.net/css/syntax.css" /><link rel="stylesheet" href="http://www.tutysara.net/css/codeblock.css" />
+  
+  <style>
+  pre.highlight, .highlight > pre, td.code pre { 
+    border-left: 2px solid #76a2a9;
+  }     
+</style>
 
 
 
@@ -224,12 +230,9 @@ ga('send', 'pageview');
 <p>I decided to come back to my good old friend emacs and configure it for Django development. Again a search gave a huge list of resources on how to set it up, I found this <a href="https://gist.github.com/panuta/1852087">gits</a> more upto date and had what I was looking for, followed the steps there to install python, pip, Virtualenv and django with a simple correction, virtualenvwrapper.sh is located in <code>/usr/local/bin/</code> instead of <code>/usr/local/share/python/</code></p>
 
 <p>Important thing is to add these line to .bash_profile</p>
-
-<pre><code class="language-bash">export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/python/virtualenvwrapper.sh
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">WORKON_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.virtualenvs
+<span class="nb">source</span> /usr/local/bin/python/virtualenvwrapper.sh
+<span class="nb">export</span> <span class="nv">PIP_VIRTUALENV_BASE</span><span class="o">=</span><span class="nv">$WORKON_HOME</span></code></pre></div>
 <p>I also didn&rsquo;t installed postgres as given in the gist, Instead I prefer <a href="http://postgresapp.com/">postgresapp</a></p>
 
 <p>###Setup for autocompletion</p>
@@ -237,41 +240,26 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 <h4 id="python-side-setup">Python side setup</h4>
 
 <p>Swtich to the virtual environment</p>
-
-<pre><code class="language-python">workon &lt;virtualenv&gt;
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">workon</span> <span class="o">&lt;</span><span class="n">virtualenv</span><span class="o">&gt;</span></code></pre></div>
 <h5 id="for-automatic-code-completion-install-jedi">For automatic code completion install jedi</h5>
-
-<pre><code class="language-bash">pip install jedi
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pip install jedi</code></pre></div>
 <h5 id="for-jedi-to-communicate-with-emacs">For jedi to communicate with emacs</h5>
-
-<pre><code class="language-bash">pip install epc
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pip install epc</code></pre></div>
 <h4 id="emacs-side-setup">Emacs side setup</h4>
 
 <p>#####Install virtualenvironmentwrapper.el and jedi.el from MELPA.</p>
 
 <p>Add this config to <code>~/.emacs.d/init.el</code></p>
-
-<pre><code class="language-elisp">(require 'virtualenvwrapper)
-(venv-initialize-interactive-shells) ;; if you want interactive shell support
-(venv-initialize-eshell) ;; if you want eshell support
-(setq venv-location &quot;Users/tutysara/.virtualenvs&quot;)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;virtualenvwrapper</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">venv-initialize-interactive-shells</span><span class="p">)</span> <span class="c1">;; if you want interactive shell support</span>
+<span class="p">(</span><span class="nv">venv-initialize-eshell</span><span class="p">)</span> <span class="c1">;; if you want eshell support</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">venv-location</span> <span class="s">&#34;Users/tutysara/.virtualenvs&#34;</span><span class="p">)</span></code></pre></div>
 <p><code>M-x venv-workon</code> to activate the virtualenv containing Django and the other libraries to start developing. Detailed instructions on using virtualenvwrapper.el can be found on its <a href="https://github.com/porterjamesj/virtualenvwrapper.el">github page</a> and jedi.el also has its own set of well written <a href="http://tkf.github.io/emacs-jedi/">docs</a></p>
 
 <p>To test this setup open eshell and type <code>which python</code> it should show a path which is inside the virtualenvs dir (<code>$HOME/.virtualenvs</code>) for proper interpreter configuration
 and open a python file and type</p>
-
-<pre><code class="language-python">    from django.db import models
-    models.Te # it should autocomple on typing dot
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+    <span class="n">models</span><span class="o">.</span><span class="n">Te</span> <span class="c1"># it should autocomple on typing dot</span></code></pre></div>
 <p>to test autocompletion for Django.</p>
 
 <p>We now have a emacs setup that can be used for Django development.

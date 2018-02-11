@@ -30,6 +30,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="http://www.tutysara.net/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="http://www.tutysara.net/css/syntax.css" /><link rel="stylesheet" href="http://www.tutysara.net/css/codeblock.css" />
+  
+  <style>
+  pre.highlight, .highlight > pre, td.code pre { 
+    border-left: 2px solid #76a2a9;
+  }     
+</style>
 
 
 
@@ -197,7 +203,7 @@ ga('send', 'pageview');
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (283 words)
+  <i class="fa fa-clock-o"></i> 2 minutes (264 words)
   
   
 </span>
@@ -223,18 +229,16 @@ ga('send', 'pageview');
 
 <ul>
 <li><p>Create <code>.travis.yml</code> file in the project directory with the following contents</p>
-
-<pre><code class="language-yaml">    language: go
-    sudo: required
-    git:
-        submodules: true
-    install:
-    - go get -v github.com/spf13/hugo
-    script: bash ./deploy.sh
-    notifications:
-        email:
-            on_failure: always
-</code></pre></li>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">    </span>language<span class="p">:</span><span class="w"> </span>go<span class="w">
+</span><span class="w">    </span>sudo<span class="p">:</span><span class="w"> </span>required<span class="w">
+</span><span class="w">    </span>git<span class="p">:</span><span class="w">
+</span><span class="w">        </span>submodules<span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">    </span>install<span class="p">:</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>go<span class="w"> </span>get<span class="w"> </span>-v<span class="w"> </span>github.com/spf<span class="m">13</span>/hugo<span class="w">
+</span><span class="w">    </span>script<span class="p">:</span><span class="w"> </span>bash<span class="w"> </span>./deploy.sh<span class="w">
+</span><span class="w">    </span>notifications<span class="p">:</span><span class="w">
+</span><span class="w">        </span>email<span class="p">:</span><span class="w">
+</span><span class="w">            </span>on_failure<span class="p">:</span><span class="w"> </span>always</code></pre></div></li>
 
 <li><p>Generate and encrypt github token</p>
 
@@ -242,45 +246,39 @@ ga('send', 'pageview');
 <li>create a access token in github as <a href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/">given here</a> , this is for pushing the changes to the master branch of the user site</li>
 
 <li><p>install travis gem</p>
-
-<pre><code class="language-sh">    gem install travis
-</code></pre></li>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">    gem install travis</code></pre></div></li>
 
 <li><p>enrypt github token and incude in .travis.yml</p>
-
-<pre><code class="language-sh">travis encrypt GH_TOKEN=&lt;token generated above&gt; --add
-</code></pre></li>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">travis encrypt <span class="nv">GH_TOKEN</span><span class="o">=</span>&lt;token generated above&gt; --add</code></pre></div></li>
 </ul>
 
 <p>this will also take care of including the token in .travis.yml under <code>secure</code> section</p></li>
 
 <li><p>Use this deploy script, modify and save this in a file called deploy.sh in the root dir of the project</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="cp">#!/bin/bash
+</span><span class="cp"></span>    <span class="nb">echo</span> -e <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
+    <span class="c1"># setup constants
+</span><span class="c1"></span>    <span class="nv">REPO</span><span class="o">=</span><span class="s2">&#34;&lt;username&gt;.github.io&#34;</span>
+    <span class="nv">GH_REPO</span><span class="o">=</span><span class="s2">&#34;github.com/&lt;username&gt;/</span><span class="si">${</span><span class="nv">REPO</span><span class="si">}</span><span class="s2">.git&#34;</span>
+    <span class="nv">MSG</span><span class="o">=</span><span class="k">$(</span>git log -1 --oneline<span class="k">)</span>
+    git config --global user.email <span class="s2">&#34;&lt;example@gmail.com&gt;&#34;</span>
+    git config --global user.name <span class="s2">&#34;&lt;name&gt;&#34;</span>
 
-<pre><code class="language-sh">    #!/bin/bash
-    echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
-    # setup constants
-    REPO=&quot;&lt;username&gt;.github.io&quot;
-    GH_REPO=&quot;github.com/&lt;username&gt;/${REPO}.git&quot;
-    MSG=$(git log -1 --oneline)
-    git config --global user.email &quot;&lt;example@gmail.com&gt;&quot;
-    git config --global user.name &quot;&lt;name&gt;&quot;
-
-    # Build the project.
-    hugo -t &lt;theme_name&gt; # if using a theme, replace by 'hugo -t &lt;yourtheme&gt;'
-
-    git clone &quot;https://$GH_REPO&quot;
-    # clean up repo
-    cd  ${REPO}
+    <span class="c1"># Build the project.
+</span><span class="c1"></span>    hugo -t &lt;theme_name&gt; <span class="c1"># if using a theme, replace by &#39;hugo -t &lt;yourtheme&gt;&#39;
+</span><span class="c1"></span>
+    git clone <span class="s2">&#34;https://</span><span class="nv">$GH_REPO</span><span class="s2">&#34;</span>
+    <span class="c1"># clean up repo
+</span><span class="c1"></span>    <span class="nb">cd</span>  <span class="si">${</span><span class="nv">REPO</span><span class="si">}</span>
     rm -rf *
-    cd ..
-    # copy files to commit
-    cp -R public/* ${REPO}
-    cd ${REPO}
+    <span class="nb">cd</span> ..
+    <span class="c1"># copy files to commit
+</span><span class="c1"></span>    cp -R public/* <span class="si">${</span><span class="nv">REPO</span><span class="si">}</span>
+    <span class="nb">cd</span> <span class="si">${</span><span class="nv">REPO</span><span class="si">}</span>
     git remote
     git add -A :/
-    git commit -a -m &quot;via travis -- for $MSG&quot;
-    git push &quot;https://${GH_TOKEN}@${GH_REPO}&quot; master &gt; /dev/null 2&gt;&amp;1
-</code></pre></li>
+    git commit -a -m <span class="s2">&#34;via travis -- for </span><span class="nv">$MSG</span><span class="s2">&#34;</span>
+    git push <span class="s2">&#34;https://</span><span class="si">${</span><span class="nv">GH_TOKEN</span><span class="si">}</span><span class="s2">@</span><span class="si">${</span><span class="nv">GH_REPO</span><span class="si">}</span><span class="s2">&#34;</span> master &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span></code></pre></div></li>
 
 <li><p>push both <code>.travis.yml</code> and <code>deploy.sh</code> to github</p></li>
 </ul>

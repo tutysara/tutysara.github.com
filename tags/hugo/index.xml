@@ -35,7 +35,7 @@ Deploying updates to GitHub... Started building sites ... ERROR 2017/03/25 02:31
       <description>Here are the steps I took to build and deploy my blog automatically using hugo and travis-ci to github pages
 I assume a hugo blog is already created and exist
  Create .travis.yml file in the project directory with the following contents
-language: go sudo: required git: submodules: true install: - go get -v github.com/spf13/hugo script: bash ./deploy.sh notifications: email: on_failure: always  Generate and encrypt github token
+language:gosudo:requiredgit:submodules:trueinstall:-goget-vgithub.com/spf13/hugoscript:bash./deploy.shnotifications:email:on_failure:always Generate and encrypt github token
  create a access token in github as given here , this is for pushing the changes to the master branch of the user site install travis gem</description>
     </item>
     

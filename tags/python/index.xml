@@ -21,7 +21,7 @@
       <author>tutysara at google mail.com (tutysara)</author>
       <guid>http://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter----part-2-data-analysis-and-download/</guid>
       <description>This is the analysis part where we do a small analysis to find
- Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary libs %load_ext autoreload %autoreload 2 %matplotlib inline import pandas as pd pd.set_option(&amp;quot;display.width&amp;quot;, 150) import requests import re import matplotlib.pyplot as plt import matplotlib.image as mpimg from pathlib import Path  Load csv df = pd.read_csv(&amp;quot;chrisalbon_mlflashcards.csv&amp;quot;) df[&#39;text&#39;].fillna(&#39;&#39;, inplace=True)  df.</description>
+ Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary libs %load_ext autoreload %autoreload 2 %matplotlib inline import pandas as pd pd.set_option(&amp;#34;display.width&amp;#34;, 150) import requests import re import matplotlib.pyplot as plt import matplotlib.image as mpimg from pathlib import Path  Load csv df = pd.read_csv(&amp;#34;chrisalbon_mlflashcards.csv&amp;#34;) df[&amp;#39;text&amp;#39;].fillna(&amp;#39;&amp;#39;, inplace=True)df.</description>
     </item>
     
     <item>

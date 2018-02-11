@@ -27,6 +27,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="http://www.tutysara.net/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="http://www.tutysara.net/css/syntax.css" /><link rel="stylesheet" href="http://www.tutysara.net/css/codeblock.css" />
+  
+  <style>
+  pre.highlight, .highlight > pre, td.code pre { 
+    border-left: 2px solid #76a2a9;
+  }     
+</style>
 
 
 
@@ -265,7 +271,7 @@ I guess, planning to {use|add link} to google plus is a bad idea. I googled to f
                   Here are the steps I took to build and deploy my blog automatically using hugo and travis-ci to github pages
 I assume a hugo blog is already created and exist
  Create .travis.yml file in the project directory with the following contents
-language: go sudo: required git: submodules: true install: - go get -v github.com/spf13/hugo script: bash ./deploy.sh notifications: email: on_failure: always  Generate and encrypt github token
+language:gosudo:requiredgit:submodules:trueinstall:-goget-vgithub.com/spf13/hugoscript:bash./deploy.shnotifications:email:on_failure:always Generate and encrypt github token
  create a access token in github as given here , this is for pushing the changes to the master branch of the user site install travis gem
                   <a href="http://www.tutysara.net/posts/2016/09/27/automating-hugo-blog-deployment-to-github-pages-using-travis-ci/" class="post-read-more">[Read More]</a>
                 

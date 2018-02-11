@@ -32,6 +32,12 @@ I wanted to run a site for discussing and sharing information that are useful fo
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="http://www.tutysara.net/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="http://www.tutysara.net/css/syntax.css" /><link rel="stylesheet" href="http://www.tutysara.net/css/codeblock.css" />
+  
+  <style>
+  pre.highlight, .highlight > pre, td.code pre { 
+    border-left: 2px solid #76a2a9;
+  }     
+</style>
 
 
 
@@ -239,75 +245,54 @@ ga('send', 'pageview');
 <p>####Do all these from a previliged user</p>
 
 <p>###Install nodejs</p>
-
-<pre><code class="language-bash">sudo apt-get install python-software-properties
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install python-software-properties
 sudo add-apt-repository ppa:chris-lea/node.js
-sudo apt-get update
-</code></pre>
-
+sudo apt-get update</code></pre></div>
 <p>npm is now part of nodejs and installing nodejs installs it</p>
-
-<pre><code class="language-bash">sudo apt-get install nodejs
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install nodejs</code></pre></div>
 <p>Check the node version, as of this writing Chris Lea repo has version 0.10.21</p>
-
-<pre><code class="language-bash">node --version
-v0.10.21
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">node --version
+v0.10.21</code></pre></div>
 <p>###Install meteorite - Installer &amp; smart package manager for Meteor</p>
-
-<pre><code class="language-bash">sudo npm install -g meteorite
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo npm install -g meteorite</code></pre></div>
 <p>####Login to the web user with limited previlage and clone the repository
 I was testing the application from this user before starting it using upstart</p>
-
-<pre><code class="language-bash">git clone https://github.com/SachaG/Telescope.git
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/SachaG/Telescope.git</code></pre></div>
 <p>Configure Telescope to start automatically when system reboots, I have to do this because my VPS provider had restarted the server more than 3-4 times in a month</p>
 
 <p>Create a file <code>telescope.conf</code> in <code>/etc/init</code> with the following contents</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># meteorjs - meteorjs job file
+</span><span class="c1"></span>
+description <span class="s2">&#34;Start Telescope&#34;</span>
+author <span class="s2">&#34;tutysara&#34;</span>
 
-<pre><code class="language-bash"># meteorjs - meteorjs job file
+<span class="c1"># When to start the service
+</span><span class="c1"></span>start on runlevel <span class="o">[</span><span class="m">2345</span><span class="o">]</span>
 
-description &quot;Start Telescope&quot;
-author &quot;tutysara&quot;
+<span class="c1"># When to stop the service
+</span><span class="c1"></span>stop on runlevel <span class="o">[</span><span class="m">016</span><span class="o">]</span>
 
-# When to start the service
-start on runlevel [2345]
+<span class="c1"># Automatically restart process if crashed
+</span><span class="c1"></span>respawn
 
-# When to stop the service
-stop on runlevel [016]
+<span class="c1"># Essentially lets upstart know the process will detach itself to the background
+</span><span class="c1"></span>expect fork
 
-# Automatically restart process if crashed
-respawn
-
-# Essentially lets upstart know the process will detach itself to the background
-expect fork
-
-# Start the process
-script
-	export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-	export PWD=/home/web/telescopes/Telescope
-	export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules
-	export HOME=/home/web
-	export MONGO_URL=mongodb://localhost:27017/meteor
-	echo &quot;---- start ----&quot;
-	cd &quot;/home/web/telescopes/Telescope&quot;
-	exec meteor run -p 3000 --production
-end script
-</code></pre>
-
+<span class="c1"># Start the process
+</span><span class="c1"></span>script
+	<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+	<span class="nb">export</span> <span class="nv">PWD</span><span class="o">=</span>/home/web/telescopes/Telescope
+	<span class="nb">export</span> <span class="nv">NODE_PATH</span><span class="o">=</span>/usr/lib/nodejs:/usr/lib/node_modules
+	<span class="nb">export</span> <span class="nv">HOME</span><span class="o">=</span>/home/web
+	<span class="nb">export</span> <span class="nv">MONGO_URL</span><span class="o">=</span>mongodb://localhost:27017/meteor
+	<span class="nb">echo</span> <span class="s2">&#34;---- start ----&#34;</span>
+	<span class="nb">cd</span> <span class="s2">&#34;/home/web/telescopes/Telescope&#34;</span>
+	<span class="nb">exec</span> meteor run -p <span class="m">3000</span> --production
+end script</code></pre></div>
 <p>Finally test the scipt by starting, stopping and checking status</p>
-
-<pre><code class="language-bash">sudo start telescope
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo start telescope
 sudo status telescope
-sudo stop telescope
-</code></pre>
-
+sudo stop telescope</code></pre></div>
 <p>If there are errors it can be seen in upstart logs at <code>/var/log/upstart/telescope.log</code>.</p>
 
 <p>The application can be accessed <a href="http://www.techparknews.in">here</a>. I use a rproxy to send port 80 to 3000</p>

@@ -9,9 +9,9 @@
   <meta property="og:title" content="Machine Learning Flashcards from Twitter -- Part 2 Data Analysis and Download" />
   <meta name="twitter:title" content="Machine Learning Flashcards from Twitter -- Part 2 Data Analysis and …" />
   <meta name="description" content="This is the analysis part where we do a small analysis to find
- Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary libs %load_ext autoreload %autoreload 2 %matplotlib inline import pandas as pd pd.set_option(&quot;display.width&quot;, 150) import requests import re import matplotlib.pyplot as plt import matplotlib.image as mpimg from pathlib import Path  Load csv df = pd.read_csv(&quot;chrisalbon_mlflashcards.csv&quot;) df[&#39;text&#39;].fillna(&#39;&#39;, inplace=True)  df.">
+ Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary libs %load_ext autoreload %autoreload 2 %matplotlib inline import pandas as pd pd.set_option(&#34;display.width&#34;, 150) import requests import re import matplotlib.pyplot as plt import matplotlib.image as mpimg from pathlib import Path  Load csv df = pd.read_csv(&#34;chrisalbon_mlflashcards.csv&#34;) df[&#39;text&#39;].fillna(&#39;&#39;, inplace=True)df.">
   <meta property="og:description" content="This is the analysis part where we do a small analysis to find
- Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary libs %load_ext autoreload %autoreload 2 %matplotlib inline import pandas as pd pd.set_option(&quot;display.width&quot;, 150) import requests import re import matplotlib.pyplot as plt import matplotlib.image as mpimg from pathlib import Path  Load csv df = pd.read_csv(&quot;chrisalbon_mlflashcards.csv&quot;) df[&#39;text&#39;].fillna(&#39;&#39;, inplace=True)  df.">
+ Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary libs %load_ext autoreload %autoreload 2 %matplotlib inline import pandas as pd pd.set_option(&#34;display.width&#34;, 150) import requests import re import matplotlib.pyplot as plt import matplotlib.image as mpimg from pathlib import Path  Load csv df = pd.read_csv(&#34;chrisalbon_mlflashcards.csv&#34;) df[&#39;text&#39;].fillna(&#39;&#39;, inplace=True)df.">
   <meta name="twitter:description" content="This is the analysis part where we do a small analysis to find
  Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary …">
   <meta name="author" content="tutysara"/>
@@ -33,6 +33,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="http://www.tutysara.net/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="http://www.tutysara.net/css/syntax.css" /><link rel="stylesheet" href="http://www.tutysara.net/css/codeblock.css" />
+  
+  <style>
+  pre.highlight, .highlight > pre, td.code pre { 
+    border-left: 2px solid #76a2a9;
+  }     
+</style>
 
 
 
@@ -200,7 +206,7 @@ ga('send', 'pageview');
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 6 minutes (1200 words)
+  <i class="fa fa-clock-o"></i> 6 minutes (1193 words)
   
   
 </span>
@@ -230,30 +236,21 @@ ga('send', 'pageview');
 </ul>
 
 <h3 id="load-the-necessary-libs">Load the necessary libs</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
+<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 
-<pre><code class="language-python">%load_ext autoreload
-%autoreload 2
-%matplotlib inline
 
-
-import pandas as pd
-pd.set_option(&quot;display.width&quot;, 150)
-import requests
-import re
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-from pathlib import Path 
-</code></pre>
-
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;display.width&#34;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="kn">as</span> <span class="nn">mpimg</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span> </code></pre></div>
 <h3 id="load-csv">Load csv</h3>
-
-<pre><code class="language-python">df = pd.read_csv(&quot;chrisalbon_mlflashcards.csv&quot;)
-df['text'].fillna('', inplace=True)
-</code></pre>
-
-<pre><code class="language-python">df.tail()
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;chrisalbon_mlflashcards.csv&#34;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span></code></pre></div>
 <pre><code> id  likes  replies  retweets            text       timestamp             url         img_url
 236  94607825069...     19        1         0     Bayes Error  2017-12-27T...  https://twi...  https://pbs...
 237  94575108497...     47        3        13    Occams Razor  2017-12-26T...  https://twi...  https://pbs...
@@ -264,10 +261,7 @@ df['text'].fillna('', inplace=True)
 </code></pre>
 
 <h3 id="check-for-missing-values">Check for missing values</h3>
-
-<pre><code class="language-python">df.count(axis=0)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code></pre></div>
 <pre><code>id           241
 likes        241
 replies      241
@@ -280,10 +274,7 @@ dtype: int64
 </code></pre>
 
 <p>We see we have few img_urls missing. Let&rsquo;s check what they are</p>
-
-<pre><code class="language-python">df[df.img_url.isnull()]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">img_url</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span></code></pre></div>
 <pre><code>  id  likes  replies  retweets text            timestamp                       url img_url
 83   930450506744414208     52        3         0       2017-11-14T15:01:02  https://twitter.com/c...     NaN
 193  902952380160892928      1        0         0       2017-08-30T17:53:18  https://twitter.com/c...     NaN
@@ -295,13 +286,7 @@ dtype: int64
 They contain the search term but doesn&rsquo;t contain an image and can be neglected</p>
 
 <h3 id="drop-invalid-rows">Drop invalid rows</h3>
-
-<pre><code class="language-python">df = df.dropna(subset=['img_url'])
-</code></pre>
-
-<pre><code class="language-python">df.count(axis=0)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;img_url&#39;</span><span class="p">])</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code></pre></div>
 <h3 id="check-again-after-droping-invalid-rows">Check again after droping invalid rows</h3>
 
 <pre><code>id           237
@@ -321,10 +306,7 @@ dtype: int64
 Especially we have to have <code>timestamp</code> as <code>datetime</code> column. Let&rsquo;s check and convert the datatype if it is not.</p>
 
 <h4 id="check">Check</h4>
-
-<pre><code class="language-python">df.dtypes
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span></code></pre></div>
 <pre><code>id            int64
 likes         int64
 replies       int64
@@ -337,11 +319,8 @@ dtype: object
 </code></pre>
 
 <h4 id="convert">Convert</h4>
-
-<pre><code class="language-python">df.timestamp = pd.to_datetime(df.timestamp, infer_datetime_format=True)
-df.dtypes
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">infer_datetime_format</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dtypes</span></code></pre></div>
 <pre><code>id                    int64
 likes                 int64
 replies               int64
@@ -357,41 +336,32 @@ dtype: object
 
 <p>This is an utility method to construct a meaningful filename.<br />
 It tries to use the <code>text</code> and the <code>id</code> column for name and picks up the extension (png/jpg) from the img_url</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_image_name</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">img_url</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">+</span> <span class="sa"></span><span class="s2">&#34;_&#34;</span> <span class="o">+</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;_&#34;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">extn</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">img_url</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">img_url</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">+</span> <span class="n">extn</span>
+    <span class="k">return</span> <span class="n">res</span>
 
-<pre><code class="language-python">def get_image_name(id, text, img_url):
-    res = str(id)
-    if text:
-        res = res + &quot;_&quot; + text.replace(&quot; &quot;, &quot;_&quot;)
-    try:
-        extn = Path(img_url).suffix
-    except:
-        print(id, text, img_url)
-    res = res + extn
-    return res
+<span class="c1"># test</span>
+<span class="n">index</span> <span class="o">=</span> <span class="mi">232</span>
+<span class="n">img_url</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">img_url</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="nb">id</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+<span class="n">img_name</span> <span class="o">=</span> <span class="n">get_image_name</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">img_url</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">img_name</span><span class="p">)</span>
 
-# test
-index = 232
-img_url = df.iloc[index].img_url
-id = df.iloc[index].id
-text = df.iloc[index].text
-img_name = get_image_name(id, text, img_url)
-print(img_name)
-
-#  946078250698018816_Bayes_Error.png
-</code></pre>
-
+<span class="c1">#  946078250698018816_Bayes_Error.png</span></code></pre></div>
 <h3 id="get-the-image-names-and-add-it-as-a-new-column">Get the image names and add it as a new column</h3>
-
-<pre><code class="language-python">img_names = []
-for index, row in df.iterrows():
-    img_name = get_image_name(row.id, row.text, row.img_url)
-    img_names.append(img_name)
-df['img_name'] = img_names
-</code></pre>
-
-<pre><code class="language-python">df.tail()
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">img_name</span> <span class="o">=</span> <span class="n">get_image_name</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="nb">id</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">img_url</span><span class="p">)</span>
+    <span class="n">img_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img_name</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;img_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">img_names</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span></code></pre></div>
 <pre><code> id                         text                                      img_name
 236  946078250698018816                  Bayes Error            946078250698018816_Bayes_Error.png
 237  945751084974333952                 Occams Razor           945751084974333952_Occams_Razor.png
@@ -401,56 +371,44 @@ df['img_name'] = img_names
 </code></pre>
 
 <h3 id="utility-function-to-download-an-image">Utility function to download an image</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">download_image</span><span class="p">(</span><span class="n">img_url</span><span class="p">,</span> <span class="n">img_name</span><span class="p">):</span>
+    <span class="n">img_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">img_url</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">img_name</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">img_name</span>
 
-<pre><code class="language-python">def download_image(img_url, img_name):
-    img_data = requests.get(img_url).content
-    with open(img_name, 'wb') as handler:
-        handler.write(img_data)
-    return img_name
+<span class="c1"># test</span>
+<span class="n">downloaded_img</span> <span class="o">=</span> <span class="n">download_image</span><span class="p">(</span><span class="n">img_url</span><span class="p">,</span> <span class="n">img_name</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">downloaded_img</span><span class="p">)</span>
 
-# test
-downloaded_img = download_image(img_url, img_name)
-print(downloaded_img)
-
-#  945363817839566849_Softmax_Activation_Function.png
-</code></pre>
-
+<span class="c1">#  945363817839566849_Softmax_Activation_Function.png</span></code></pre></div>
 <h3 id="download-all-images">Download all images</h3>
 
 <p>Here is the main part of code which downloads all the image from the urls in the dataframe.
 It is saved in the current working directory with name from <code>img_name</code> col
 If we want to change the place where it is saved use <code>%cd &lt;targer_dir&gt;</code> to change the file location</p>
-
-<pre><code class="language-python">n = len(df)
-for index, row in df.iterrows():
-    try:
-        img_name = row.img_name
-        img_url = row.img_url
-        print(f&quot;processing img {index + 1}/{n}&quot;, img_name, img_url)
-        download_image(img_url, img_name)      
-    except Exception as inst:
-        print(&quot;Error&quot;, index, inst, img_name, img_url)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">img_name</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">img_name</span>
+        <span class="n">img_url</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">img_url</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;processing img {index + 1}/{n}&#34;</span><span class="p">,</span> <span class="n">img_name</span><span class="p">,</span> <span class="n">img_url</span><span class="p">)</span>
+        <span class="n">download_image</span><span class="p">(</span><span class="n">img_url</span><span class="p">,</span> <span class="n">img_name</span><span class="p">)</span>      
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">inst</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Error&#34;</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">img_name</span><span class="p">,</span> <span class="n">img_url</span><span class="p">)</span></code></pre></div>
 <h3 id="check-date-range-of-tweets">Check date range of tweets</h3>
 
 <p>Lets check from what time to what time Chris had created them</p>
-
-<pre><code class="language-python">min_date = df.timestamp.min()
-max_date = df.timestamp.max()
-print(min_date, max_date)
-# 2017-08-02 17:39:43 2018-02-08 20:31:11
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">min_date</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="nb">min</span><span class="p">()</span>
+<span class="n">max_date</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">min_date</span><span class="p">,</span> <span class="n">max_date</span><span class="p">)</span>
+<span class="c1"># 2017-08-02 17:39:43 2018-02-08 20:31:11</span></code></pre></div>
 <p>Not a huge range in time, we may not have much effect of time with the content of the material</p>
 
 <h3 id="find-top-5-liked-and-retweeted-tweets">Find top 5 liked and retweeted tweets</h3>
-
-<pre><code class="language-python"># top 5 liked and retweeted tweets
-df_top5 = df.sort_values(by=['likes', 'retweets'], ascending=[False, False])[:5]
-df_top5
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># top 5 liked and retweeted tweets</span>
+<span class="n">df_top5</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;likes&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;retweets&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">])[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">df_top5</span></code></pre></div>
 <pre><code>likes  replies  retweets           timestamp                                          text
 207   1815       74       700 2017-08-22 13:06:13                                              
 21      99        4        43 2017-10-26 19:25:53                              Simpsons Paradox
@@ -460,35 +418,26 @@ df_top5
 </code></pre>
 
 <h4 id="utility-function-to-plot-an-image-and-images">Utility function to plot an image and images</h4>
-
-<pre><code class="language-python">def plot_img(img_name, size=(5, 3)):
-    plt.figure(figsize=size)
-    img = mpimg.imread(img_name)
-    plt.imshow(img) 
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">plot_img</span><span class="p">(</span><span class="n">img_name</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_name</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> 
     
-# test
-plot_img(img_name)
-</code></pre>
-
+<span class="c1"># test</span>
+<span class="n">plot_img</span><span class="p">(</span><span class="n">img_name</span><span class="p">)</span></code></pre></div>
 <p><img src="/img/mlflashcards_part2/output_18_0.png" alt="png" /></p>
-
-<pre><code class="language-python">def plot_images(img_names, titles, size=(20, 10), columns=5):
-    plt.figure(figsize=size)
-    #print(img_names)
-    for i, img_name in enumerate(img_names):
-        image = mpimg.imread(img_name)
-        plt.subplot(len(img_names) / columns + 1, columns, i + 1)
-        plt.title(titles[i][:25])
-        plt.xticks([])
-        plt.yticks([])
-        plt.imshow(image)
-</code></pre>
-
-<pre><code class="language-python">cols = ['likes', 'replies', 'retweets', 'timestamp', 'text']
-print(df_top5[cols])
-plot_images(df_top5.img_name.values, df_top5.text.values)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">plot_images</span><span class="p">(</span><span class="n">img_names</span><span class="p">,</span> <span class="n">titles</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+    <span class="c1">#print(img_names)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">img_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">img_names</span><span class="p">):</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_name</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">img_names</span><span class="p">)</span> <span class="o">/</span> <span class="n">columns</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="mi">25</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;likes&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;replies&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;retweets&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df_top5</span><span class="p">[</span><span class="n">cols</span><span class="p">])</span>
+<span class="n">plot_images</span><span class="p">(</span><span class="n">df_top5</span><span class="o">.</span><span class="n">img_name</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df_top5</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></code></pre></div>
 <pre><code>likes  replies  retweets           timestamp                                          text
 207   1815       74       700 2017-08-22 13:06:13                                              
 21      99        4        43 2017-10-26 19:25:53                              Simpsons Paradox
@@ -500,14 +449,11 @@ plot_images(df_top5.img_name.values, df_top5.text.values)
 <p><img src="/img/mlflashcards_part2/output_20_1.png" alt="png" /></p>
 
 <h3 id="find-top-5-oldest-tweets">Find top 5 oldest tweets</h3>
-
-<pre><code class="language-python"># top 5 oldest tweets
-# wanted to check if more interesting topics are covering in the begining to start with
-df_top5 = df.sort_values(by=['timestamp'], ascending=[True])[:5]
-print(df_top5[cols])
-plot_images(df_top5.img_name.values, df_top5.text.values)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># top 5 oldest tweets</span>
+<span class="c1"># wanted to check if more interesting topics are covering in the begining to start with</span>
+<span class="n">df_top5</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="bp">True</span><span class="p">])[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df_top5</span><span class="p">[</span><span class="n">cols</span><span class="p">])</span>
+<span class="n">plot_images</span><span class="p">(</span><span class="n">df_top5</span><span class="o">.</span><span class="n">img_name</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df_top5</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></code></pre></div>
 <pre><code>        likes  replies  retweets           timestamp text
 0        1        0         1 2017-08-02 17:39:43     
 208     17        0         2 2017-08-21 20:13:16     
@@ -523,60 +469,36 @@ plot_images(df_top5.img_name.values, df_top5.text.values)
 <p>Here the idea is that the tweets that are most liked, retweeted are considered more important.
 Before that we have to find if there is a difference between liked and retweeted tweets.
 Even before doing that analysis lets remove the super outlier.</p>
-
-<pre><code class="language-python"># drop outlier
-df.drop(207, inplace=True)
-</code></pre>
-
-<pre><code class="language-python"># check if oldest tweets are best
-title = &quot;Likes/Retweets vs Time&quot;
-df.plot(x='timestamp', y=['likes', 'retweets'],  kind='line', ylim=(0,120), figsize=(10,10), title=title, subplots=False)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># drop outlier</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">207</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># check if oldest tweets are best</span>
+<span class="n">title</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;Likes/Retweets vs Time&#34;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;likes&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;retweets&#39;</span><span class="p">],</span>  <span class="n">kind</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">subplots</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span></code></pre></div>
 <p><img src="/img/mlflashcards_part2/output_23_2.png" alt="png" /></p>
 
 <p>We can see recent tweets are gaining more attetion and being liked and shared more</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># find above average tweets</span>
+<span class="n">likes_avg</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">likes_avg</span><span class="p">)</span>
+<span class="n">df_above_average_liked</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">likes</span> <span class="o">&gt;</span> <span class="n">likes_avg</span><span class="p">]</span>
 
-<pre><code class="language-python"># find above average tweets
-likes_avg = df.likes.mean()
-print(likes_avg)
-df_above_average_liked = df[df.likes &gt; likes_avg]
-
-#17.199152542372882
-</code></pre>
-
-<pre><code class="language-python">df_above_average_liked.shape[0]
-# 81
-</code></pre>
-
+<span class="c1">#17.199152542372882</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df_above_average_liked</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># 81</span></code></pre></div>
 <p>this is a big number, we have many above average tweets, lets find something managable <code>(&lt; 50)</code></p>
 
 <h4 id="plot-how-the-tweets-are-distributed">Plot how the tweets are distributed</h4>
-
-<pre><code class="language-python">df.boxplot(column=&quot;likes&quot;, figsize=(10,10))
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;likes&#34;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span></code></pre></div>
 <p><img src="/img/mlflashcards_part2/output_27_1.png" alt="png" /></p>
 
 <p>We see there are many outliers
 Lets pick the top 20% of tweet and check them</p>
-
-<pre><code class="language-python">likes_80 = df.likes.quantile(0.80)
-</code></pre>
-
-<pre><code class="language-python">df_likes_80 = df[df.likes &gt; likes_80]
-print(df_likes_80.shape[0])
-df_likes_80 = df_likes_80.sort_values(by=['likes'], ascending=[False])
-df_likes_80
-# 43
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">likes_80</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.80</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df_likes_80</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">likes</span> <span class="o">&gt;</span> <span class="n">likes_80</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df_likes_80</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">df_likes_80</span> <span class="o">=</span> <span class="n">df_likes_80</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;likes&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="bp">False</span><span class="p">])</span>
+<span class="n">df_likes_80</span>
+<span class="c1"># 43</span></code></pre></div>
 <p>Ok, this looks like a manageble number for most important tweets to start looking from</p>
-
-<pre><code class="language-python"># most important (liked) tweet
-plot_images(df_likes_80.img_name.values, df_likes_80.text.values,  size=(15, 20))
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># most important (liked) tweet</span>
+<span class="n">plot_images</span><span class="p">(</span><span class="n">df_likes_80</span><span class="o">.</span><span class="n">img_name</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df_likes_80</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span></code></pre></div>
 <p>These are the most liked/retweeted tweets, these are either well done and something which people liked or it covers important material</p>
 
 <p><img src="/img/mlflashcards_part2/output_31_0.png" alt="png" /></p>

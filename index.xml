@@ -21,7 +21,7 @@
       <author>tutysara at google mail.com (tutysara)</author>
       <guid>http://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter----part-2-data-analysis-and-download/</guid>
       <description>This is the analysis part where we do a small analysis to find
- Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary libs %load_ext autoreload %autoreload 2 %matplotlib inline import pandas as pd pd.set_option(&amp;quot;display.width&amp;quot;, 150) import requests import re import matplotlib.pyplot as plt import matplotlib.image as mpimg from pathlib import Path  Load csv df = pd.read_csv(&amp;quot;chrisalbon_mlflashcards.csv&amp;quot;) df[&#39;text&#39;].fillna(&#39;&#39;, inplace=True)  df.</description>
+ Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary libs %load_ext autoreload %autoreload 2 %matplotlib inline import pandas as pd pd.set_option(&amp;#34;display.width&amp;#34;, 150) import requests import re import matplotlib.pyplot as plt import matplotlib.image as mpimg from pathlib import Path  Load csv df = pd.read_csv(&amp;#34;chrisalbon_mlflashcards.csv&amp;#34;) df[&amp;#39;text&amp;#39;].fillna(&amp;#39;&amp;#39;, inplace=True)df.</description>
     </item>
     
     <item>
@@ -101,7 +101,7 @@ I guess, planning to {use|add link} to google plus is a bad idea. I googled to f
       <description>Here are the steps I took to build and deploy my blog automatically using hugo and travis-ci to github pages
 I assume a hugo blog is already created and exist
  Create .travis.yml file in the project directory with the following contents
-language: go sudo: required git: submodules: true install: - go get -v github.com/spf13/hugo script: bash ./deploy.sh notifications: email: on_failure: always  Generate and encrypt github token
+language:gosudo:requiredgit:submodules:trueinstall:-goget-vgithub.com/spf13/hugoscript:bash./deploy.shnotifications:email:on_failure:always Generate and encrypt github token
  create a access token in github as given here , this is for pushing the changes to the master branch of the user site install travis gem</description>
     </item>
     
@@ -140,7 +140,7 @@ I wanted to run a site for discussing and sharing information that are useful fo
       <author>tutysara at google mail.com (tutysara)</author>
       <guid>http://www.tutysara.net/posts/2013/10/18/setting-up-a--new-vps-server/</guid>
       <description>These are the things I did to setup new VPS instances on Digital Ocean and ChicagoVPS
-Update the machine sudo apt-get update sudo apt-get upgrade  Set locales sudo locale-gen sudo dpkg-reconfigure locales  add user sudo adduser tutysra # give sudo previliges sudo visudo tutysra ALL=(ALL) ALL  Install Git sudo apt-get install git  Install sun java sudo add-apt-repository ppa:webupd8team/java sudo apt-get update sudo apt-get install oracle-java7-installer  Install Tor for screen scrapping sudo apt-get install tor sudo /etc/init.</description>
+Update the machine sudo apt-get update sudo apt-get upgrade Set locales sudo locale-gen sudo dpkg-reconfigure locales add user sudo adduser tutysra # give sudo previliges sudo visudo tutysra ALL=(ALL) ALL Install Git sudo apt-get install git Install sun java sudo add-apt-repository ppa:webupd8team/java sudo apt-get update sudo apt-get install oracle-java7-installer Install Tor for screen scrapping sudo apt-get install tor sudo /etc/init.</description>
     </item>
     
     <item>
