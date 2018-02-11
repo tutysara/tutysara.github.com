@@ -240,10 +240,7 @@ We shoud be able to get data spread across months since the tweets we are intere
 Scraping was an one step painless process with this tool.</p>
 
 <p>Install it using</p>
-
-<pre><code>pip install twitterscraper
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pip install twitterscraper</code></pre></div>
 <p>Scrape the data matching a query using</p>
 
 <pre><code>twitterscraper &quot;machinelearningflashcards.com  from:chrisalbon&quot; -o mlflashcards_tweets_large.json
@@ -256,12 +253,9 @@ Scraping was an one step painless process with this tool.</p>
 <p>Here we want to preprocess the data to learn about it and to process further. We will convert the data from json and read it into a dataframe.</p>
 
 <h3 id="2-1-read-the-data">2.1 Read the data</h3>
-
-<pre><code>import codecs, json
-with codecs.open('mlflashcards_tweets_large.json', 'r', 'utf-8') as f:
-    tweets = json.load(f, encoding='utf-8')
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">codecs</span><span class="o">,</span> <span class="nn">json</span>
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;mlflashcards_tweets_large.json&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+	<span class="n">tweets</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></code></pre></div>
 <p>Look at a sample data</p>
 
 <pre><code>t = tweets[5]
@@ -282,48 +276,42 @@ t
 </code></pre>
 
 <h3 id="2-2-write-and-test-few-utility-methods-to-extract-data">2.2 Write and test few utility methods to extract data</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">## get full tweet url</span>
+<span class="k">def</span> <span class="nf">get_tweet_url</span><span class="p">(</span><span class="n">tweet</span><span class="p">):</span>
+	<span class="k">return</span> <span class="sa"></span><span class="s1">&#39;https://twitter.com&#39;</span> <span class="o">+</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
 
-<pre><code>## get full tweet url
-def get_tweet_url(tweet):
-    return 'https://twitter.com' + tweet['url']
+<span class="c1">#test</span>
+<span class="n">tweet_url</span> <span class="o">=</span> <span class="n">get_tweet_url</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span>
 
-#test
-tweet_url = get_tweet_url(t)
-print(tweet_url)
+<span class="c1"># output: https://twitter.com/chrisalbon/status/960977759915851776</span>
 
-# output: https://twitter.com/chrisalbon/status/960977759915851776
+<span class="c1">## get tweet text (text without url)</span>
+<span class="k">def</span> <span class="nf">get_tweet_text</span><span class="p">(</span><span class="n">tweet</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;(.*) https.*&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">text</span>
 
-## get tweet text (text without url)
-def get_tweet_text(tweet):
-    text = tweet['text']
-    res = re.search('(.*) https.*', text)
-    if res:
-        text = res.group(1)
-    else:
-        text = None
-    return text
-
-#test
-get_tweet_text(t)
-# output: 'Alpha In Ridge Regression'
-</code></pre>
-
+<span class="c1">#test</span>
+<span class="n">get_tweet_text</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="c1"># output: &#39;Alpha In Ridge Regression&#39;</span></code></pre></div>
 <h3 id="2-3-convert-to-dataframe">2.3 Convert to dataframe</h3>
-
-<pre><code>rows = []
-for tweet in tweets[:]:
-    row = {&quot;id&quot;: tweet['id'],
-            &quot;likes&quot;: tweet['likes'],
-            &quot;replies&quot;: tweet['replies'],
-            &quot;retweets&quot;: tweet['retweets'],
-            &quot;timestamp&quot;: tweet['timestamp'],
-            &quot;url&quot;: get_tweet_url(tweet),
-            &quot;text&quot;: get_tweet_text(tweet)}
-rows.append(row)
-df = pd.DataFrame.from_dict(rows)
-df
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">[:]:</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="sa"></span><span class="s2">&#34;likes&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;likes&#39;</span><span class="p">],</span>
+            <span class="sa"></span><span class="s2">&#34;replies&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;replies&#39;</span><span class="p">],</span>
+            <span class="sa"></span><span class="s2">&#34;retweets&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;retweets&#39;</span><span class="p">],</span>
+            <span class="sa"></span><span class="s2">&#34;timestamp&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span>
+            <span class="sa"></span><span class="s2">&#34;url&#34;</span><span class="p">:</span> <span class="n">get_tweet_url</span><span class="p">(</span><span class="n">tweet</span><span class="p">),</span>
+            <span class="sa"></span><span class="s2">&#34;text&#34;</span><span class="p">:</span> <span class="n">get_tweet_text</span><span class="p">(</span><span class="n">tweet</span><span class="p">)}</span>
+<span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+<span class="n">df</span></code></pre></div>
 <p>looks something like this</p>
 
 <pre><code>    id  likes   replies     retweets    text    timestamp   url
@@ -333,24 +321,21 @@ df
 </code></pre>
 
 <h3 id="2-4-extract-image-url-from-tweet-url">2.4 Extract image url from tweet url</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_img_url</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">):</span>
+    <span class="n">page_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;data-image-url=&#34;(.*)&#34;&#39;</span><span class="p">,</span> <span class="n">page_data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
+        <span class="n">img_url</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">img_url</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">img_url</span>
 
-<pre><code>def get_img_url(tweet_url):
-    page_data = requests.get(tweet_url).text
-    res = re.search('data-image-url=&quot;(.*)&quot;', page_data)
-    if res:
-        img_url = res.group(1)
-    else:
-        img_url = None
-    return img_url
+<span class="c1">#test</span>
+<span class="n">get_img_url</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span>
+<span class="c1"># output: &#39;https://pbs.twimg.com/media/DViGZR3VoAAAoNf.png&#39;</span>
 
-#test
-get_img_url(tweet_url)
-# output: 'https://pbs.twimg.com/media/DViGZR3VoAAAoNf.png'
-
-df['img_url'] = [get_img_url(tweet_url)  for tweet_url in df.url]
-df.tail()
-</code></pre>
-
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;img_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_img_url</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span>  <span class="k">for</span> <span class="n">tweet_url</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">url</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span></code></pre></div>
 <p>looks something like this</p>
 
 <pre><code>    id  likes   replies     retweets    text    timestamp   url     img_url
@@ -362,10 +347,8 @@ df.tail()
 <h2 id="step-3-write-to-csv">Step 3 &ndash; Write to csv</h2>
 
 <pre><code>Its time to save it to csv for further processing
-
-    df.to_csv(&quot;chrisalbon_mlflashcards.csv&quot;)
 </code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;chrisalbon_mlflashcards.csv&#34;</span><span class="p">)</span></code></pre></div>
 <p>By this time I got other ideas to test. Instead of just downloading the images, I wanted to anaylze the tweets to know more about it using the data we have.</p>
 
 <p>The result is we are going to split this post into two parts where the next post will contain details on the analyis and code to download images. It will be published when the analysis is complete, let me go work on it. See you till then.</p>

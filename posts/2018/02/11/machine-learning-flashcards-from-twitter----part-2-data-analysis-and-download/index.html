@@ -335,7 +335,7 @@ dtype: object
 <h3 id="utility-function-to-get-image-name">Utility Function to get image name</h3>
 
 <p>This is an utility method to construct a meaningful filename.<br />
-It tries to use the <code>text</code> and the <code>id</code> column for name and picks up the extension (png/jpg) from the img_url</p>
+It tries to use the <code>text</code> and the <code>id</code> column for name and picks up the extension <code>(png/jpg)</code> from the img_url</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_image_name</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">img_url</span><span class="p">):</span>
     <span class="n">res</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">text</span><span class="p">:</span>
