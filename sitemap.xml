@@ -8,7 +8,7 @@
   </url>
   
   <url>
-    <loc>http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter----part1-data-collection-and-preprocessing/</loc>
+    <loc>http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter----part-1-data-collection-and-preprocessing/</loc>
     <lastmod>2018-02-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -178,6 +178,12 @@
   <url>
     <loc>http://www.tutysara.net/tags/tech/</loc>
     <lastmod>2013-10-21T15:25:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.tutysara.net/tags/twitter/</loc>
+    <lastmod>2018-02-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
