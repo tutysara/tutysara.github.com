@@ -24,7 +24,7 @@ Step 1 &ndash; Collect/Scrape data from twitter I evaluated using twitter api us
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="TUTYSARA&#39;S SPACE" />
 
-  <meta name="generator" content="Hugo 0.37-DEV" />
+  <meta name="generator" content="Hugo 0.39-DEV" />
   <link rel="canonical" href="http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter----part-1-data-collection-and-preprocessing/" />
   <link rel="alternate" href="http://www.tutysara.net/index.xml" type="application/rss+xml" title="TUTYSARA&#39;S SPACE">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -262,8 +262,8 @@ Scraping was an one step painless process with this tool.</p>
 
 <h3 id="2-1-read-the-data">2.1 Read the data</h3>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">codecs</span><span class="o">,</span> <span class="nn">json</span>
-<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;mlflashcards_tweets_large.json&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-	<span class="n">tweets</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></code></pre></div>
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;mlflashcards_tweets_large.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+	<span class="n">tweets</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></code></pre></div>
 <p>Look at a sample data</p>
 
 <pre><code>t = tweets[5]
@@ -286,7 +286,7 @@ t
 <h3 id="2-2-write-and-test-few-utility-methods-to-extract-data">2.2 Write and test few utility methods to extract data</h3>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">## get full tweet url</span>
 <span class="k">def</span> <span class="nf">get_tweet_url</span><span class="p">(</span><span class="n">tweet</span><span class="p">):</span>
-	<span class="k">return</span> <span class="sa"></span><span class="s1">&#39;https://twitter.com&#39;</span> <span class="o">+</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+	<span class="k">return</span> <span class="s1">&#39;https://twitter.com&#39;</span> <span class="o">+</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
 
 <span class="c1">#test</span>
 <span class="n">tweet_url</span> <span class="o">=</span> <span class="n">get_tweet_url</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
@@ -296,8 +296,8 @@ t
 
 <span class="c1">## get tweet text (text without url)</span>
 <span class="k">def</span> <span class="nf">get_tweet_text</span><span class="p">(</span><span class="n">tweet</span><span class="p">):</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;(.*) https.*&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;(.*) https.*&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
         <span class="n">text</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -310,13 +310,13 @@ t
 <h3 id="2-3-convert-to-dataframe">2.3 Convert to dataframe</h3>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">[:]:</span>
-    <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
-            <span class="sa"></span><span class="s2">&#34;likes&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;likes&#39;</span><span class="p">],</span>
-            <span class="sa"></span><span class="s2">&#34;replies&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;replies&#39;</span><span class="p">],</span>
-            <span class="sa"></span><span class="s2">&#34;retweets&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;retweets&#39;</span><span class="p">],</span>
-            <span class="sa"></span><span class="s2">&#34;timestamp&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span>
-            <span class="sa"></span><span class="s2">&#34;url&#34;</span><span class="p">:</span> <span class="n">get_tweet_url</span><span class="p">(</span><span class="n">tweet</span><span class="p">),</span>
-            <span class="sa"></span><span class="s2">&#34;text&#34;</span><span class="p">:</span> <span class="n">get_tweet_text</span><span class="p">(</span><span class="n">tweet</span><span class="p">)}</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="s2">&#34;likes&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;likes&#39;</span><span class="p">],</span>
+            <span class="s2">&#34;replies&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;replies&#39;</span><span class="p">],</span>
+            <span class="s2">&#34;retweets&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;retweets&#39;</span><span class="p">],</span>
+            <span class="s2">&#34;timestamp&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span>
+            <span class="s2">&#34;url&#34;</span><span class="p">:</span> <span class="n">get_tweet_url</span><span class="p">(</span><span class="n">tweet</span><span class="p">),</span>
+            <span class="s2">&#34;text&#34;</span><span class="p">:</span> <span class="n">get_tweet_text</span><span class="p">(</span><span class="n">tweet</span><span class="p">)}</span>
 <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
 <span class="n">df</span></code></pre></div>
@@ -331,7 +331,7 @@ t
 <h3 id="2-4-extract-image-url-from-tweet-url">2.4 Extract image url from tweet url</h3>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_img_url</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">):</span>
     <span class="n">page_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;data-image-url=&#34;(.*)&#34;&#39;</span><span class="p">,</span> <span class="n">page_data</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;data-image-url=&#34;(.*)&#34;&#39;</span><span class="p">,</span> <span class="n">page_data</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
         <span class="n">img_url</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -342,7 +342,7 @@ t
 <span class="n">get_img_url</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span>
 <span class="c1"># output: &#39;https://pbs.twimg.com/media/DViGZR3VoAAAoNf.png&#39;</span>
 
-<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;img_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_img_url</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span>  <span class="k">for</span> <span class="n">tweet_url</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">url</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;img_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_img_url</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span>  <span class="k">for</span> <span class="n">tweet_url</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">url</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span></code></pre></div>
 <p>looks something like this</p>
 
@@ -356,20 +356,21 @@ t
 
 <pre><code>Its time to save it to csv for further processing
 </code></pre>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;chrisalbon_mlflashcards.csv&#34;</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&#34;chrisalbon_mlflashcards.csv&#34;</span><span class="p">)</span></code></pre></div>
 <p>By this time I got other ideas to test. Instead of just downloading the images, I wanted to anaylze the tweets to know more about it using the data we have.</p>
 
 <p>The result is we are going to split this post into two parts where the next post will contain details on the analyis and code to download images. It will be published when the analysis is complete, let me go work on it. See you till then.</p>
 
 <p>***Update 02/21 &ndash; source code for this reop can be found <a href="https://github.com/tutysara/chrisablon-mlflashcards">here</a></p>
 
+        
       </article>
 
       
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="http://www.tutysara.net/posts/2018/02/07/themes-and-extensions-for-jupyter-notebook/" data-toggle="tooltip" data-placement="top" title="Themes and Extensions for Jupyter notebook">&larr; Previous Post</a>
+              <a href="http://www.tutysara.net/posts/2018/02/09/tips-to-prepare-for-toefl-in-two-weeks/" data-toggle="tooltip" data-placement="top" title="Tips to prepare for TOEFL in two weeks">&larr; Previous Post</a>
             </li>
           
           
@@ -527,7 +528,7 @@ t
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.37-DEV</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.39-DEV</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           &nbsp;&bull;&nbsp;[<a href="true"></a>]
         </p>
       </div>

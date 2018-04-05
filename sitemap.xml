@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>http://www.tutysara.net/posts/2018/02/09/tips-to-prepare-for-toefl-in-two-weeks/</loc>
+    <lastmod>2018-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.tutysara.net/posts/2018/02/07/themes-and-extensions-for-jupyter-notebook/</loc>
     <lastmod>2018-02-07T00:00:00+00:00</lastmod>
   </url>
@@ -110,6 +115,12 @@
   </url>
   
   <url>
+    <loc>http://www.tutysara.net/tags/exams/</loc>
+    <lastmod>2018-02-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.tutysara.net/tags/general/</loc>
     <lastmod>2012-09-02T16:14:00+00:00</lastmod>
     <priority>0</priority>
@@ -178,6 +189,12 @@
   <url>
     <loc>http://www.tutysara.net/tags/tech/</loc>
     <lastmod>2013-10-21T15:25:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.tutysara.net/tags/toefl/</loc>
+    <lastmod>2018-02-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
