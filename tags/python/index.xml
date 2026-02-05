@@ -1,70 +1,57 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Python on TUTYSARA&#39;S SPACE</title>
-    <link>http://www.tutysara.net/tags/python/</link>
-    <description>Recent content in Python on TUTYSARA&#39;S SPACE</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-EN</language>
-    <managingEditor>tutysara at google mail.com (tutysara)</managingEditor>
-    <webMaster>tutysara at google mail.com (tutysara)</webMaster>
-    <copyright>(c) 2018 tutysara</copyright>
-    <lastBuildDate>Sun, 11 Feb 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://www.tutysara.net/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Machine Learning Flashcards from Twitter -- Part 2 Data Analysis and Download</title>
-      <link>http://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter----part-2-data-analysis-and-download/</link>
-      <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
-      <author>tutysara at google mail.com (tutysara)</author>
-      <guid>http://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter----part-2-data-analysis-and-download/</guid>
-      <description>This is the analysis part where we do a small analysis to find
- Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary libs %load_ext autoreload %autoreload 2 %matplotlib inline import pandas as pd pd.set_option(&amp;#34;display.width&amp;#34;, 150) import requests import re import matplotlib.pyplot as plt import matplotlib.image as mpimg from pathlib import Path  Load csv df = pd.read_csv(&amp;#34;chrisalbon_mlflashcards.csv&amp;#34;) df[&amp;#39;text&amp;#39;].fillna(&amp;#39;&amp;#39;, inplace=True)df.</description>
-    </item>
-    
-    <item>
-      <title>Machine Learning Flashcards from Twitter -- Part 1 Data Collection and Preprocessing</title>
-      <link>http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter----part-1-data-collection-and-preprocessing/</link>
-      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
-      <author>tutysara at google mail.com (tutysara)</author>
-      <guid>http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter----part-1-data-collection-and-preprocessing/</guid>
-      <description>I was searching the net for mlflashcards, I found this incredible machine learning flashcard tweet series from Chris Albon. It looks pretty and covers a lot of ground, Got a thought &amp;ndash; why not download them for later use? I thought it would be a fun exercise to start the weekend and jumped into action.
-Step 1 &amp;ndash; Collect/Scrape data from twitter I evaluated using twitter api using tweetpy, but it has its own limitation aka we can search only a week worth of data which is not good for our use case.</description>
-    </item>
-    
-    <item>
-      <title>Themes and Extensions for Jupyter notebook</title>
-      <link>http://www.tutysara.net/posts/2018/02/07/themes-and-extensions-for-jupyter-notebook/</link>
-      <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
-      <author>tutysara at google mail.com (tutysara)</author>
-      <guid>http://www.tutysara.net/posts/2018/02/07/themes-and-extensions-for-jupyter-notebook/</guid>
-      <description>I am taking the wonderful fast.ai course thought by Jermey Howard and Rachel. We use jupyter notebooks in classes and it is always nice to see how Jermey&amp;rsquo;s notebook looks.
-It has few tweaks like
- collapsible headings better tables and fonts  Learnt that he uses a themes for the visual customizations and an extensions to allow collapsing of headers from his reply in forums
-The theme script can be installed from jupyter-themes repo</description>
-    </item>
-    
-    <item>
-      <title>Use Skipgrams with sklearn CountVectorizer and TfidfVectorizer</title>
-      <link>http://www.tutysara.net/posts/2018/01/07/use-skipgrams-with-sklearn-countvectorizer-and-tfidfvectorizer/</link>
-      <pubDate>Sun, 07 Jan 2018 00:00:00 +0000</pubDate>
-      <author>tutysara at google mail.com (tutysara)</author>
-      <guid>http://www.tutysara.net/posts/2018/01/07/use-skipgrams-with-sklearn-countvectorizer-and-tfidfvectorizer/</guid>
-      <description>We don&amp;rsquo;t have an implementation for skipgrams in sklearn. This post covers how to use the skipgram function in nltk with sklearn&amp;rsquo;s CountVectorizer and TfidfVectorizer
-We are going to create a skipgram tokenizer that can be passed to the tokenizer parameter of the vectorizer.
-Create a basic tokenizer that can split the original strings to tokesn. Tokenizer can be just .split() or a function to filter non-alpahbets etc. We can use tokenizer as below</description>
-    </item>
-    
-    <item>
-      <title>Django development on OSX using emacs</title>
-      <link>http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/</link>
-      <pubDate>Wed, 30 Oct 2013 13:16:00 +0000</pubDate>
-      <author>tutysara at google mail.com (tutysara)</author>
-      <guid>http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/</guid>
-      <description>I started following the Django tutorials by arun. I wanted to know about the related classes and quickly look into docs for the things that I code, I wanted an environment that is nice to newbies, helping with code completion and easy documentation lookup. I searched and found a huge list of options. Since I was begining with Django I wanted an environment that is much easier to setup, my first choice was pycharm, but unfortunately the community edition of pycharm doesn&amp;rsquo;t support Django - see this.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on TUTYSARA'S SPACE</title><link>http://www.tutysara.net/tags/python/</link><description>Recent content in Python on TUTYSARA'S SPACE</description><generator>Hugo</generator><language>en-EN</language><copyright>(c) 2018 tutysara</copyright><lastBuildDate>Sun, 11 Feb 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://www.tutysara.net/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Machine Learning Flashcards from Twitter -- Part 2 Data Analysis and Download</title><link>http://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter--part-2-data-analysis-and-download/</link><pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate><guid>http://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter--part-2-data-analysis-and-download/</guid><description>&lt;p&gt;This is the analysis part where we do a small analysis to find&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Which are the most important/popular tweets&lt;/li&gt;
+&lt;li&gt;Whether older materials covered important concepts than recent tweets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="load-the-necessary-libs"&gt;Load the necessary libs&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;%&lt;/span&gt;load_ext autoreload
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;%&lt;/span&gt;autoreload &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;%&lt;/span&gt;matplotlib inline
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; pandas &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; pd
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pd&lt;span style="color:#f92672"&gt;.&lt;/span&gt;set_option(&lt;span style="color:#e6db74"&gt;&amp;#34;display.width&amp;#34;&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;150&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; requests
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; re
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; plt
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; matplotlib.image &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; mpimg
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; pathlib &lt;span style="color:#f92672"&gt;import&lt;/span&gt; Path 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="load-csv"&gt;Load csv&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;df &lt;span style="color:#f92672"&gt;=&lt;/span&gt; pd&lt;span style="color:#f92672"&gt;.&lt;/span&gt;read_csv(&lt;span style="color:#e6db74"&gt;&amp;#34;chrisalbon_mlflashcards.csv&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;df[&lt;span style="color:#e6db74"&gt;&amp;#39;text&amp;#39;&lt;/span&gt;]&lt;span style="color:#f92672"&gt;.&lt;/span&gt;fillna(&lt;span style="color:#e6db74"&gt;&amp;#39;&amp;#39;&lt;/span&gt;, inplace&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;True&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;df&lt;span style="color:#f92672"&gt;.&lt;/span&gt;tail()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex="0"&gt;&lt;code&gt; id likes replies retweets text timestamp url img_url
+236 94607825069... 19 1 0 Bayes Error 2017-12-27T... https://twi... https://pbs...
+237 94575108497... 47 3 13 Occams Razor 2017-12-26T... https://twi... https://pbs...
+238 94571793723... 8 0 1 K-Fold Cros... 2017-12-26T... https://twi... https://pbs...
+239 94538342129... 18 1 1 Extrema 2017-12-25T... https://twi... https://pbs...
+240 94536381783... 34 1 7 Softmax Act... 2017-12-25T... https://twi... https://pbs...
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="check-for-missing-values"&gt;Check for missing values&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;df&lt;span style="color:#f92672"&gt;.&lt;/span&gt;count(axis&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre&gt;&lt;code&gt;id 241
+likes 241
+replies 241
+retweets 241
+text 241
+timestamp 241
+url 241
+img_url 237
+dtype: int64
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We see we have few img_urls missing. Let&amp;rsquo;s check what they are&lt;/p&gt;</description></item><item><title>Machine Learning Flashcards from Twitter -- Part 1 Data Collection and Preprocessing</title><link>http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter--part-1-data-collection-and-preprocessing/</link><pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate><guid>http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter--part-1-data-collection-and-preprocessing/</guid><description>&lt;p&gt;I was searching the net for mlflashcards, I found this incredible machine learning flashcard &lt;a href="https://twitter.com/search?q=machinelearningflashcards.com%20and%20chrisalbon%20&amp;amp;src=typd"&gt;tweet series&lt;/a&gt; from &lt;a href="https://twitter.com/chrisalbon"&gt;Chris Albon&lt;/a&gt;.
+It looks pretty and covers a lot of ground, Got a thought &amp;ndash; why not download them for later use?
+I thought it would be a fun exercise to start the weekend and jumped into action.&lt;/p&gt;
+&lt;h2 id="step-1--collectscrape-data-from-twitter"&gt;Step 1 &amp;ndash; Collect/Scrape data from twitter&lt;/h2&gt;
+&lt;p&gt;I evaluated using twitter api using &lt;a href="https://github.com/tweepy/tweepy"&gt;tweetpy&lt;/a&gt;, but it has its own limitation aka we can search only a week worth of data which is not good for our use case.
+We shoud be able to get data spread across months since the tweets we are interested are spread across a wide time range.&lt;/p&gt;</description></item><item><title>Themes and Extensions for Jupyter notebook</title><link>http://www.tutysara.net/posts/2018/02/07/themes-and-extensions-for-jupyter-notebook/</link><pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate><guid>http://www.tutysara.net/posts/2018/02/07/themes-and-extensions-for-jupyter-notebook/</guid><description>&lt;p&gt;I am taking the wonderful &lt;a href="http://course.fast.ai/"&gt;fast.ai&lt;/a&gt; course thought by Jermey Howard and Rachel.
+We use jupyter notebooks in classes and it is always nice to see how Jermey&amp;rsquo;s notebook looks.&lt;/p&gt;
+&lt;p&gt;It has few tweaks like&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;collapsible headings&lt;/li&gt;
+&lt;li&gt;better tables and fonts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Learnt that he uses a themes for the visual customizations and an extensions to allow collapsing of headers from his reply in &lt;a href="http://forums.fast.ai/t/collapsable-expandable-jupyter-cells/205/5"&gt;forums&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The theme script can be installed from &lt;a href="https://github.com/dunovank/jupyter-themes"&gt;jupyter-themes repo&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Use Skipgrams with sklearn CountVectorizer and TfidfVectorizer</title><link>http://www.tutysara.net/posts/2018/01/07/use-skipgrams-with-sklearn-countvectorizer-and-tfidfvectorizer/</link><pubDate>Sun, 07 Jan 2018 00:00:00 +0000</pubDate><guid>http://www.tutysara.net/posts/2018/01/07/use-skipgrams-with-sklearn-countvectorizer-and-tfidfvectorizer/</guid><description>&lt;p&gt;We don&amp;rsquo;t have an implementation for skipgrams in sklearn. This post covers how to use the skipgram function in &lt;code&gt;nltk&lt;/code&gt; with sklearn&amp;rsquo;s CountVectorizer and TfidfVectorizer&lt;/p&gt;
+&lt;p&gt;We are going to create a skipgram tokenizer that can be passed to the &lt;code&gt;tokenizer&lt;/code&gt; parameter of the vectorizer.&lt;/p&gt;
+&lt;p&gt;Create a basic tokenizer that can split the original strings to tokesn.
+Tokenizer can be just &lt;code&gt;.split()&lt;/code&gt; or a function to filter non-alpahbets etc. We can use tokenizer as below&lt;/p&gt;</description></item><item><title>Django development on OSX using emacs</title><link>http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/</link><pubDate>Wed, 30 Oct 2013 13:16:00 +0000</pubDate><guid>http://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/</guid><description>&lt;p&gt;I started following the Django tutorials by &lt;a href="http://arunrocks.com/building-a-hacker-news-clone-in-django-part-1/"&gt;arun&lt;/a&gt;. I wanted to know about the related classes and quickly look into docs for the things that I code, I wanted an environment that is nice to newbies, helping with code completion and easy documentation lookup. I searched and found a huge list of &lt;a href="http://www.quora.com/Which-IDEs-are-best-suited-for-Django-development"&gt;options&lt;/a&gt;. Since I was begining with Django I wanted an environment that is much easier to setup, my first choice was &lt;a href="http://www.jetbrains.com/pycharm/"&gt;pycharm&lt;/a&gt;, but unfortunately the community edition of pycharm doesn&amp;rsquo;t support Django &lt;a href="http://www.jetbrains.com/pycharm/features/editions_comparison_matrix.html"&gt;- see this&lt;/a&gt;.&lt;/p&gt;</description></item></channel></rss>

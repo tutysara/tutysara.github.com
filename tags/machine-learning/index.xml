@@ -1,38 +1,46 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Machine Learning on TUTYSARA&#39;S SPACE</title>
-    <link>http://www.tutysara.net/tags/machine-learning/</link>
-    <description>Recent content in Machine Learning on TUTYSARA&#39;S SPACE</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-EN</language>
-    <managingEditor>tutysara at google mail.com (tutysara)</managingEditor>
-    <webMaster>tutysara at google mail.com (tutysara)</webMaster>
-    <copyright>(c) 2018 tutysara</copyright>
-    <lastBuildDate>Sun, 11 Feb 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://www.tutysara.net/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Machine Learning Flashcards from Twitter -- Part 2 Data Analysis and Download</title>
-      <link>http://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter----part-2-data-analysis-and-download/</link>
-      <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
-      <author>tutysara at google mail.com (tutysara)</author>
-      <guid>http://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter----part-2-data-analysis-and-download/</guid>
-      <description>This is the analysis part where we do a small analysis to find
- Which are the most important/popular tweets Whether older materials covered important concepts than recent tweets  Load the necessary libs %load_ext autoreload %autoreload 2 %matplotlib inline import pandas as pd pd.set_option(&amp;#34;display.width&amp;#34;, 150) import requests import re import matplotlib.pyplot as plt import matplotlib.image as mpimg from pathlib import Path  Load csv df = pd.read_csv(&amp;#34;chrisalbon_mlflashcards.csv&amp;#34;) df[&amp;#39;text&amp;#39;].fillna(&amp;#39;&amp;#39;, inplace=True)df.</description>
-    </item>
-    
-    <item>
-      <title>Machine Learning Flashcards from Twitter -- Part 1 Data Collection and Preprocessing</title>
-      <link>http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter----part-1-data-collection-and-preprocessing/</link>
-      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
-      <author>tutysara at google mail.com (tutysara)</author>
-      <guid>http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter----part-1-data-collection-and-preprocessing/</guid>
-      <description>I was searching the net for mlflashcards, I found this incredible machine learning flashcard tweet series from Chris Albon. It looks pretty and covers a lot of ground, Got a thought &amp;ndash; why not download them for later use? I thought it would be a fun exercise to start the weekend and jumped into action.
-Step 1 &amp;ndash; Collect/Scrape data from twitter I evaluated using twitter api using tweetpy, but it has its own limitation aka we can search only a week worth of data which is not good for our use case.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning on TUTYSARA'S SPACE</title><link>http://www.tutysara.net/tags/machine-learning/</link><description>Recent content in Machine Learning on TUTYSARA'S SPACE</description><generator>Hugo</generator><language>en-EN</language><copyright>(c) 2018 tutysara</copyright><lastBuildDate>Sun, 11 Feb 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://www.tutysara.net/tags/machine-learning/index.xml" rel="self" type="application/rss+xml"/><item><title>Machine Learning Flashcards from Twitter -- Part 2 Data Analysis and Download</title><link>http://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter--part-2-data-analysis-and-download/</link><pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate><guid>http://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter--part-2-data-analysis-and-download/</guid><description>&lt;p&gt;This is the analysis part where we do a small analysis to find&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Which are the most important/popular tweets&lt;/li&gt;
+&lt;li&gt;Whether older materials covered important concepts than recent tweets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="load-the-necessary-libs"&gt;Load the necessary libs&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;%&lt;/span&gt;load_ext autoreload
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;%&lt;/span&gt;autoreload &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;%&lt;/span&gt;matplotlib inline
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; pandas &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; pd
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pd&lt;span style="color:#f92672"&gt;.&lt;/span&gt;set_option(&lt;span style="color:#e6db74"&gt;&amp;#34;display.width&amp;#34;&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;150&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; requests
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; re
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; plt
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; matplotlib.image &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; mpimg
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; pathlib &lt;span style="color:#f92672"&gt;import&lt;/span&gt; Path 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="load-csv"&gt;Load csv&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;df &lt;span style="color:#f92672"&gt;=&lt;/span&gt; pd&lt;span style="color:#f92672"&gt;.&lt;/span&gt;read_csv(&lt;span style="color:#e6db74"&gt;&amp;#34;chrisalbon_mlflashcards.csv&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;df[&lt;span style="color:#e6db74"&gt;&amp;#39;text&amp;#39;&lt;/span&gt;]&lt;span style="color:#f92672"&gt;.&lt;/span&gt;fillna(&lt;span style="color:#e6db74"&gt;&amp;#39;&amp;#39;&lt;/span&gt;, inplace&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;True&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;df&lt;span style="color:#f92672"&gt;.&lt;/span&gt;tail()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex="0"&gt;&lt;code&gt; id likes replies retweets text timestamp url img_url
+236 94607825069... 19 1 0 Bayes Error 2017-12-27T... https://twi... https://pbs...
+237 94575108497... 47 3 13 Occams Razor 2017-12-26T... https://twi... https://pbs...
+238 94571793723... 8 0 1 K-Fold Cros... 2017-12-26T... https://twi... https://pbs...
+239 94538342129... 18 1 1 Extrema 2017-12-25T... https://twi... https://pbs...
+240 94536381783... 34 1 7 Softmax Act... 2017-12-25T... https://twi... https://pbs...
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="check-for-missing-values"&gt;Check for missing values&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;df&lt;span style="color:#f92672"&gt;.&lt;/span&gt;count(axis&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre&gt;&lt;code&gt;id 241
+likes 241
+replies 241
+retweets 241
+text 241
+timestamp 241
+url 241
+img_url 237
+dtype: int64
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We see we have few img_urls missing. Let&amp;rsquo;s check what they are&lt;/p&gt;</description></item><item><title>Machine Learning Flashcards from Twitter -- Part 1 Data Collection and Preprocessing</title><link>http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter--part-1-data-collection-and-preprocessing/</link><pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate><guid>http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter--part-1-data-collection-and-preprocessing/</guid><description>&lt;p&gt;I was searching the net for mlflashcards, I found this incredible machine learning flashcard &lt;a href="https://twitter.com/search?q=machinelearningflashcards.com%20and%20chrisalbon%20&amp;amp;src=typd"&gt;tweet series&lt;/a&gt; from &lt;a href="https://twitter.com/chrisalbon"&gt;Chris Albon&lt;/a&gt;.
+It looks pretty and covers a lot of ground, Got a thought &amp;ndash; why not download them for later use?
+I thought it would be a fun exercise to start the weekend and jumped into action.&lt;/p&gt;
+&lt;h2 id="step-1--collectscrape-data-from-twitter"&gt;Step 1 &amp;ndash; Collect/Scrape data from twitter&lt;/h2&gt;
+&lt;p&gt;I evaluated using twitter api using &lt;a href="https://github.com/tweepy/tweepy"&gt;tweetpy&lt;/a&gt;, but it has its own limitation aka we can search only a week worth of data which is not good for our use case.
+We shoud be able to get data spread across months since the tweets we are interested are spread across a wide time range.&lt;/p&gt;</description></item></channel></rss>

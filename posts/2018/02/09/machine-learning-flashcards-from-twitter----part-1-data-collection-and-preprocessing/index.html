@@ -24,25 +24,21 @@ Step 1 &ndash; Collect/Scrape data from twitter I evaluated using twitter api us
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="TUTYSARA&#39;S SPACE" />
 
-  <meta name="generator" content="Hugo 0.39-DEV" />
+  <meta name="generator" content="Hugo 0.31.1" />
   <link rel="canonical" href="http://www.tutysara.net/posts/2018/02/09/machine-learning-flashcards-from-twitter----part-1-data-collection-and-preprocessing/" />
   <link rel="alternate" href="http://www.tutysara.net/index.xml" type="application/rss+xml" title="TUTYSARA&#39;S SPACE">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="http://www.tutysara.net/css/main.css" /><link rel="stylesheet" href="http://www.tutysara.net/css/staticman.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="http://www.tutysara.net/css/syntax.css" /><link rel="stylesheet" href="http://www.tutysara.net/css/codeblock.css" />
-  
-  <style>
-  pre.highlight, .highlight > pre, td.code pre { 
-    border-left: 2px solid #76a2a9;
-  }     
-</style>
+  <link rel="stylesheet" href="http://www.tutysara.net/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://www.tutysara.net/css/codeblock.css" />
+  <link rel="stylesheet" href="http://www.tutysara.net/css/highlight.min.css" />
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
 
 
 
@@ -205,15 +201,7 @@ ga('send', 'pageview');
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (578 words)
-  &nbsp;|&nbsp;  <i class="fa fa-comment-o"></i>
-    
-    
-      
-      
-        0 comment
-      
-    
+  <i class="fa fa-clock-o"></i> 3 minutes (566 words)
   
   
 </span>
@@ -248,7 +236,10 @@ We shoud be able to get data spread across months since the tweets we are intere
 Scraping was an one step painless process with this tool.</p>
 
 <p>Install it using</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pip install twitterscraper</code></pre></div>
+
+<pre><code>pip install twitterscraper
+</code></pre>
+
 <p>Scrape the data matching a query using</p>
 
 <pre><code>twitterscraper &quot;machinelearningflashcards.com  from:chrisalbon&quot; -o mlflashcards_tweets_large.json
@@ -261,9 +252,12 @@ Scraping was an one step painless process with this tool.</p>
 <p>Here we want to preprocess the data to learn about it and to process further. We will convert the data from json and read it into a dataframe.</p>
 
 <h3 id="2-1-read-the-data">2.1 Read the data</h3>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">codecs</span><span class="o">,</span> <span class="nn">json</span>
-<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;mlflashcards_tweets_large.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-	<span class="n">tweets</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></code></pre></div>
+
+<pre><code>import codecs, json
+with codecs.open('mlflashcards_tweets_large.json', 'r', 'utf-8') as f:
+    tweets = json.load(f, encoding='utf-8')
+</code></pre>
+
 <p>Look at a sample data</p>
 
 <pre><code>t = tweets[5]
@@ -284,42 +278,48 @@ t
 </code></pre>
 
 <h3 id="2-2-write-and-test-few-utility-methods-to-extract-data">2.2 Write and test few utility methods to extract data</h3>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">## get full tweet url</span>
-<span class="k">def</span> <span class="nf">get_tweet_url</span><span class="p">(</span><span class="n">tweet</span><span class="p">):</span>
-	<span class="k">return</span> <span class="s1">&#39;https://twitter.com&#39;</span> <span class="o">+</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
 
-<span class="c1">#test</span>
-<span class="n">tweet_url</span> <span class="o">=</span> <span class="n">get_tweet_url</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span>
+<pre><code>## get full tweet url
+def get_tweet_url(tweet):
+    return 'https://twitter.com' + tweet['url']
 
-<span class="c1"># output: https://twitter.com/chrisalbon/status/960977759915851776</span>
+#test
+tweet_url = get_tweet_url(t)
+print(tweet_url)
 
-<span class="c1">## get tweet text (text without url)</span>
-<span class="k">def</span> <span class="nf">get_tweet_text</span><span class="p">(</span><span class="n">tweet</span><span class="p">):</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;(.*) https.*&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="k">return</span> <span class="n">text</span>
+# output: https://twitter.com/chrisalbon/status/960977759915851776
 
-<span class="c1">#test</span>
-<span class="n">get_tweet_text</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="c1"># output: &#39;Alpha In Ridge Regression&#39;</span></code></pre></div>
+## get tweet text (text without url)
+def get_tweet_text(tweet):
+    text = tweet['text']
+    res = re.search('(.*) https.*', text)
+    if res:
+        text = res.group(1)
+    else:
+        text = None
+    return text
+
+#test
+get_tweet_text(t)
+# output: 'Alpha In Ridge Regression'
+</code></pre>
+
 <h3 id="2-3-convert-to-dataframe">2.3 Convert to dataframe</h3>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">[:]:</span>
-    <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
-            <span class="s2">&#34;likes&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;likes&#39;</span><span class="p">],</span>
-            <span class="s2">&#34;replies&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;replies&#39;</span><span class="p">],</span>
-            <span class="s2">&#34;retweets&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;retweets&#39;</span><span class="p">],</span>
-            <span class="s2">&#34;timestamp&#34;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span>
-            <span class="s2">&#34;url&#34;</span><span class="p">:</span> <span class="n">get_tweet_url</span><span class="p">(</span><span class="n">tweet</span><span class="p">),</span>
-            <span class="s2">&#34;text&#34;</span><span class="p">:</span> <span class="n">get_tweet_text</span><span class="p">(</span><span class="n">tweet</span><span class="p">)}</span>
-<span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
-<span class="n">df</span></code></pre></div>
+
+<pre><code>rows = []
+for tweet in tweets[:]:
+    row = {&quot;id&quot;: tweet['id'],
+            &quot;likes&quot;: tweet['likes'],
+            &quot;replies&quot;: tweet['replies'],
+            &quot;retweets&quot;: tweet['retweets'],
+            &quot;timestamp&quot;: tweet['timestamp'],
+            &quot;url&quot;: get_tweet_url(tweet),
+            &quot;text&quot;: get_tweet_text(tweet)}
+rows.append(row)
+df = pd.DataFrame.from_dict(rows)
+df
+</code></pre>
+
 <p>looks something like this</p>
 
 <pre><code>    id  likes   replies     retweets    text    timestamp   url
@@ -329,21 +329,24 @@ t
 </code></pre>
 
 <h3 id="2-4-extract-image-url-from-tweet-url">2.4 Extract image url from tweet url</h3>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_img_url</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">):</span>
-    <span class="n">page_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;data-image-url=&#34;(.*)&#34;&#39;</span><span class="p">,</span> <span class="n">page_data</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-        <span class="n">img_url</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">img_url</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="k">return</span> <span class="n">img_url</span>
 
-<span class="c1">#test</span>
-<span class="n">get_img_url</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span>
-<span class="c1"># output: &#39;https://pbs.twimg.com/media/DViGZR3VoAAAoNf.png&#39;</span>
+<pre><code>def get_img_url(tweet_url):
+    page_data = requests.get(tweet_url).text
+    res = re.search('data-image-url=&quot;(.*)&quot;', page_data)
+    if res:
+        img_url = res.group(1)
+    else:
+        img_url = None
+    return img_url
 
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;img_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_img_url</span><span class="p">(</span><span class="n">tweet_url</span><span class="p">)</span>  <span class="k">for</span> <span class="n">tweet_url</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">url</span><span class="p">]</span>
-<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span></code></pre></div>
+#test
+get_img_url(tweet_url)
+# output: 'https://pbs.twimg.com/media/DViGZR3VoAAAoNf.png'
+
+df['img_url'] = [get_img_url(tweet_url)  for tweet_url in df.url]
+df.tail()
+</code></pre>
+
 <p>looks something like this</p>
 
 <pre><code>    id  likes   replies     retweets    text    timestamp   url     img_url
@@ -355,22 +358,21 @@ t
 <h2 id="step-3-write-to-csv">Step 3 &ndash; Write to csv</h2>
 
 <pre><code>Its time to save it to csv for further processing
+
+    df.to_csv(&quot;chrisalbon_mlflashcards.csv&quot;)
 </code></pre>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&#34;chrisalbon_mlflashcards.csv&#34;</span><span class="p">)</span></code></pre></div>
+
 <p>By this time I got other ideas to test. Instead of just downloading the images, I wanted to anaylze the tweets to know more about it using the data we have.</p>
 
 <p>The result is we are going to split this post into two parts where the next post will contain details on the analyis and code to download images. It will be published when the analysis is complete, let me go work on it. See you till then.</p>
 
-<p>***Update 02/21 &ndash; source code for this reop can be found <a href="https://github.com/tutysara/chrisablon-mlflashcards">here</a></p>
-
-        
       </article>
 
       
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="http://www.tutysara.net/posts/2018/02/07/themes-and-extensions-for-jupyter-notebook/" data-toggle="tooltip" data-placement="top" title="Themes and Extensions for Jupyter notebook">&larr; Previous Post</a>
+              <a href="http://www.tutysara.net/posts/2018/02/07/deep-down-the-decision-tree/" data-toggle="tooltip" data-placement="top" title="Deep Down the Decision Tree">&larr; Previous Post</a>
             </li>
           
           
@@ -384,75 +386,29 @@ t
 
       
         
-        
-          <div class="staticman-comments">
-            <section class="js-comments staticman-comments">
-
-  
-
-  
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
     
     
-      <h3>No comment</h3>
     
-
-    
-    
-  
-
-
-
-<form class="js-form form" method="post" action="https://api.staticman.net/v2/entry/tutysara/tutysara.net.comments/master/comments">
-  <input type="hidden" name="options[slug]" value="posts20180209machine-learning-flashcards-from-twitter----part-1-data-collection-and-preprocessing">
-  <input type="hidden" name="options[parent]" value="">
-
-  
-
-  <fieldset>
-  <div class="textfield">
-    <textarea name="fields[comment]" type="text" placeholder="You can use Markdown syntax"></textarea>
-  </div>
-  </fieldset>
-
-  <fieldset>
-    <div class="textfield">
-      <input name="fields[name]" type="text" placeholder="Your name"/>
-    </div>
-  </fieldset>
-
-  <fieldset>
-    <div class="textfield">
-      <input type="email" name="fields[email]"  placeholder="Your email address"/>
-    </div>
-  </fieldset>
-
-  <fieldset>
-    <div class="textfield">
-      <input type="text" name="fields[website]"  placeholder="You website"/>
-    </div>
-  </fieldset>
-
-  
-
-  <fieldset>
-    <button class="button">
-      Submit
-    </button>
-  </fieldset>
-</form>
-</section>
-
-<article class="modal">
-  <div class="title">
-    <h2 class="js-modal-title"></h2>
-  </div>
-  <div class="js-modal-text"></div>
-  <div>
-    <button class="js-close-modal">Close</button>
-  </div>
-</article>
-
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tutysarablog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+        
         
       
 
@@ -528,7 +484,7 @@ t
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.39-DEV</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.31.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           &nbsp;&bull;&nbsp;[<a href="true"></a>]
         </p>
       </div>
@@ -541,9 +497,10 @@ t
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="http://www.tutysara.net/js/main.js"></script>
-<script src="http://www.tutysara.net/js/staticman.js"></script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://www.tutysara.net/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
 <script src="http://www.tutysara.net/js/load-photoswipe.js"></script>
 
 
