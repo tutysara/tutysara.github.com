@@ -154,119 +154,119 @@ sudo dpkg-reconfigure …"><meta name=author content><link href=https://www.tuty
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=post-heading><h1>Setting up a new VPS server</h1><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;Posted on October 18, 2013
 &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;min
 &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
-&nbsp;|&nbsp;<i class="fas fa-comment"></i>&nbsp;</span></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>These are the things I did to setup new VPS instances on Digital Ocean and ChicagoVPS</p><h3 id=update-the-machine>Update the machine</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get update
-</span></span><span style=display:flex><span>sudo apt-get upgrade
-</span></span></code></pre></div><h3 id=set-locales>Set locales</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo locale-gen
-</span></span><span style=display:flex><span>sudo dpkg-reconfigure locales
-</span></span></code></pre></div><h3 id=add-user>add user</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo adduser tutysra
-</span></span><span style=display:flex><span><span style=color:#75715e># give sudo previliges</span>
-</span></span><span style=display:flex><span>sudo visudo
-</span></span><span style=display:flex><span>tutysra ALL<span style=color:#f92672>=(</span>ALL<span style=color:#f92672>)</span> ALL
-</span></span></code></pre></div><h3 id=install-git>Install Git</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install git
-</span></span></code></pre></div><h3 id=install-sun-java>Install sun java</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo add-apt-repository ppa:webupd8team/java
-</span></span><span style=display:flex><span>sudo apt-get update
-</span></span><span style=display:flex><span>sudo apt-get install oracle-java7-installer
-</span></span></code></pre></div><h3 id=install-tor-for-screen-scrapping>Install Tor for screen scrapping</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install tor
-</span></span><span style=display:flex><span>sudo /etc/init.d/tor start
-</span></span></code></pre></div><h3 id=make-default-directories>Make default directories</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir ~/swt
-</span></span><span style=display:flex><span>mkdir ~/bin
-</span></span></code></pre></div><h3 id=install-nx--not-necessary-for-cli-boxes>Install NX ( not necessary for CLI boxes)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>export DEBIAN_FRONTEND<span style=color:#f92672>=</span>noninteractive
-</span></span><span style=display:flex><span>sudo -E apt-get update
-</span></span><span style=display:flex><span>sudo -E apt-get install -y ubuntu-desktop
-</span></span><span style=display:flex><span>sudo apt-get install gnome-session-fallback
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>wget <span style=color:#e6db74>&#39;http://64.34.173.142/download/3.5.0/Linux/nxclient_3.5.0-7_amd64.deb&#39;</span>
-</span></span><span style=display:flex><span>wget <span style=color:#e6db74>&#39;http://64.34.173.142/download/3.5.0/Linux/nxnode_3.5.0-9_amd64.deb&#39;</span>
-</span></span><span style=display:flex><span>wget <span style=color:#e6db74>&#39;http://64.34.173.142/download/3.5.0/Linux/FE/nxserver_3.5.0-11_amd64.deb&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>sudo dpkg -i *.deb
-</span></span><span style=display:flex><span>sudo /usr/NX/bin/nxserver --status
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>nano /usr/NX/etc/node.cfg
-</span></span><span style=display:flex><span><span style=color:#75715e># Uncomment the “DefaultXSession” line and set it to :</span>
-</span></span><span style=display:flex><span>DefaultXSession<span style=color:#f92672>=</span>/etc/X11/Xsession
-</span></span></code></pre></div><h3 id=enabledisable-password-authentication-in-ssh>Enable/Disable password authentication in ssh</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo vi /etc/ssh/sshd_config
-</span></span><span style=display:flex><span> PasswordAuthentication to <span style=color:#e6db74>&#34;yes/no&#34;</span> 
-</span></span><span style=display:flex><span> PermitRootLogin no
-</span></span><span style=display:flex><span>sudo service ssh restart
-</span></span></code></pre></div><h3 id=install-screen--tmux>Install screen & tmux</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install screen
-</span></span><span style=display:flex><span>sudo apt-get install tmux
-</span></span></code></pre></div><h3 id=install-curl>Install curl</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install curl
-</span></span></code></pre></div><h3 id=install-emacs-and-customize>Install emacs and customize</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install software-properties-common <span style=color:#75715e># installs some python scripts necessary for these operations</span>
-</span></span><span style=display:flex><span>sudo add-apt-repository ppa:cassou/emacs
-</span></span><span style=display:flex><span>sudo apt-get update
-</span></span><span style=display:flex><span>sudo apt-get install emacs-snapshot-el emacs-snapshot-gtk emacs-snapshot
-</span></span><span style=display:flex><span>export TERM<span style=color:#f92672>=</span>xterm-256color
-</span></span></code></pre></div><h3 id=install-lein>Install lein</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir ~/bin <span style=color:#f92672>&amp;&amp;</span> cd ~/bin
-</span></span><span style=display:flex><span>wget <span style=color:#e6db74>&#39;https://raw.github.com/technomancy/leiningen/stable/bin/lein&#39;</span>
-</span></span></code></pre></div><h3 id=install-jdk6-for-neo4j>Install JDK6 for neo4j</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>wget --no-cookies --header <span style=color:#e6db74>&#34;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com&#34;</span> http://download.oracle.com/otn-pub/java/jdk/6u41-b02/jdk-6u41-linux-x64.bin 
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>export JAVA_HOME<span style=color:#f92672>=</span>/home/neo4j/swt/jdk1.6/
-</span></span><span style=display:flex><span>export PATH<span style=color:#f92672>=</span>/home/neo4j/swt/jdk1.6/bin:$PATH
-</span></span></code></pre></div><h3 id=configure-swap>Configure swap</h3><p>My ChicagoVPS runs on OpenVZ and Swap space couldn&rsquo;t be enabled at VM level.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>swapon -s
-</span></span><span style=display:flex><span>sudo dd <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>/dev/zero of<span style=color:#f92672>=</span>/swapfile bs<span style=color:#f92672>=</span><span style=color:#ae81ff>1024</span> count<span style=color:#f92672>=</span>2048k
-</span></span><span style=display:flex><span>sudo mkswap /swapfile
-</span></span><span style=display:flex><span>sudo swapon /swapfile
-</span></span><span style=display:flex><span>swapon -s
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>sudo nano /etc/fstab
-</span></span><span style=display:flex><span>/swapfile       none    swap    sw      <span style=color:#ae81ff>0</span>       <span style=color:#ae81ff>0</span> 
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>sudo chown root:root /swapfile 
-</span></span><span style=display:flex><span>sudo chmod <span style=color:#ae81ff>0600</span> /swapfile
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>sudo nano /etc/sysctl.conf 
-</span></span><span style=display:flex><span>vm.swappiness<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>  <span style=color:#75715e># default is 60% RAM full</span>
-</span></span></code></pre></div><h3 id=configure-timezone-from-command-line>Configure Timezone from command line</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo dpkg-reconfigure tzdata
-</span></span></code></pre></div><h3 id=install-ngnix>Install ngnix</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install nginx
-</span></span><span style=display:flex><span>sudo service nginx start
-</span></span><span style=display:flex><span><span style=color:#75715e>#ifconfig eth0 | grep inet | awk &#39;{ print $2 }&#39;</span>
-</span></span><span style=display:flex><span>update-rc.d nginx defaults
+&nbsp;|&nbsp;<i class="fas fa-comment"></i>&nbsp;</span></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>These are the things I did to setup new VPS instances on Digital Ocean and ChicagoVPS</p><h3 id=update-the-machine>Update the machine</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get upgrade
+</span></span></code></pre></div><h3 id=set-locales>Set locales</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo locale-gen
+</span></span><span class=line><span class=cl>sudo dpkg-reconfigure locales
+</span></span></code></pre></div><h3 id=add-user>add user</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo adduser tutysra
+</span></span><span class=line><span class=cl><span class=c1># give sudo previliges</span>
+</span></span><span class=line><span class=cl>sudo visudo
+</span></span><span class=line><span class=cl>tutysra <span class=nv>ALL</span><span class=o>=(</span>ALL<span class=o>)</span> ALL
+</span></span></code></pre></div><h3 id=install-git>Install Git</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install git
+</span></span></code></pre></div><h3 id=install-sun-java>Install sun java</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo add-apt-repository ppa:webupd8team/java
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install oracle-java7-installer
+</span></span></code></pre></div><h3 id=install-tor-for-screen-scrapping>Install Tor for screen scrapping</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install tor
+</span></span><span class=line><span class=cl>sudo /etc/init.d/tor start
+</span></span></code></pre></div><h3 id=make-default-directories>Make default directories</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir ~/swt
+</span></span><span class=line><span class=cl>mkdir ~/bin
+</span></span></code></pre></div><h3 id=install-nx--not-necessary-for-cli-boxes>Install NX ( not necessary for CLI boxes)</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>DEBIAN_FRONTEND</span><span class=o>=</span>noninteractive
+</span></span><span class=line><span class=cl>sudo -E apt-get update
+</span></span><span class=line><span class=cl>sudo -E apt-get install -y ubuntu-desktop
+</span></span><span class=line><span class=cl>sudo apt-get install gnome-session-fallback
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>wget <span class=s1>&#39;http://64.34.173.142/download/3.5.0/Linux/nxclient_3.5.0-7_amd64.deb&#39;</span>
+</span></span><span class=line><span class=cl>wget <span class=s1>&#39;http://64.34.173.142/download/3.5.0/Linux/nxnode_3.5.0-9_amd64.deb&#39;</span>
+</span></span><span class=line><span class=cl>wget <span class=s1>&#39;http://64.34.173.142/download/3.5.0/Linux/FE/nxserver_3.5.0-11_amd64.deb&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo dpkg -i *.deb
+</span></span><span class=line><span class=cl>sudo /usr/NX/bin/nxserver --status
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>nano /usr/NX/etc/node.cfg
+</span></span><span class=line><span class=cl><span class=c1># Uncomment the “DefaultXSession” line and set it to :</span>
+</span></span><span class=line><span class=cl><span class=nv>DefaultXSession</span><span class=o>=</span>/etc/X11/Xsession
+</span></span></code></pre></div><h3 id=enabledisable-password-authentication-in-ssh>Enable/Disable password authentication in ssh</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo vi /etc/ssh/sshd_config
+</span></span><span class=line><span class=cl> PasswordAuthentication to <span class=s2>&#34;yes/no&#34;</span> 
+</span></span><span class=line><span class=cl> PermitRootLogin no
+</span></span><span class=line><span class=cl>sudo service ssh restart
+</span></span></code></pre></div><h3 id=install-screen--tmux>Install screen & tmux</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install screen
+</span></span><span class=line><span class=cl>sudo apt-get install tmux
+</span></span></code></pre></div><h3 id=install-curl>Install curl</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install curl
+</span></span></code></pre></div><h3 id=install-emacs-and-customize>Install emacs and customize</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install software-properties-common <span class=c1># installs some python scripts necessary for these operations</span>
+</span></span><span class=line><span class=cl>sudo add-apt-repository ppa:cassou/emacs
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install emacs-snapshot-el emacs-snapshot-gtk emacs-snapshot
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>TERM</span><span class=o>=</span>xterm-256color
+</span></span></code></pre></div><h3 id=install-lein>Install lein</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir ~/bin <span class=o>&amp;&amp;</span> <span class=nb>cd</span> ~/bin
+</span></span><span class=line><span class=cl>wget <span class=s1>&#39;https://raw.github.com/technomancy/leiningen/stable/bin/lein&#39;</span>
+</span></span></code></pre></div><h3 id=install-jdk6-for-neo4j>Install JDK6 for neo4j</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wget --no-cookies --header <span class=s2>&#34;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com&#34;</span> http://download.oracle.com/otn-pub/java/jdk/6u41-b02/jdk-6u41-linux-x64.bin 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>JAVA_HOME</span><span class=o>=</span>/home/neo4j/swt/jdk1.6/
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>PATH</span><span class=o>=</span>/home/neo4j/swt/jdk1.6/bin:<span class=nv>$PATH</span>
+</span></span></code></pre></div><h3 id=configure-swap>Configure swap</h3><p>My ChicagoVPS runs on OpenVZ and Swap space couldn&rsquo;t be enabled at VM level.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>swapon -s
+</span></span><span class=line><span class=cl>sudo dd <span class=k>if</span><span class=o>=</span>/dev/zero <span class=nv>of</span><span class=o>=</span>/swapfile <span class=nv>bs</span><span class=o>=</span><span class=m>1024</span> <span class=nv>count</span><span class=o>=</span>2048k
+</span></span><span class=line><span class=cl>sudo mkswap /swapfile
+</span></span><span class=line><span class=cl>sudo swapon /swapfile
+</span></span><span class=line><span class=cl>swapon -s
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo nano /etc/fstab
+</span></span><span class=line><span class=cl>/swapfile       none    swap    sw      <span class=m>0</span>       <span class=m>0</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo chown root:root /swapfile 
+</span></span><span class=line><span class=cl>sudo chmod <span class=m>0600</span> /swapfile
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo nano /etc/sysctl.conf 
+</span></span><span class=line><span class=cl>vm.swappiness<span class=o>=</span><span class=m>20</span>  <span class=c1># default is 60% RAM full</span>
+</span></span></code></pre></div><h3 id=configure-timezone-from-command-line>Configure Timezone from command line</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo dpkg-reconfigure tzdata
+</span></span></code></pre></div><h3 id=install-ngnix>Install ngnix</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install nginx
+</span></span><span class=line><span class=cl>sudo service nginx start
+</span></span><span class=line><span class=cl><span class=c1>#ifconfig eth0 | grep inet | awk &#39;{ print $2 }&#39;</span>
+</span></span><span class=line><span class=cl>update-rc.d nginx defaults
 </span></span></code></pre></div><h4 id=configuring-ngnix>configuring ngnix</h4><p>sudo invoke-rc.d nginx reload
-<a href=https://help.ubuntu.com/community/Nginx/ReverseProxy>Follow instructions here</a></p><h3 id=install-latest-tomcat-from-apache>Install latest tomcat from apache</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install tomcat7 - Not fine
-</span></span><span style=display:flex><span>Download from - http://apache.techartifact.com/mirror/tomcat/tomcat-7/v7.0.37/bin/apache-tomcat-7.0.37.tar.gz
-</span></span></code></pre></div><p>Edit .bashrc</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>export JAVA_HOME<span style=color:#f92672>=</span>/usr/lib/jvm/java-7-oracle
-</span></span><span style=display:flex><span>export CATALINA_HOME<span style=color:#f92672>=</span>~/swt/tomcat
-</span></span><span style=display:flex><span>$CATALINA_HOME/bin/startup.sh
-</span></span></code></pre></div><h3 id=install-mongodb>Install mongodb</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>url - http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
-</span></span><span style=display:flex><span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#39;deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen&#39;</span> | sudo tee /etc/apt/sources.list.d/10gen.list
-</span></span><span style=display:flex><span>sudo apt-get update
-</span></span><span style=display:flex><span>sudo apt-get install mongodb-10gen
-</span></span><span style=display:flex><span>data - /var/lib/mongodb
-</span></span><span style=display:flex><span>log - /var/log/mongodb
-</span></span><span style=display:flex><span>use - mongodb
-</span></span></code></pre></div><h1 id=server-monitoring>Server Monitoring</h1><h3 id=install-htop>Install htop</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install htop
-</span></span></code></pre></div><h3 id=install-iftop>Install iftop</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install iftop
-</span></span></code></pre></div><h3 id=install-munin>Install munin</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install munin munin-node
-</span></span><span style=display:flex><span>sudo /etc/init.d/munin-node restart
-</span></span><span style=display:flex><span>results - /var/cache/munin/www <span style=color:#75715e>#sync to dropbox</span>
-</span></span></code></pre></div><h1 id=server-checking>Server Checking</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install nmap
-</span></span><span style=display:flex><span>port scan - sudo nmap -v -sT localhost
-</span></span><span style=display:flex><span>syn scan - sudo nmap -v -sS localhost
-</span></span></code></pre></div><h1 id=allow-automatic-system-updating>Allow automatic system updating</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install unattended-upgrades
-</span></span><span style=display:flex><span>sudo dpkg-reconfigure unattended-upgrades
-</span></span></code></pre></div><h1 id=iptables-configuration>IPTables configuration</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo iptables -L
-</span></span><span style=display:flex><span>sudo iptables -L -n <span style=color:#75715e># no dns lookup for ip to hostname resolution</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># flush all existing rules</span>
-</span></span><span style=display:flex><span>sudo iptables -F
-</span></span><span style=display:flex><span>sudo iptables -I INPUT <span style=color:#ae81ff>1</span> -i lo -j ACCEPT <span style=color:#75715e># accept loopback</span>
-</span></span><span style=display:flex><span>sudo iptables -I INPUT <span style=color:#ae81ff>2</span> -p tcp --dport ssh -j ACCEPT <span style=color:#75715e># allow ssh</span>
-</span></span><span style=display:flex><span>sudo iptables -I INPUT <span style=color:#ae81ff>3</span> -p udp --dport 60000:61000 -j ACCEPT <span style=color:#75715e># allow mosh</span>
-</span></span><span style=display:flex><span>sudo iptables -I INPUT <span style=color:#ae81ff>4</span> -p tcp --dport <span style=color:#ae81ff>80</span> -j ACCEPT <span style=color:#75715e># allow www</span>
-</span></span><span style=display:flex><span>sudo iptables -I INPUT <span style=color:#ae81ff>5</span> -p udp -m udp --dport <span style=color:#ae81ff>53</span> -j ACCEPT <span style=color:#75715e># allow dns</span>
-</span></span><span style=display:flex><span>sudo iptables -A INPUT -j DROP
-</span></span><span style=display:flex><span>sudo iptables -L -v
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#self note - see bitbucket for rules file</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># allow all existing connections</span>
-</span></span><span style=display:flex><span>sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># persist rules</span>
-</span></span><span style=display:flex><span>sudo apt-get install iptables-persistent
-</span></span><span style=display:flex><span>sudo service iptables-persistent start
-</span></span><span style=display:flex><span>sudo /etc/init.d/iptables-persistent save
+<a href=https://help.ubuntu.com/community/Nginx/ReverseProxy>Follow instructions here</a></p><h3 id=install-latest-tomcat-from-apache>Install latest tomcat from apache</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install tomcat7 - Not fine
+</span></span><span class=line><span class=cl>Download from - http://apache.techartifact.com/mirror/tomcat/tomcat-7/v7.0.37/bin/apache-tomcat-7.0.37.tar.gz
+</span></span></code></pre></div><p>Edit .bashrc</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>JAVA_HOME</span><span class=o>=</span>/usr/lib/jvm/java-7-oracle
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>CATALINA_HOME</span><span class=o>=</span>~/swt/tomcat
+</span></span><span class=line><span class=cl><span class=nv>$CATALINA_HOME</span>/bin/startup.sh
+</span></span></code></pre></div><h3 id=install-mongodb>Install mongodb</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>url - http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+</span></span><span class=line><span class=cl>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen&#39;</span> <span class=p>|</span> sudo tee /etc/apt/sources.list.d/10gen.list
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install mongodb-10gen
+</span></span><span class=line><span class=cl>data - /var/lib/mongodb
+</span></span><span class=line><span class=cl>log - /var/log/mongodb
+</span></span><span class=line><span class=cl>use - mongodb
+</span></span></code></pre></div><h1 id=server-monitoring>Server Monitoring</h1><h3 id=install-htop>Install htop</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install htop
+</span></span></code></pre></div><h3 id=install-iftop>Install iftop</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install iftop
+</span></span></code></pre></div><h3 id=install-munin>Install munin</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install munin munin-node
+</span></span><span class=line><span class=cl>sudo /etc/init.d/munin-node restart
+</span></span><span class=line><span class=cl>results - /var/cache/munin/www <span class=c1>#sync to dropbox</span>
+</span></span></code></pre></div><h1 id=server-checking>Server Checking</h1><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install nmap
+</span></span><span class=line><span class=cl>port scan - sudo nmap -v -sT localhost
+</span></span><span class=line><span class=cl>syn scan - sudo nmap -v -sS localhost
+</span></span></code></pre></div><h1 id=allow-automatic-system-updating>Allow automatic system updating</h1><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install unattended-upgrades
+</span></span><span class=line><span class=cl>sudo dpkg-reconfigure unattended-upgrades
+</span></span></code></pre></div><h1 id=iptables-configuration>IPTables configuration</h1><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo iptables -L
+</span></span><span class=line><span class=cl>sudo iptables -L -n <span class=c1># no dns lookup for ip to hostname resolution</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># flush all existing rules</span>
+</span></span><span class=line><span class=cl>sudo iptables -F
+</span></span><span class=line><span class=cl>sudo iptables -I INPUT <span class=m>1</span> -i lo -j ACCEPT <span class=c1># accept loopback</span>
+</span></span><span class=line><span class=cl>sudo iptables -I INPUT <span class=m>2</span> -p tcp --dport ssh -j ACCEPT <span class=c1># allow ssh</span>
+</span></span><span class=line><span class=cl>sudo iptables -I INPUT <span class=m>3</span> -p udp --dport 60000:61000 -j ACCEPT <span class=c1># allow mosh</span>
+</span></span><span class=line><span class=cl>sudo iptables -I INPUT <span class=m>4</span> -p tcp --dport <span class=m>80</span> -j ACCEPT <span class=c1># allow www</span>
+</span></span><span class=line><span class=cl>sudo iptables -I INPUT <span class=m>5</span> -p udp -m udp --dport <span class=m>53</span> -j ACCEPT <span class=c1># allow dns</span>
+</span></span><span class=line><span class=cl>sudo iptables -A INPUT -j DROP
+</span></span><span class=line><span class=cl>sudo iptables -L -v
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#self note - see bitbucket for rules file</span>
+</span></span><span class=line><span class=cl><span class=c1># allow all existing connections</span>
+</span></span><span class=line><span class=cl>sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># persist rules</span>
+</span></span><span class=line><span class=cl>sudo apt-get install iptables-persistent
+</span></span><span class=line><span class=cl>sudo service iptables-persistent start
+</span></span><span class=line><span class=cl>sudo /etc/init.d/iptables-persistent save
 </span></span></code></pre></div><p>If you do something more/different, please comment, I will refine my setup and this blog post. Thanks.</p><div class=blog-tags><a href=https://www.tutysara.net/tags/self-notes/>self-notes</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://www.tutysara.net/posts/2012/10/05/correlation-between-inr-values-of-different-currencies/ data-toggle=tooltip data-placement=top title="Correlation between INR values of different currencies">&larr; Previous Post</a></li><li class=next><a href=https://www.tutysara.net/posts/2013/10/21/running-a-hacker-news-clone/ data-toggle=tooltip data-placement=top title="Running a Hacker news clone">Next Post &rarr;</a></li></ul><div class=staticman-comments><section class="js-comments staticman-comments"><form class="js-form form" method=post action=https://api.staticman.net/v2/entry/tutysara/tutysara.net.comments/master/comments><input type=hidden name=options[slug] value=posts20131018setting-up-a-new-vps-server>
 <input type=hidden name=options[parent]><fieldset><div class=textfield><textarea name=fields[comment] type=text placeholder="You can use Markdown syntax"></textarea></div></fieldset><fieldset><div class=textfield><input name=fields[name] type=text placeholder="Your name"></div></fieldset><fieldset><div class=textfield><input type=email name=fields[email] placeholder="Your email address"></div></fieldset><fieldset><div class=textfield><input type=text name=fields[website] placeholder="Your website"></div></fieldset><fieldset><button class=button>
 Submit</button></fieldset></form></section><article class=modal><div class=title><h2 class=js-modal-title></h2></div><div class=js-modal-text></div><div><button class=js-close-modal>Close</button></div></article></div></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;

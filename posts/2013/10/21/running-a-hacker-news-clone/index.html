@@ -20,46 +20,46 @@ I wanted to run a site for discussing and sharing information that are useful fo
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=post-heading><h1>Running a Hacker news clone</h1><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;Posted on October 21, 2013
 &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;min
 &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
-&nbsp;|&nbsp;<i class="fas fa-comment"></i>&nbsp;</span></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>I very much like the presentation of <a href="https://news.ycombinator.com/item?id=6576560">hackernews</a> when it comes to understanding and making sense of the discussions quickly. It is a lot easier than reading pages of forums to get the main ideas of the discussions since the top comments and active discussions bubble to the top.</p><p>I wanted to run a site for discussing and sharing information that are useful for people working in techparks and the format that immediately clicked in my mind was the hacknews style. I began writing my own <a href=https://github.com/techparknews/hsnews>clone</a> based on the work of people from <a href=http://hackerschool.com/>hackerschool</a> but it lacked the polish and look to make the people trust and even sign up, I had send invites to few of my friends to try but the turnaround rate was quite low.</p><p>Now I wanted to validate whether there is any market for this idea (ie) do many techies have the need/difficulty to get info about the things and happenings around thier work place. I decided to deploy a polished better looking open source product and see how it gets picked up and used. I zeroed in on <a href=https://github.com/SachaG/Telescope>Telescope</a> after having evaluated <a href=https://github.com/SachaG/Telescope>Telescope</a> and <a href=https://github.com/jcs/lobsters>lobsters</a>.</p><p>Reason for choosing Telescope are</p><ol><li>Looks better and intutive and will be easy for people who have not used hacknews before</li><li>Supports sharing on social networks out of the box</li><li>Easy to setup</li><li>I like the idea of single page apps</li></ol><p>Here are the steps that I did to install telescope on my VPS running Ubuntu 12.04</p><p>####Do all these from a previliged user</p><p>###Install nodejs</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install python-software-properties
-</span></span><span style=display:flex><span>sudo add-apt-repository ppa:chris-lea/node.js
-</span></span><span style=display:flex><span>sudo apt-get update
-</span></span></code></pre></div><p>npm is now part of nodejs and installing nodejs installs it</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install nodejs
-</span></span></code></pre></div><p>Check the node version, as of this writing Chris Lea repo has version 0.10.21</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>node --version
-</span></span><span style=display:flex><span>v0.10.21
-</span></span></code></pre></div><p>###Install meteorite - Installer & smart package manager for Meteor</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo npm install -g meteorite
+&nbsp;|&nbsp;<i class="fas fa-comment"></i>&nbsp;</span></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>I very much like the presentation of <a href="https://news.ycombinator.com/item?id=6576560">hackernews</a> when it comes to understanding and making sense of the discussions quickly. It is a lot easier than reading pages of forums to get the main ideas of the discussions since the top comments and active discussions bubble to the top.</p><p>I wanted to run a site for discussing and sharing information that are useful for people working in techparks and the format that immediately clicked in my mind was the hacknews style. I began writing my own <a href=https://github.com/techparknews/hsnews>clone</a> based on the work of people from <a href=http://hackerschool.com/>hackerschool</a> but it lacked the polish and look to make the people trust and even sign up, I had send invites to few of my friends to try but the turnaround rate was quite low.</p><p>Now I wanted to validate whether there is any market for this idea (ie) do many techies have the need/difficulty to get info about the things and happenings around thier work place. I decided to deploy a polished better looking open source product and see how it gets picked up and used. I zeroed in on <a href=https://github.com/SachaG/Telescope>Telescope</a> after having evaluated <a href=https://github.com/SachaG/Telescope>Telescope</a> and <a href=https://github.com/jcs/lobsters>lobsters</a>.</p><p>Reason for choosing Telescope are</p><ol><li>Looks better and intutive and will be easy for people who have not used hacknews before</li><li>Supports sharing on social networks out of the box</li><li>Easy to setup</li><li>I like the idea of single page apps</li></ol><p>Here are the steps that I did to install telescope on my VPS running Ubuntu 12.04</p><p>####Do all these from a previliged user</p><p>###Install nodejs</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install python-software-properties
+</span></span><span class=line><span class=cl>sudo add-apt-repository ppa:chris-lea/node.js
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span></code></pre></div><p>npm is now part of nodejs and installing nodejs installs it</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install nodejs
+</span></span></code></pre></div><p>Check the node version, as of this writing Chris Lea repo has version 0.10.21</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>node --version
+</span></span><span class=line><span class=cl>v0.10.21
+</span></span></code></pre></div><p>###Install meteorite - Installer & smart package manager for Meteor</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo npm install -g meteorite
 </span></span></code></pre></div><p>####Login to the web user with limited previlage and clone the repository
-I was testing the application from this user before starting it using upstart</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/SachaG/Telescope.git
-</span></span></code></pre></div><p>Configure Telescope to start automatically when system reboots, I have to do this because my VPS provider had restarted the server more than 3-4 times in a month</p><p>Create a file <code>telescope.conf</code> in <code>/etc/init</code> with the following contents</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># meteorjs - meteorjs job file</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>description <span style=color:#e6db74>&#34;Start Telescope&#34;</span>
-</span></span><span style=display:flex><span>author <span style=color:#e6db74>&#34;tutysara&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># When to start the service</span>
-</span></span><span style=display:flex><span>start on runlevel <span style=color:#f92672>[</span>2345<span style=color:#f92672>]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># When to stop the service</span>
-</span></span><span style=display:flex><span>stop on runlevel <span style=color:#f92672>[</span>016<span style=color:#f92672>]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Automatically restart process if crashed</span>
-</span></span><span style=display:flex><span>respawn
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Essentially lets upstart know the process will detach itself to the background</span>
-</span></span><span style=display:flex><span>expect fork
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Start the process</span>
-</span></span><span style=display:flex><span>script
-</span></span><span style=display:flex><span>	export PATH<span style=color:#f92672>=</span>/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-</span></span><span style=display:flex><span>	export PWD<span style=color:#f92672>=</span>/home/web/telescopes/Telescope
-</span></span><span style=display:flex><span>	export NODE_PATH<span style=color:#f92672>=</span>/usr/lib/nodejs:/usr/lib/node_modules
-</span></span><span style=display:flex><span>	export HOME<span style=color:#f92672>=</span>/home/web
-</span></span><span style=display:flex><span>	export MONGO_URL<span style=color:#f92672>=</span>mongodb://localhost:27017/meteor
-</span></span><span style=display:flex><span>	echo <span style=color:#e6db74>&#34;---- start ----&#34;</span>
-</span></span><span style=display:flex><span>	cd <span style=color:#e6db74>&#34;/home/web/telescopes/Telescope&#34;</span>
-</span></span><span style=display:flex><span>	exec meteor run -p <span style=color:#ae81ff>3000</span> --production
-</span></span><span style=display:flex><span>end script
-</span></span></code></pre></div><p>Finally test the scipt by starting, stopping and checking status</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo start telescope
-</span></span><span style=display:flex><span>sudo status telescope
-</span></span><span style=display:flex><span>sudo stop telescope
+I was testing the application from this user before starting it using upstart</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git clone https://github.com/SachaG/Telescope.git
+</span></span></code></pre></div><p>Configure Telescope to start automatically when system reboots, I have to do this because my VPS provider had restarted the server more than 3-4 times in a month</p><p>Create a file <code>telescope.conf</code> in <code>/etc/init</code> with the following contents</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># meteorjs - meteorjs job file</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>description <span class=s2>&#34;Start Telescope&#34;</span>
+</span></span><span class=line><span class=cl>author <span class=s2>&#34;tutysara&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># When to start the service</span>
+</span></span><span class=line><span class=cl>start on runlevel <span class=o>[</span>2345<span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># When to stop the service</span>
+</span></span><span class=line><span class=cl>stop on runlevel <span class=o>[</span>016<span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Automatically restart process if crashed</span>
+</span></span><span class=line><span class=cl>respawn
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Essentially lets upstart know the process will detach itself to the background</span>
+</span></span><span class=line><span class=cl>expect fork
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Start the process</span>
+</span></span><span class=line><span class=cl>script
+</span></span><span class=line><span class=cl>	<span class=nb>export</span> <span class=nv>PATH</span><span class=o>=</span>/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+</span></span><span class=line><span class=cl>	<span class=nb>export</span> <span class=nv>PWD</span><span class=o>=</span>/home/web/telescopes/Telescope
+</span></span><span class=line><span class=cl>	<span class=nb>export</span> <span class=nv>NODE_PATH</span><span class=o>=</span>/usr/lib/nodejs:/usr/lib/node_modules
+</span></span><span class=line><span class=cl>	<span class=nb>export</span> <span class=nv>HOME</span><span class=o>=</span>/home/web
+</span></span><span class=line><span class=cl>	<span class=nb>export</span> <span class=nv>MONGO_URL</span><span class=o>=</span>mongodb://localhost:27017/meteor
+</span></span><span class=line><span class=cl>	<span class=nb>echo</span> <span class=s2>&#34;---- start ----&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=nb>cd</span> <span class=s2>&#34;/home/web/telescopes/Telescope&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=nb>exec</span> meteor run -p <span class=m>3000</span> --production
+</span></span><span class=line><span class=cl>end script
+</span></span></code></pre></div><p>Finally test the scipt by starting, stopping and checking status</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo start telescope
+</span></span><span class=line><span class=cl>sudo status telescope
+</span></span><span class=line><span class=cl>sudo stop telescope
 </span></span></code></pre></div><p>If there are errors it can be seen in upstart logs at <code>/var/log/upstart/telescope.log</code>.</p><p>The application can be accessed <a href=http://www.techparknews.in>here</a>. I use a rproxy to send port 80 to 3000</p><p>I registered for google analytics account and included it from the settings page after the application is deployed to check how this all goes.</p><div class=blog-tags><a href=https://www.tutysara.net/tags/self-notes/>self-notes</a>&nbsp;
 <a href=https://www.tutysara.net/tags/web/>web</a>&nbsp;
 <a href=https://www.tutysara.net/tags/tech/>tech</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://www.tutysara.net/posts/2013/10/18/setting-up-a-new-vps-server/ data-toggle=tooltip data-placement=top title="Setting up a  new VPS server">&larr; Previous Post</a></li><li class=next><a href=https://www.tutysara.net/posts/2013/10/30/django-development-on-osx-using-emacs/ data-toggle=tooltip data-placement=top title="Django development on OSX using emacs">Next Post &rarr;</a></li></ul><div class=staticman-comments><section class="js-comments staticman-comments"><form class="js-form form" method=post action=https://api.staticman.net/v2/entry/tutysara/tutysara.net.comments/master/comments><input type=hidden name=options[slug] value=posts20131021running-a-hacker-news-clone>

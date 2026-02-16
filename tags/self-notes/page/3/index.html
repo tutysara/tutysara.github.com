@@ -18,55 +18,55 @@
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=tags-heading><h1>Self Notes</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-list><article class=post-preview><a href=https://www.tutysara.net/posts/2013/10/18/setting-up-a-new-vps-server/><h2 class=post-title>Setting up a new VPS server</h2></a><p class=post-meta><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;Posted on October 18, 2013
 &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;min
 &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
-&nbsp;|&nbsp;<i class="fas fa-comment"></i>&nbsp;</span></p><div class=post-entry><p>These are the things I did to setup new VPS instances on Digital Ocean and ChicagoVPS</p><h3 id=update-the-machine>Update the machine</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get update
-</span></span><span style=display:flex><span>sudo apt-get upgrade
-</span></span></code></pre></div><h3 id=set-locales>Set locales</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo locale-gen
-</span></span><span style=display:flex><span>sudo dpkg-reconfigure locales
-</span></span></code></pre></div><h3 id=add-user>add user</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo adduser tutysra
-</span></span><span style=display:flex><span><span style=color:#75715e># give sudo previliges</span>
-</span></span><span style=display:flex><span>sudo visudo
-</span></span><span style=display:flex><span>tutysra ALL<span style=color:#f92672>=(</span>ALL<span style=color:#f92672>)</span> ALL
-</span></span></code></pre></div><h3 id=install-git>Install Git</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install git
-</span></span></code></pre></div><h3 id=install-sun-java>Install sun java</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo add-apt-repository ppa:webupd8team/java
-</span></span><span style=display:flex><span>sudo apt-get update
-</span></span><span style=display:flex><span>sudo apt-get install oracle-java7-installer
-</span></span></code></pre></div><h3 id=install-tor-for-screen-scrapping>Install Tor for screen scrapping</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install tor
-</span></span><span style=display:flex><span>sudo /etc/init.d/tor start
-</span></span></code></pre></div><h3 id=make-default-directories>Make default directories</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir ~/swt
-</span></span><span style=display:flex><span>mkdir ~/bin
-</span></span></code></pre></div><h3 id=install-nx--not-necessary-for-cli-boxes>Install NX ( not necessary for CLI boxes)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>export DEBIAN_FRONTEND<span style=color:#f92672>=</span>noninteractive
-</span></span><span style=display:flex><span>sudo -E apt-get update
-</span></span><span style=display:flex><span>sudo -E apt-get install -y ubuntu-desktop
-</span></span><span style=display:flex><span>sudo apt-get install gnome-session-fallback
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>wget <span style=color:#e6db74>&#39;http://64.34.173.142/download/3.5.0/Linux/nxclient_3.5.0-7_amd64.deb&#39;</span>
-</span></span><span style=display:flex><span>wget <span style=color:#e6db74>&#39;http://64.34.173.142/download/3.5.0/Linux/nxnode_3.5.0-9_amd64.deb&#39;</span>
-</span></span><span style=display:flex><span>wget <span style=color:#e6db74>&#39;http://64.34.173.142/download/3.5.0/Linux/FE/nxserver_3.5.0-11_amd64.deb&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>sudo dpkg -i *.deb
-</span></span><span style=display:flex><span>sudo /usr/NX/bin/nxserver --status
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>nano /usr/NX/etc/node.cfg
-</span></span><span style=display:flex><span><span style=color:#75715e># Uncomment the “DefaultXSession” line and set it to :</span>
-</span></span><span style=display:flex><span>DefaultXSession<span style=color:#f92672>=</span>/etc/X11/Xsession
-</span></span></code></pre></div><h3 id=enabledisable-password-authentication-in-ssh>Enable/Disable password authentication in ssh</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo vi /etc/ssh/sshd_config
-</span></span><span style=display:flex><span> PasswordAuthentication to <span style=color:#e6db74>&#34;yes/no&#34;</span> 
-</span></span><span style=display:flex><span> PermitRootLogin no
-</span></span><span style=display:flex><span>sudo service ssh restart
-</span></span></code></pre></div><h3 id=install-screen--tmux>Install screen & tmux</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install screen
-</span></span><span style=display:flex><span>sudo apt-get install tmux
-</span></span></code></pre></div><h3 id=install-curl>Install curl</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install curl
-</span></span></code></pre></div><h3 id=install-emacs-and-customize>Install emacs and customize</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install software-properties-common <span style=color:#75715e># installs some python scripts necessary for these operations</span>
-</span></span><span style=display:flex><span>sudo add-apt-repository ppa:cassou/emacs
-</span></span><span style=display:flex><span>sudo apt-get update
-</span></span><span style=display:flex><span>sudo apt-get install emacs-snapshot-el emacs-snapshot-gtk emacs-snapshot
-</span></span><span style=display:flex><span>export TERM<span style=color:#f92672>=</span>xterm-256color
-</span></span></code></pre></div><h3 id=install-lein>Install lein</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir ~/bin <span style=color:#f92672>&amp;&amp;</span> cd ~/bin
-</span></span><span style=display:flex><span>wget <span style=color:#e6db74>&#39;https://raw.github.com/technomancy/leiningen/stable/bin/lein&#39;</span>
-</span></span></code></pre></div><h3 id=install-jdk6-for-neo4j>Install JDK6 for neo4j</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>wget --no-cookies --header <span style=color:#e6db74>&#34;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com&#34;</span> http://download.oracle.com/otn-pub/java/jdk/6u41-b02/jdk-6u41-linux-x64.bin 
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>export JAVA_HOME<span style=color:#f92672>=</span>/home/neo4j/swt/jdk1.6/
-</span></span><span style=display:flex><span>export PATH<span style=color:#f92672>=</span>/home/neo4j/swt/jdk1.6/bin:$PATH
+&nbsp;|&nbsp;<i class="fas fa-comment"></i>&nbsp;</span></p><div class=post-entry><p>These are the things I did to setup new VPS instances on Digital Ocean and ChicagoVPS</p><h3 id=update-the-machine>Update the machine</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get upgrade
+</span></span></code></pre></div><h3 id=set-locales>Set locales</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo locale-gen
+</span></span><span class=line><span class=cl>sudo dpkg-reconfigure locales
+</span></span></code></pre></div><h3 id=add-user>add user</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo adduser tutysra
+</span></span><span class=line><span class=cl><span class=c1># give sudo previliges</span>
+</span></span><span class=line><span class=cl>sudo visudo
+</span></span><span class=line><span class=cl>tutysra <span class=nv>ALL</span><span class=o>=(</span>ALL<span class=o>)</span> ALL
+</span></span></code></pre></div><h3 id=install-git>Install Git</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install git
+</span></span></code></pre></div><h3 id=install-sun-java>Install sun java</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo add-apt-repository ppa:webupd8team/java
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install oracle-java7-installer
+</span></span></code></pre></div><h3 id=install-tor-for-screen-scrapping>Install Tor for screen scrapping</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install tor
+</span></span><span class=line><span class=cl>sudo /etc/init.d/tor start
+</span></span></code></pre></div><h3 id=make-default-directories>Make default directories</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir ~/swt
+</span></span><span class=line><span class=cl>mkdir ~/bin
+</span></span></code></pre></div><h3 id=install-nx--not-necessary-for-cli-boxes>Install NX ( not necessary for CLI boxes)</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>DEBIAN_FRONTEND</span><span class=o>=</span>noninteractive
+</span></span><span class=line><span class=cl>sudo -E apt-get update
+</span></span><span class=line><span class=cl>sudo -E apt-get install -y ubuntu-desktop
+</span></span><span class=line><span class=cl>sudo apt-get install gnome-session-fallback
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>wget <span class=s1>&#39;http://64.34.173.142/download/3.5.0/Linux/nxclient_3.5.0-7_amd64.deb&#39;</span>
+</span></span><span class=line><span class=cl>wget <span class=s1>&#39;http://64.34.173.142/download/3.5.0/Linux/nxnode_3.5.0-9_amd64.deb&#39;</span>
+</span></span><span class=line><span class=cl>wget <span class=s1>&#39;http://64.34.173.142/download/3.5.0/Linux/FE/nxserver_3.5.0-11_amd64.deb&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo dpkg -i *.deb
+</span></span><span class=line><span class=cl>sudo /usr/NX/bin/nxserver --status
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>nano /usr/NX/etc/node.cfg
+</span></span><span class=line><span class=cl><span class=c1># Uncomment the “DefaultXSession” line and set it to :</span>
+</span></span><span class=line><span class=cl><span class=nv>DefaultXSession</span><span class=o>=</span>/etc/X11/Xsession
+</span></span></code></pre></div><h3 id=enabledisable-password-authentication-in-ssh>Enable/Disable password authentication in ssh</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo vi /etc/ssh/sshd_config
+</span></span><span class=line><span class=cl> PasswordAuthentication to <span class=s2>&#34;yes/no&#34;</span> 
+</span></span><span class=line><span class=cl> PermitRootLogin no
+</span></span><span class=line><span class=cl>sudo service ssh restart
+</span></span></code></pre></div><h3 id=install-screen--tmux>Install screen & tmux</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install screen
+</span></span><span class=line><span class=cl>sudo apt-get install tmux
+</span></span></code></pre></div><h3 id=install-curl>Install curl</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install curl
+</span></span></code></pre></div><h3 id=install-emacs-and-customize>Install emacs and customize</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install software-properties-common <span class=c1># installs some python scripts necessary for these operations</span>
+</span></span><span class=line><span class=cl>sudo add-apt-repository ppa:cassou/emacs
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install emacs-snapshot-el emacs-snapshot-gtk emacs-snapshot
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>TERM</span><span class=o>=</span>xterm-256color
+</span></span></code></pre></div><h3 id=install-lein>Install lein</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir ~/bin <span class=o>&amp;&amp;</span> <span class=nb>cd</span> ~/bin
+</span></span><span class=line><span class=cl>wget <span class=s1>&#39;https://raw.github.com/technomancy/leiningen/stable/bin/lein&#39;</span>
+</span></span></code></pre></div><h3 id=install-jdk6-for-neo4j>Install JDK6 for neo4j</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wget --no-cookies --header <span class=s2>&#34;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com&#34;</span> http://download.oracle.com/otn-pub/java/jdk/6u41-b02/jdk-6u41-linux-x64.bin 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>JAVA_HOME</span><span class=o>=</span>/home/neo4j/swt/jdk1.6/
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>PATH</span><span class=o>=</span>/home/neo4j/swt/jdk1.6/bin:<span class=nv>$PATH</span>
 </span></span></code></pre></div><h3 id=configure-swap>Configure swap</h3><p>My ChicagoVPS runs on OpenVZ and Swap space couldn&rsquo;t be enabled at VM level.</p><a href=https://www.tutysara.net/posts/2013/10/18/setting-up-a-new-vps-server/ class=post-read-more>[Read More]</a></div><div class=blog-tags><a href=https://www.tutysara.net/tags/self-notes/>self-notes</a>&nbsp;</div></article></div><ul class="pager main-pager"><li class=previous><a href=https://www.tutysara.net/tags/self-notes/page/2/>&larr; Newer Posts</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"><li><a href=/tags/self-notes/index.xml title=RSS><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
 <i class="fas fa-rss fa-stack-1x fa-inverse"></i></span></a></li></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
 2018

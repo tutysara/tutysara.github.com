@@ -33,11 +33,11 @@ It looks pretty and covers a lot of ground, Got a thought &ndash; why not …"><
 It looks pretty and covers a lot of ground, Got a thought &ndash; why not download them for later use?
 I thought it would be a fun exercise to start the weekend and jumped into action.</p><h2 id=step-1--collectscrape-data-from-twitter>Step 1 &ndash; Collect/Scrape data from twitter</h2><p>I evaluated using twitter api using <a href=https://github.com/tweepy/tweepy>tweetpy</a>, but it has its own limitation aka we can search only a week worth of data which is not good for our use case.
 We shoud be able to get data spread across months since the tweets we are interested are spread across a wide time range.</p><p>So, the next step is to try scraping. We got <a href=https://github.com/taspinar/twitterscraper>twitterscraper</a> to our rescue here.
-Scraping was an one step painless process with this tool.</p><p>Install it using</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pip install twitterscraper
+Scraping was an one step painless process with this tool.</p><p>Install it using</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pip install twitterscraper
 </span></span></code></pre></div><p>Scrape the data matching a query using</p><pre><code>twitterscraper &quot;machinelearningflashcards.com  from:chrisalbon&quot; -o mlflashcards_tweets_large.json
-</code></pre><p>The data is scraped and stored in a json file. The next step is preprocessing.</p><h2 id=step-2--preprcessing>Step 2 &ndash; Preprcessing</h2><p>Here we want to preprocess the data to learn about it and to process further. We will convert the data from json and read it into a dataframe.</p><h3 id=21-read-the-data>2.1 Read the data</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> codecs<span style=color:#f92672>,</span> json
-</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> codecs<span style=color:#f92672>.</span>open(<span style=color:#e6db74>&#39;mlflashcards_tweets_large.json&#39;</span>, <span style=color:#e6db74>&#39;r&#39;</span>, <span style=color:#e6db74>&#39;utf-8&#39;</span>) <span style=color:#66d9ef>as</span> f:
-</span></span><span style=display:flex><span>	tweets <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span>load(f, encoding<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;utf-8&#39;</span>)
+</code></pre><p>The data is scraped and stored in a json file. The next step is preprocessing.</p><h2 id=step-2--preprcessing>Step 2 &ndash; Preprcessing</h2><p>Here we want to preprocess the data to learn about it and to process further. We will convert the data from json and read it into a dataframe.</p><h3 id=21-read-the-data>2.1 Read the data</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>codecs</span><span class=o>,</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=n>codecs</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=s1>&#39;mlflashcards_tweets_large.json&#39;</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>,</span> <span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>	<span class=n>tweets</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>load</span><span class=p>(</span><span class=n>f</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span>
 </span></span></code></pre></div><p>Look at a sample data</p><pre><code>t = tweets[5]
 t
 </code></pre><p>output</p><pre><code>{'fullname': 'Chris Albon',
@@ -49,66 +49,66 @@ t
  'timestamp': '2018-02-06T20:45:26',
  'url': '/chrisalbon/status/960977759915851776',
  'user': 'chrisalbon'}
-</code></pre><h3 id=22-write-and-test-few-utility-methods-to-extract-data>2.2 Write and test few utility methods to extract data</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>## get full tweet url</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_tweet_url</span>(tweet):
-</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;https://twitter.com&#39;</span> <span style=color:#f92672>+</span> tweet[<span style=color:#e6db74>&#39;url&#39;</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#test</span>
-</span></span><span style=display:flex><span>tweet_url <span style=color:#f92672>=</span> get_tweet_url(t)
-</span></span><span style=display:flex><span>print(tweet_url)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># output: https://twitter.com/chrisalbon/status/960977759915851776</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## get tweet text (text without url)</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_tweet_text</span>(tweet):
-</span></span><span style=display:flex><span>    text <span style=color:#f92672>=</span> tweet[<span style=color:#e6db74>&#39;text&#39;</span>]
-</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> re<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#39;(.*) https.*&#39;</span>, text)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> res:
-</span></span><span style=display:flex><span>        text <span style=color:#f92672>=</span> res<span style=color:#f92672>.</span>group(<span style=color:#ae81ff>1</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
-</span></span><span style=display:flex><span>        text <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> text
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#test</span>
-</span></span><span style=display:flex><span>get_tweet_text(t)
-</span></span><span style=display:flex><span><span style=color:#75715e># output: &#39;Alpha In Ridge Regression&#39;</span>
-</span></span></code></pre></div><h3 id=23-convert-to-dataframe>2.3 Convert to dataframe</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>rows <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> tweet <span style=color:#f92672>in</span> tweets[:]:
-</span></span><span style=display:flex><span>    row <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;id&#34;</span>: tweet[<span style=color:#e6db74>&#39;id&#39;</span>],
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;likes&#34;</span>: tweet[<span style=color:#e6db74>&#39;likes&#39;</span>],
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;replies&#34;</span>: tweet[<span style=color:#e6db74>&#39;replies&#39;</span>],
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;retweets&#34;</span>: tweet[<span style=color:#e6db74>&#39;retweets&#39;</span>],
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;timestamp&#34;</span>: tweet[<span style=color:#e6db74>&#39;timestamp&#39;</span>],
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;url&#34;</span>: get_tweet_url(tweet),
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;text&#34;</span>: get_tweet_text(tweet)}
-</span></span><span style=display:flex><span>rows<span style=color:#f92672>.</span>append(row)
-</span></span><span style=display:flex><span>df <span style=color:#f92672>=</span> pd<span style=color:#f92672>.</span>DataFrame<span style=color:#f92672>.</span>from_dict(rows)
-</span></span><span style=display:flex><span>df
+</code></pre><h3 id=22-write-and-test-few-utility-methods-to-extract-data>2.2 Write and test few utility methods to extract data</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>## get full tweet url</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_tweet_url</span><span class=p>(</span><span class=n>tweet</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=s1>&#39;https://twitter.com&#39;</span> <span class=o>+</span> <span class=n>tweet</span><span class=p>[</span><span class=s1>&#39;url&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#test</span>
+</span></span><span class=line><span class=cl><span class=n>tweet_url</span> <span class=o>=</span> <span class=n>get_tweet_url</span><span class=p>(</span><span class=n>t</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>tweet_url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># output: https://twitter.com/chrisalbon/status/960977759915851776</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## get tweet text (text without url)</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_tweet_text</span><span class=p>(</span><span class=n>tweet</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>text</span> <span class=o>=</span> <span class=n>tweet</span><span class=p>[</span><span class=s1>&#39;text&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=s1>&#39;(.*) https.*&#39;</span><span class=p>,</span> <span class=n>text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>res</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>text</span> <span class=o>=</span> <span class=n>res</span><span class=o>.</span><span class=n>group</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>text</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>text</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#test</span>
+</span></span><span class=line><span class=cl><span class=n>get_tweet_text</span><span class=p>(</span><span class=n>t</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># output: &#39;Alpha In Ridge Regression&#39;</span>
+</span></span></code></pre></div><h3 id=23-convert-to-dataframe>2.3 Convert to dataframe</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>rows</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>tweet</span> <span class=ow>in</span> <span class=n>tweets</span><span class=p>[:]:</span>
+</span></span><span class=line><span class=cl>    <span class=n>row</span> <span class=o>=</span> <span class=p>{</span><span class=s2>&#34;id&#34;</span><span class=p>:</span> <span class=n>tweet</span><span class=p>[</span><span class=s1>&#39;id&#39;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;likes&#34;</span><span class=p>:</span> <span class=n>tweet</span><span class=p>[</span><span class=s1>&#39;likes&#39;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;replies&#34;</span><span class=p>:</span> <span class=n>tweet</span><span class=p>[</span><span class=s1>&#39;replies&#39;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;retweets&#34;</span><span class=p>:</span> <span class=n>tweet</span><span class=p>[</span><span class=s1>&#39;retweets&#39;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;timestamp&#34;</span><span class=p>:</span> <span class=n>tweet</span><span class=p>[</span><span class=s1>&#39;timestamp&#39;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;url&#34;</span><span class=p>:</span> <span class=n>get_tweet_url</span><span class=p>(</span><span class=n>tweet</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;text&#34;</span><span class=p>:</span> <span class=n>get_tweet_text</span><span class=p>(</span><span class=n>tweet</span><span class=p>)}</span>
+</span></span><span class=line><span class=cl><span class=n>rows</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>row</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span> <span class=o>=</span> <span class=n>pd</span><span class=o>.</span><span class=n>DataFrame</span><span class=o>.</span><span class=n>from_dict</span><span class=p>(</span><span class=n>rows</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span>
 </span></span></code></pre></div><p>looks something like this</p><pre><code> 	id 	likes 	replies 	retweets 	text 	timestamp 	url
 0 	892802102702911488 	1 	0 	1 	None 	2017-08-02T17:39:43 	https://twitter.com/chrisalbon/status/89280210...
 1 	961698946698567680 	5 	0 	0 	Threshold Activation 	2018-02-08T20:31:11 	https://twitter.com/chrisalbon/status/96169894...
 2 	961666291189743616 	23 	0 	5 	Chi-Squared 	2018-02-08T18:21:25 	https://twitter.com/chrisalbon/status/96166629...
-</code></pre><h3 id=24-extract-image-url-from-tweet-url>2.4 Extract image url from tweet url</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_img_url</span>(tweet_url):
-</span></span><span style=display:flex><span>    page_data <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>get(tweet_url)<span style=color:#f92672>.</span>text
-</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> re<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#39;data-image-url=&#34;(.*)&#34;&#39;</span>, page_data)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> res:
-</span></span><span style=display:flex><span>        img_url <span style=color:#f92672>=</span> res<span style=color:#f92672>.</span>group(<span style=color:#ae81ff>1</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
-</span></span><span style=display:flex><span>        img_url <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> img_url
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#test</span>
-</span></span><span style=display:flex><span>get_img_url(tweet_url)
-</span></span><span style=display:flex><span><span style=color:#75715e># output: &#39;https://pbs.twimg.com/media/DViGZR3VoAAAoNf.png&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>df[<span style=color:#e6db74>&#39;img_url&#39;</span>] <span style=color:#f92672>=</span> [get_img_url(tweet_url)  <span style=color:#66d9ef>for</span> tweet_url <span style=color:#f92672>in</span> df<span style=color:#f92672>.</span>url]
-</span></span><span style=display:flex><span>df<span style=color:#f92672>.</span>tail()
+</code></pre><h3 id=24-extract-image-url-from-tweet-url>2.4 Extract image url from tweet url</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_img_url</span><span class=p>(</span><span class=n>tweet_url</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>page_data</span> <span class=o>=</span> <span class=n>requests</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>tweet_url</span><span class=p>)</span><span class=o>.</span><span class=n>text</span>
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=s1>&#39;data-image-url=&#34;(.*)&#34;&#39;</span><span class=p>,</span> <span class=n>page_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>res</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>img_url</span> <span class=o>=</span> <span class=n>res</span><span class=o>.</span><span class=n>group</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>img_url</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>img_url</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#test</span>
+</span></span><span class=line><span class=cl><span class=n>get_img_url</span><span class=p>(</span><span class=n>tweet_url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># output: &#39;https://pbs.twimg.com/media/DViGZR3VoAAAoNf.png&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;img_url&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=p>[</span><span class=n>get_img_url</span><span class=p>(</span><span class=n>tweet_url</span><span class=p>)</span>  <span class=k>for</span> <span class=n>tweet_url</span> <span class=ow>in</span> <span class=n>df</span><span class=o>.</span><span class=n>url</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=o>.</span><span class=n>tail</span><span class=p>()</span>
 </span></span></code></pre></div><p>looks something like this</p><pre><code> 	id 	likes 	replies 	retweets 	text 	timestamp 	url 	img_url
 236 	946078250698018816 	19 	1 	0 	Bayes Error 	2017-12-27T18:00:06 	https://twitter.com/chrisalbon/status/94607825... 	https://pbs.twimg.com/media/DSElJ54VQAEtuvF.png
 237 	945751084974333952 	47 	3 	13 	Occams Razor 	2017-12-26T20:20:04 	https://twitter.com/chrisalbon/status/94575108... 	https://pbs.twimg.com/media/DR_7mSwV4AAw6ZW.png
 238 	945717937234591744 	8 	0 	1 	K-Fold Cross-Validation 	2017-12-26T18:08:21 	https://twitter.com/chrisalbon/status/94571793... 	https://pbs.twimg.com/mediDR_dc5RVAAAMkcK.png
 </code></pre><h2 id=step-3--write-to-csv>Step 3 &ndash; Write to csv</h2><pre><code>Its time to save it to csv for further processing
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>df<span style=color:#f92672>.</span>to_csv(<span style=color:#e6db74>&#34;chrisalbon_mlflashcards.csv&#34;</span>)
+</code></pre><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>df</span><span class=o>.</span><span class=n>to_csv</span><span class=p>(</span><span class=s2>&#34;chrisalbon_mlflashcards.csv&#34;</span><span class=p>)</span>
 </span></span></code></pre></div><p>By this time I got other ideas to test. Instead of just downloading the images, I wanted to anaylze the tweets to know more about it using the data we have.</p><p>The result is we are going to split this post into two parts where the next post will contain details on the analyis and code to download images. It will be published when the analysis is complete, let me go work on it. See you till then.</p><p>***Update 02/21 &ndash; source code for this reop can be found <a href=https://github.com/tutysara/chrisablon-mlflashcards>here</a></p><div class=blog-tags><a href=https://www.tutysara.net/tags/machine-learning/>machine learning</a>&nbsp;
 <a href=https://www.tutysara.net/tags/python/>python</a>&nbsp;
 <a href=https://www.tutysara.net/tags/twitter/>twitter</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://www.tutysara.net/posts/2018/02/07/themes-and-extensions-for-jupyter-notebook/ data-toggle=tooltip data-placement=top title="Themes and Extensions for Jupyter notebook">&larr; Previous Post</a></li><li class=next><a href=https://www.tutysara.net/posts/2018/02/11/machine-learning-flashcards-from-twitter--part-2-data-analysis-and-download/ data-toggle=tooltip data-placement=top title="Machine Learning Flashcards from Twitter -- Part 2 Data Analysis and Download">Next Post &rarr;</a></li></ul><div class=staticman-comments><section class="js-comments staticman-comments"><form class="js-form form" method=post action=https://api.staticman.net/v2/entry/tutysara/tutysara.net.comments/master/comments><input type=hidden name=options[slug] value=posts20180209machine-learning-flashcards-from-twitter--part-1-data-collection-and-preprocessing>

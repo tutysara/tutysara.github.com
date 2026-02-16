@@ -1,2 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on TUTYSARA'S SPACE</title><link>https://www.tutysara.net/tags/github/</link><description>Recent content in Github on TUTYSARA'S SPACE</description><generator>Hugo</generator><language>en-EN</language><copyright>(c) 2026 tutysara</copyright><lastBuildDate>Sun, 02 Sep 2012 16:14:00 +0000</lastBuildDate><atom:link href="https://www.tutysara.net/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>Started blogging from a new place</title><link>https://www.tutysara.net/posts/2012/09/02/started-blogging-from-a-new-place/</link><pubDate>Sun, 02 Sep 2012 16:14:00 +0000</pubDate><guid>https://www.tutysara.net/posts/2012/09/02/started-blogging-from-a-new-place/</guid><description>&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on TUTYSARA'S SPACE</title><link>https://www.tutysara.net/tags/github/</link><description>Recent content in Github on TUTYSARA'S SPACE</description><generator>Hugo</generator><language>en-EN</language><copyright>(c) 2026 tutysara</copyright><lastBuildDate>Sun, 02 Sep 2012 16:14:00 +0000</lastBuildDate><atom:link href="https://www.tutysara.net/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>Started blogging from a new place</title><link>https://www.tutysara.net/posts/2012/09/02/started-blogging-from-a-new-place/</link><pubDate>Sun, 02 Sep 2012 16:14:00 +0000</pubDate><guid>https://www.tutysara.net/posts/2012/09/02/started-blogging-from-a-new-place/</guid><description>&lt;summary&gt;
+ &lt;p&gt;
+ I have been thinking about having a professional looking blog/space for
+ some time. I noticed many people I follow on github maintaining a
+ neat blog, I see that many of them
+ use &lt;a href="https://github.com/mojombo/jekyll"&gt;jekyll&lt;a&gt;/
+ &lt;a href="http://octopress.org"&gt;octopress&lt;/a&gt; and use
+ &lt;a href="http://pages.github.com/"&gt; github pages&lt;/a&gt; for hosting. I like the concept of static blogging and
+ wanted to give it a try.
+ &lt;/p&gt;
+&lt;/summary&gt;
+&lt;section&gt;
+ &lt;p&gt;
+ I gone through the process and it looks neat and clean, create a
+ github repo with your username and drop html pages into it and &lt;a href="http://www.github.com/"&gt; github&lt;/a&gt; takes care of serving them,
+ damm simple. Can't wait to write my blog and here comes the first
+ posts. I will be tweaking my comments setup with &lt;a href="http://disqus.com/"&gt; disqus&lt;/a&gt; and
+ analytics and also my blog engine using this post.
+ &lt;/p&gt;</description></item></channel></rss>
