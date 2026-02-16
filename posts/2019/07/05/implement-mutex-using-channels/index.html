@@ -1,0 +1,109 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>Implement mutex using channels</title><meta property="og:title" content="Implement mutex using channels"><meta name=twitter:title content="Implement mutex using channels"><meta name=description content='Concurrency primitives can be implemented on top of channel abstraction of CSP style.
+Here is an example of implementing mutex using channels.
+Go code to implement mutex using channels.
+package main
+
+import "fmt"
+
+type Lock struct {
+	locked chan bool
+}
+
+func NewLock() Lock {
+	lock := Lock{locked: make(chan bool, 1)}
+	lock.locked <- true
+	return lock
+}
+
+func (l *Lock) Lock() {
+	<-l.locked // read from channel and if another read happens it waits
+}
+
+func (l *Lock) Unlock() {
+	// This is not reentrant
+
+	// calling unlock again on an unlocked channel blocks
+	l.locked <- true // write to channel so, that it gets read and channel clears
+}
+This is not reentrant'><meta property="og:description" content='Concurrency primitives can be implemented on top of channel abstraction of CSP style.
+Here is an example of implementing mutex using channels.
+Go code to implement mutex using channels.
+package main
+
+import "fmt"
+
+type Lock struct {
+	locked chan bool
+}
+
+func NewLock() Lock {
+	lock := Lock{locked: make(chan bool, 1)}
+	lock.locked <- true
+	return lock
+}
+
+func (l *Lock) Lock() {
+	<-l.locked // read from channel and if another read happens it waits
+}
+
+func (l *Lock) Unlock() {
+	// This is not reentrant
+
+	// calling unlock again on an unlocked channel blocks
+	l.locked <- true // write to channel so, that it gets read and channel clears
+}
+This is not reentrant'><meta name=twitter:description content="Concurrency primitives can be implemented on top of channel abstraction of CSP style.
+Here is an example of implementing mutex using channels.
+Go code to implement mutex using channels.
+package main …"><meta name=author content><link href=https://www.tutysara.net/img/favicon.ico rel=icon type=image/x-icon><meta property="og:image" content="https://www.tutysara.net/img/avatar-favicon.png"><meta name=twitter:image content="https://www.tutysara.net/img/avatar-favicon.png"><meta name=twitter:card content="summary"><meta property="og:url" content="https://www.tutysara.net/posts/2019/07/05/implement-mutex-using-channels/"><meta property="og:type" content="website"><meta property="og:site_name" content="TUTYSARA'S SPACE"><meta name=generator content="Hugo 0.149.0"><link rel=canonical href=https://www.tutysara.net/posts/2019/07/05/implement-mutex-using-channels/><link rel=alternate href=/index.xml type=application/rss+xml title="TUTYSARA'S SPACE"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css integrity=sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0 crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css integrity=sha512-dNmFI/... crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://www.tutysara.net/css/main.css><link rel=stylesheet href=https://www.tutysara.net/css/staticman.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://www.tutysara.net/css/syntax.css><link rel=stylesheet href=https://www.tutysara.net/css/codeblock.css><link rel=stylesheet href=/css/custom.css><style>pre.highlight,.highlight>pre,td.code pre{border-left:2px solid #76a2a9}</style><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div></head></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=https://www.tutysara.net/>TUTYSARA'S SPACE</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li><a title=About href=/about/>About</a></li><li><a title=Tags href=/tags>Tags</a></li><li><form class=navbar-form role=search action=http://www.google.com/search method=get><div class=input-group><input class=form-control type=search placeholder=Search... name=q id=search>
+<input value=http://www.tutysara.net name=sitesearch type=hidden></div></form></li></ul></div><div class=avatar-container><div class=avatar-img-border><a title="TUTYSARA'S SPACE" href=https://www.tutysara.net/><img class=avatar-img src=https://www.tutysara.net/img/avatar-favicon.png alt="TUTYSARA'S SPACE"></a></div></div></div></nav><div id=modalSearch class="modal fade" role=dialog><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal>&#215;</button><h4 class=modal-title>Search TUTYSARA'S SPACE</h4></div><div class=modal-body><gcse:search></gcse:search></div><div class=modal-footer><button type=button class="btn btn-default" data-dismiss=modal>Close</button></div></div></div></div><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=post-heading><h1>Implement mutex using channels</h1><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;Posted on July 5, 2019
+&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;min
+&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;tutysara
+&nbsp;|&nbsp;<i class="fas fa-comment"></i>&nbsp;</span></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>Concurrency primitives can be implemented on top of channel abstraction of CSP style.
+Here is an example of implementing mutex using channels.</p><h2 id=go-code-to-implement-mutex-using-channels>Go code to implement mutex using channels.</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span><span class=w> </span><span class=nx>main</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=s>&#34;fmt&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kd>type</span><span class=w> </span><span class=nx>Lock</span><span class=w> </span><span class=kd>struct</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>locked</span><span class=w> </span><span class=kd>chan</span><span class=w> </span><span class=kt>bool</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kd>func</span><span class=w> </span><span class=nf>NewLock</span><span class=p>()</span><span class=w> </span><span class=nx>Lock</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>lock</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>Lock</span><span class=p>{</span><span class=nx>locked</span><span class=p>:</span><span class=w> </span><span class=nb>make</span><span class=p>(</span><span class=kd>chan</span><span class=w> </span><span class=kt>bool</span><span class=p>,</span><span class=w> </span><span class=mi>1</span><span class=p>)}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>lock</span><span class=p>.</span><span class=nx>locked</span><span class=w> </span><span class=o>&lt;-</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=k>return</span><span class=w> </span><span class=nx>lock</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kd>func</span><span class=w> </span><span class=p>(</span><span class=nx>l</span><span class=w> </span><span class=o>*</span><span class=nx>Lock</span><span class=p>)</span><span class=w> </span><span class=nf>Lock</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=o>&lt;-</span><span class=nx>l</span><span class=p>.</span><span class=nx>locked</span><span class=w> </span><span class=c1>// read from channel and if another read happens it waits</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kd>func</span><span class=w> </span><span class=p>(</span><span class=nx>l</span><span class=w> </span><span class=o>*</span><span class=nx>Lock</span><span class=p>)</span><span class=w> </span><span class=nf>Unlock</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=c1>// This is not reentrant</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=c1>// calling unlock again on an unlocked channel blocks</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>l</span><span class=p>.</span><span class=nx>locked</span><span class=w> </span><span class=o>&lt;-</span><span class=w> </span><span class=kc>true</span><span class=w> </span><span class=c1>// write to channel so, that it gets read and channel clears</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span></code></pre></div><p>This is not reentrant</p><h2 id=reference>Reference</h2><p>Link <a href=https://medium.com/@nagarjun_nagesh/concurrency-in-go-understanding-mutex-channels-and-their-differences-bbdf5441ce59>Concurrency in Go: Understanding Mutex, Channels, and Their Differences</a></p><div class=blog-tags><a href=https://www.tutysara.net/tags/golang/>golang</a>&nbsp;
+<a href=https://www.tutysara.net/tags/concurrency/>concurrency</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://www.tutysara.net/posts/2018/04/05/tips-to-prepare-for-toefl-in-two-weeks/ data-toggle=tooltip data-placement=top title="Tips to prepare for TOEFL in two weeks">&larr; Previous Post</a></li></ul><div class=staticman-comments><section class="js-comments staticman-comments"><form class="js-form form" method=post action=https://api.staticman.net/v2/entry/tutysara/tutysara.net.comments/master/comments><input type=hidden name=options[slug] value=posts20190705implement-mutex-using-channels>
+<input type=hidden name=options[parent]><fieldset><div class=textfield><textarea name=fields[comment] type=text placeholder="You can use Markdown syntax"></textarea></div></fieldset><fieldset><div class=textfield><input name=fields[name] type=text placeholder="Your name"></div></fieldset><fieldset><div class=textfield><input type=email name=fields[email] placeholder="Your email address"></div></fieldset><fieldset><div class=textfield><input type=text name=fields[website] placeholder="Your website"></div></fieldset><fieldset><button class=button>
+Submit</button></fieldset></form></section><article class=modal><div class=title><h2 class=js-modal-title></h2></div><div class=js-modal-text></div><div><button class=js-close-modal>Close</button></div></article></div></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
+2019
+&nbsp;&bull;&nbsp;
+<a href=https://www.tutysara.net/>TUTYSARA'S SPACE</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.149.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js integrity=sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6 crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js integrity=sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh crossorigin=anonymous onload=renderMathInElement(document.body)></script><script src=https://code.jquery.com/jquery-3.7.0.slim.min.js integrity=sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js integrity=sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd crossorigin=anonymous></script><script src=https://www.tutysara.net/js/main.js></script><script src=https://www.tutysara.net/js/staticman.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://www.tutysara.net/js/load-photoswipe.js></script><script>(function(){var t,n="true",e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="https://cse.google.com/cse.js?cx="+n,t=document.getElementsByTagName("script")[0],t.parentNode.insertBefore(e,t)})()</script></body></html>
